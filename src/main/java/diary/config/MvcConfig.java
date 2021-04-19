@@ -1,4 +1,4 @@
-package developerdiary.config;
+package diary.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

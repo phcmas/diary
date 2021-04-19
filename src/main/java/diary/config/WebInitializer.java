@@ -1,4 +1,4 @@
-package developerdiary.config;
+package diary.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
