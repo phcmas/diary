@@ -12,6 +12,7 @@
     <failOnMissingWebXml>false</failOnMissingWebXml>
     <spring.version>5.2.2.RELEASE</spring.version>
     <jackson2.version>2.9.4</jackson2.version>
+    <handlebars-version>4.0.6</handlebars-version>
   </properties>
 
   <dependencies>
@@ -59,7 +60,7 @@
       <scope>provided</scope>
     </dependency>
 
-    <dependency>
+    <!--dependency>
       <groupId>javax.servlet.jsp</groupId>
       <artifactId>javax.servlet.jsp-api</artifactId>
       <version>2.3.1</version>
@@ -70,7 +71,7 @@
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
-    </dependency>
+    </dependency-->
 
     <dependency>
       <groupId>org.springframework</groupId>
@@ -192,6 +193,24 @@
       <version>1.18.12</version>
       <scope>compile</scope>
     </dependency>
+
+    <dependency>
+	   <groupId>com.github.jknack</groupId>
+	   <artifactId>handlebars</artifactId>
+	   <version>${handlebars-version}</version>
+	</dependency>
+
+	<dependency>
+	   <groupId>com.github.jknack</groupId>
+	   <artifactId>handlebars-jackson2</artifactId>
+	   <version>${handlebars-version}</version>
+	</dependency>
+
+	<dependency>
+	   <groupId>com.github.jknack</groupId>
+	   <artifactId>handlebars-springmvc</artifactId>
+	   <version>${handlebars-version}</version>
+	</dependency>
 
   </dependencies>
 
