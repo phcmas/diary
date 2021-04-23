@@ -26,7 +26,8 @@ public class IndexController {
 
     @GetMapping("/thymeleaf")
     public String thymeleaf(Model model) {
-        User user = new User(1203);
+        User user = new User();
+        user.setId(1230);
         model.addAttribute("user", user);
         return "thymeleaf";
     }
