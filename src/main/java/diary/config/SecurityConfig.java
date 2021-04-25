@@ -1,5 +1,7 @@
 package diary.config;
 
+import diary.service.impl.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,9 +12,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Objects;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    CustomUserDetailsService customUserDetailsService;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -21,27 +28,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(customUserDetailsService);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+        auth.userDetailsService(customUserDetailsService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
+                .antMatchers("/welcome").hasRole("USER")
                 .antMatchers("/**").permitAll()
-                .antMatchers("/aa").hasRole("ADMIN")
-                .antMatchers("/bb").hasRole("USER")
+                .antMatchers("/ss").hasRole("ADMIN")
                 .anyRequest().permitAll();
         http.formLogin()
                 .loginPage("/user/login") // login page
                 .loginProcessingUrl("/user/authenticate")
                 .failureUrl("/user/login")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/main", true)
                 .usernameParameter("name")
                 .passwordParameter("password").permitAll();
         http.logout()

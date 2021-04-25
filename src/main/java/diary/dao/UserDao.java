@@ -1,11 +1,16 @@
 package diary.dao;
 
 import diary.dto.User;
+import diary.dto.UserRole;
 import diary.utility.Utility;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,12 +38,16 @@ public class UserDao {
 
     private final NamedParameterJdbcTemplate jdbc;
     private final RowMapper<User> rowMapper;
+    private final SimpleJdbcInsert insertAction;
+
+    @Autowired
+    UserRoleDao userRoleDao;
 
     public UserDao(DataSource dataSource) {
         this.jdbc = new NamedParameterJdbcTemplate(dataSource);
         this.rowMapper = BeanPropertyRowMapper.newInstance(User.class);
+        this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("user");
     }
-
 
     @Transactional
     public User getUser(String name) {
@@ -48,6 +57,14 @@ public class UserDao {
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
+    }
+
+    @Transactional
+    public int addUser(User user) {
+        SqlParameterSource params = new BeanPropertySqlParameterSource(user);
+        int result = insertAction.execute(params);
+        userRoleDao.addUserRole(getUser(user.getName()));
+        return result;
     }
 
 }

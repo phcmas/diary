@@ -1,9 +1,6 @@
 package diary.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
@@ -13,4 +10,9 @@ public class UserRole {
     private int id;
     private int userId;
     private String roleName;
+
+    public UserRole (int userId, String roleName) {
+        this.userId = userId;
+        this.roleName = roleName;
+    }
 }

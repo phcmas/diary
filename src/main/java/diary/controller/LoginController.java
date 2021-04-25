@@ -1,15 +1,26 @@
 package diary.controller;
 
+import diary.dto.User;
+import diary.param.UserParam;
+import diary.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping(path="/user")
 public class LoginController {
 
-    @GetMapping(path="/login")
-    public String login() {
-        return "login";
+    @Autowired
+    UserService userService;
+
+    @PostMapping("/join")
+    @ResponseBody
+    public int join(@RequestBody UserParam userParam) {
+        User newUser = userParam.toUser();
+        return userService.addUser(newUser);
     }
+
 }

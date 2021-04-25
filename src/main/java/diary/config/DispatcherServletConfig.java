@@ -15,9 +15,9 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //cache period 31556926
-        registry.addResourceHandler("/css/**","/user/css/**").addResourceLocations("/static/css/").setCachePeriod(31556926);
-        registry.addResourceHandler("/img/**").addResourceLocations("/static/img/").setCachePeriod(31556926);
-        registry.addResourceHandler("/js/**","/user/js/**").addResourceLocations("/static/js/").setCachePeriod(31556926);
+        registry.addResourceHandler("/css/**","/user/css/**").addResourceLocations("/static/css/").setCachePeriod(0);
+        registry.addResourceHandler("/img/**").addResourceLocations("/static/img/").setCachePeriod(0);
+        registry.addResourceHandler("/js/**","/user/js/**").addResourceLocations("/static/js/").setCachePeriod(0);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addRedirectViewController("/","/main");
+        registry.addRedirectViewController("/","/signin");
     }
 
     //@Bean

@@ -1,4 +1,5 @@
 import diary.config.ApplicationConfig;
+import diary.config.SecurityConfig;
 import diary.dao.UserDao;
 import diary.dao.UserRoleDao;
 import diary.dto.User;
@@ -13,9 +14,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class})
+@ContextConfiguration(classes = {ApplicationConfig.class, SecurityConfig.class})
 public class DaoTest {
 
     @Autowired
@@ -36,12 +39,17 @@ public class DaoTest {
     @Test
     public void UserDaoTest() {
         User user = userDao.getUser("seung");
+        User newUser = User.builder()
+                .password("1234").name("1232").createDate(LocalDateTime.now())
+                .modifyDate(LocalDateTime.now()).build();
+        userDao.addUser(newUser);
         Assert.assertNotNull(user);
     }
 
     @Test
     public void UserRoleDaoTest() {
-        UserRole userRole = userRoleDao.getUserRole(1);
+        User user = userDao.getUser("seung");
+        List<UserRole> userRole = userRoleDao.getUserRole(user);
         Assert.assertNotNull(userRole);
     }
 
