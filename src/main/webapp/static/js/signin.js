@@ -1,4 +1,4 @@
-$('#login-form-submit').click((e) => {
+var authenticate = function() {
     var userdata = "name=" + $('#username-field').val() + "&password=" + $('#password-field').val();
 
     $.ajax({
@@ -12,14 +12,21 @@ $('#login-form-submit').click((e) => {
     }).fail(function() {
         alert("존재하지 않은 사용자입니다.");
     });
+};
 
+$('#login-form-submit').click(function() {
+    authenticate();
 });
 
-$('#login-form-signup').click((e) => {
-    e.preventDefault();
+$('#password-field').keydown(function(key){
+    if (key.keyCode == 13) authenticate();
+});
+
+$('#login-form-signup').click(function() {
     window.location.href = '/diary/signup';
 });
 
+//    e.preventDefault();
 //const loginForm = document.getElementById("login-form");
 //const loginButton = document.getElementById("login-form-submit");
 //const loginErrorMsg = document.getElementById("login-error-msg");

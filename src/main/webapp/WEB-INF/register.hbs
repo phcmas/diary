@@ -1,0 +1,84 @@
+{{>layout/header}}
+
+  <!-- Page Content -->
+  <div class="container"> 
+
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h2 class="my-4"></h2>
+        <div class="list-group">
+          <h5 class = "left-menu">
+            <a href="#" class="list-group-item"> 기능개발 </a>
+          </h5>
+          <h5>
+            <a href="#" class="list-group-item"> 성능개선 </a>
+          </h5>
+          <h5>
+          <a href="#" class="list-group-item"> 오류해결</a>
+          </h5>
+        </div>
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+        <div id="blank"></div>
+        <div class="row">
+
+            <div class="col-lg-9 col-md-7 mb-5">
+            <form class="history-container">
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="author">기간</label>
+                <select id="date_before" class="option">
+                <option value="0" selected>기간선택
+                <option value="2018_08">2018_08</option>
+                </select> ~
+                <select id="date_after" class="option">
+                    <option value="0" selected>기간선택
+                    <option value="2018_08">2018_08</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="author">종류</label>
+                <select id="" class="option">
+                    <option value="0" selected>종류
+                    <option value="function_develop">기능개발</option>
+                    <option value="enhanced_improvement">성능개선</option>
+                    <option value="error_resolution">오류해결</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="author">문제 상황</label>
+                <textarea class="form-control" id="scenario" placeholder="작성자를 입력하세요"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="author">테스트 시나리오</label>
+                <textarea class="form-control" id="scenario" placeholder="작성자를 입력하세요"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="content">내용</label>
+                <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
+            </div>
+            </form>
+                <a href="/" role="button" class="btn btn-secondary">취소</a>
+                <button type="button" class="btn btn-primary" id="btn-save">등록</button>
+            </div>
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+{{>layout/footer}}
