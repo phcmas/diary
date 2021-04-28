@@ -10,33 +10,54 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    /** Login 관련 **/
-    @GetMapping(path="/signin")
+    /** Login **/
+    @GetMapping(path="/user/signin")
     public String signin() {
-        return "signin";
+        return "/user/signin";
     }
 
-    @GetMapping(path="/signup")
+    @GetMapping(path="/user/signup")
     public String signup() {
-        return "signup";
+        return "/user/signup";
     }
 
-    /** 페이지 관련 **/
+    /** Main Page**/
     @GetMapping("/main")
     public String main(Model model) {
-        String username = Utility.getCurrentUserName();
-        model.addAttribute("name", username);
+        model.addAttribute("name", Utility.getCurrentUserName());
         return "main";
     }
 
-    @GetMapping("/history")
+    /** History **/
+    @GetMapping("/history/cards")
     public String history() {
-        return "history";
+        return "/history/cards";
     }
 
-    @GetMapping("/algorithm")
+    @GetMapping("/history/register")
+    public String register() {
+        return "/history/register";
+    }
+
+    @GetMapping("/history/modify")
+    public String modify() {
+        return "/history/modify";
+    }
+
+    @GetMapping("/history/lookup")
+    public String lookup() {
+        return "/history/lookup";
+    }
+
+    /** Algorithm **/
+    @GetMapping("/algorithm/cards")
     public String algorithm() {
-        return "algorithm";
+        return "/algorithm/cards";
+    }
+
+    @GetMapping("/algorithm/lookup")
+    public String alookup() {
+        return "/algorithm/lookup";
     }
 
     @GetMapping("/cs")
@@ -44,20 +65,6 @@ public class IndexController {
         return "cs";
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
-
-    @GetMapping("/modify")
-    public String modify() {
-        return "modify";
-    }
-
-    @GetMapping("/lookup")
-    public String lookup() {
-        return "lookup";
-    }
 
     /** Test (삭제 예정 ) **/
     @GetMapping("/welcome")

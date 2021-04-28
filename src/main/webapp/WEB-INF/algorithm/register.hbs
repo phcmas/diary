@@ -1,27 +1,5 @@
 {{>layout/header}}
-
-  <!-- Page Content -->
-  <div class="container"> 
-
-    <div class="row">
-
-      <div class="col-lg-3">
-
-        <h2 class="my-4"></h2>
-        <div class="list-group">
-          <h5 class = "left-menu">
-            <a href="#" class="list-group-item"> 기능개발 </a>
-          </h5>
-          <h5>
-            <a href="#" class="list-group-item"> 성능개선 </a>
-          </h5>
-          <h5>
-          <a href="#" class="list-group-item"> 오류해결</a>
-          </h5>
-        </div>
-
-      </div>
-      <!-- /.col-lg-3 -->
+  {{>layout/history_side}}
 
       <div class="col-lg-9">
         <div id="blank"></div>
@@ -66,7 +44,7 @@
                 <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
             </div>
             </form>
-                <a href="/" role="button" class="btn btn-secondary">취소</a>
+                <a href="/diary/algorithm/cards" role="button" class="btn btn-secondary">취소</a>
                 <button type="button" class="btn btn-primary" id="btn-save">등록</button>
             </div>
         </div>
