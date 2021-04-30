@@ -1,5 +1,4 @@
 {{>layout/header}}
-
   {{>layout/history_side}}
 
       <div class="col-lg-9">
@@ -10,35 +9,43 @@
             <form class="history-container">
             <div class="form-group">
                 <label for="title">제목</label>
-                <div class="text-content">2020</div>
+                <input type="text" class="form-control" id="title">
             </div>
             <div class="form-group">
-                <label for="title">기간</label>
-                <div class="text-content">2020</div>
-            </div>
-            <div class="form-group">
-                <label for="author">작성자</label>
-                <div class="text-content">2020</div>
+                <label for="author">기간</label>
+                <select id="date_before" class="option">
+                <option value="0" selected>기간선택
+                <option value="2018_08">2018_08</option>
+                </select> ~
+                <select id="date_after" class="option">
+                    <option value="0" selected>기간선택
+                    <option value="2018_08">2018_08</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="author">종류</label>
-                <div class="text-content">2020</div>
+                <select id="" class="option">
+                    <option value="0" selected>종류
+                    <option value="function_develop">기능개발</option>
+                    <option value="enhanced_improvement">성능개선</option>
+                    <option value="error_resolution">오류해결</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="author">문제 상황</label>
-                <textarea class="form-control" id="scenario" readonly>문제상황</textarea>
+                <textarea class="form-control" id="scenario"></textarea>
             </div>
             <div class="form-group">
-                <label for="author">테스트 시나리오</label>
-                <textarea class="form-control" id="scenario" readonly>시나리오</textarea>
+                <label for="author">내용</label>
+                <textarea class="form-control" id="scenario"></textarea>
             </div>
             <div class="form-group">
-                <label for="content">내용</label>
-                <textarea class="form-control" id="content" readonly>내용</textarea>
+                <label for="content">테스트 시나리오</label>
+                <textarea class="form-control" id="content"></textarea>
             </div>
             </form>
-                <a href="/diary/history" role="button" class="btn btn-secondary">취소</a>
-                <button type="button" class="btn btn-primary" id="btn-save">수정</button>
+                <a href="/diary/history/cards" role="button" class="btn btn-secondary">취소</a>
+                <button type="button" class="btn btn-secondary" id="btn-save">등록</button>
             </div>
         </div>
         <!-- /.row -->

@@ -60,6 +60,11 @@ public class IndexController {
         return "/algorithm/lookup";
     }
 
+    @GetMapping("/algorithm/register")
+    public String aregister() {
+        return "/algorithm/register";
+    }
+
     @GetMapping("/cs")
     public String cs() {
         return "cs";
