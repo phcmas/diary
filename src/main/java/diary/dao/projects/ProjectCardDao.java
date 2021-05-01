@@ -35,7 +35,8 @@ public class ProjectCardDao {
     public ProjectCardDao(DataSource dataSource) {
         this.jdbc = new NamedParameterJdbcTemplate(dataSource);
         this.rowMapper = BeanPropertyRowMapper.newInstance(ProjectCard.class);
-        this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("project_card");
+        this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("project_card")
+                                .usingGeneratedKeyColumns("id");
     }
 
     public ProjectCard getProjectCard(int projectId) {
@@ -50,7 +51,7 @@ public class ProjectCardDao {
     @Transactional
     public int addProjectCard(ProjectCard projectCard) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(projectCard);
-        return insertAction.execute(params);
+        return insertAction.executeAndReturnKey(params).intValue();
     }
 
 }

@@ -39,13 +39,11 @@ public class UserDao {
     private final RowMapper<User> rowMapper;
     private final SimpleJdbcInsert insertAction;
 
-    @Autowired
-    UserRoleDao userRoleDao;
-
     public UserDao(DataSource dataSource) {
         this.jdbc = new NamedParameterJdbcTemplate(dataSource);
         this.rowMapper = BeanPropertyRowMapper.newInstance(User.class);
-        this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("user");
+        this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("user")
+                                .usingGeneratedKeyColumns("id");
     }
 
     @Transactional
@@ -61,9 +59,7 @@ public class UserDao {
     @Transactional
     public int addUser(User user) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(user);
-        int result = insertAction.execute(params);
-        userRoleDao.addUserRole(getUser(user.getName()));
-        return result;
+        return insertAction.executeAndReturnKey(params).intValue();
     }
 
 }

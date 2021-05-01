@@ -17,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import static diary.dao.sqls.ProjectSqls.*;
 
@@ -46,7 +48,8 @@ public class ProjectDao {
     public ProjectDao(DataSource dataSource) {
         this.jdbc = new NamedParameterJdbcTemplate(dataSource);
         this.rowMapper = BeanPropertyRowMapper.newInstance(Project.class);
-        this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("project");
+        this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("project")
+                                .usingGeneratedKeyColumns("id");
     }
 
     @Transactional
@@ -60,9 +63,18 @@ public class ProjectDao {
     }
 
     @Transactional
+    public List<Project> getRecentProjects(int start, int limit) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("start", start);
+        params.put("limit", limit);
+
+        return jdbc.query(SELECT_RECENT_PROJECTS, params, rowMapper);
+    }
+
+    @Transactional
     public int addProject(Project project) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(project);
-        return insertAction.execute(params);
+        return insertAction.executeAndReturnKey(params).intValue();
     }
 
     @Transactional

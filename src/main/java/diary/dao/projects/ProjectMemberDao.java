@@ -35,7 +35,8 @@ public class ProjectMemberDao {
     public ProjectMemberDao(DataSource dataSource) {
         this.jdbc = new NamedParameterJdbcTemplate(dataSource);
         this.rowMapper = BeanPropertyRowMapper.newInstance(ProjectMember.class);
-        this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("project_member");
+        this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("project_member")
+                .usingGeneratedKeyColumns("id");
     }
 
     @Transactional
@@ -47,7 +48,7 @@ public class ProjectMemberDao {
     @Transactional
     public int addProjectMember(ProjectMember projectMember) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(projectMember);
-        return insertAction.execute(params);
+        return insertAction.executeAndReturnKey(params).intValue();
     }
 
 

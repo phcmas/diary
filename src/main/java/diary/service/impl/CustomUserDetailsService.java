@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         User user = userService.getUser(name);
-        List<UserRole> userRoles = userService.getUserRole(user);
+        List<UserRole> userRoles = userService.getUserRole(user.getId());
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         if (user == null) throw new UsernameNotFoundException("존재하지 않는 사용자입니다");

@@ -2,6 +2,7 @@ package diary.service.impl;
 
 import diary.dao.user.UserDao;
 import diary.dao.user.UserRoleDao;
+import diary.dto.enums.UserAuthority;
 import diary.dto.user.User;
 import diary.dto.user.UserRole;
 import diary.service.UserService;
@@ -28,15 +29,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserRole> getUserRole(User user) {
-        return userRoleDao.getUserRole(user);
+    public List<UserRole> getUserRole(int userId) {
+        return userRoleDao.getUserRole(userId);
     }
 
     @Override
     public int addUser(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        return userDao.addUser(user);
+        int newId = userDao.addUser(user);
+
+        UserRole newUserRole = new UserRole(newId, UserAuthority.USER);
+        userRoleDao.addUserRole(newUserRole);
+
+        return newId;
     }
 }
 

@@ -45,14 +45,13 @@ public class UserRoleDao {
     }
 
     @Transactional
-    public List<UserRole> getUserRole(User user) {
-        Map<String, ?> param = Collections.singletonMap("userId", user.getId());
+    public List<UserRole> getUserRole(int userId) {
+        Map<String, ?> param = Collections.singletonMap("userId", userId);
         return jdbc.query(SELECT_USER_ROLE, param, rowMapper);
     }
 
     @Transactional
-    public int addUserRole(User user) {
-        UserRole userRole = new UserRole(user.getId(), UserAuthority.USER);
+    public int addUserRole(UserRole userRole) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(userRole);
         return insertAction.execute(params);
     }

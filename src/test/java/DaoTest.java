@@ -5,6 +5,7 @@ import diary.dao.projects.ProjectDao;
 import diary.dao.projects.ProjectMemberDao;
 import diary.dao.user.UserDao;
 import diary.dao.user.UserRoleDao;
+import diary.dto.enums.UserAuthority;
 import diary.dto.projects.Project;
 import diary.dto.projects.ProjectCard;
 import diary.dto.projects.ProjectMember;
@@ -12,7 +13,6 @@ import diary.dto.enums.ProjectType;
 import diary.dto.user.User;
 import diary.dto.user.UserRole;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,6 +50,16 @@ public class DaoTest {
     @Autowired
     ProjectCardDao projectCardDao;
 
+    public int getProjectId() {
+        List<Project> recentProjects = projectDao.getRecentProjects(0,4);
+        return recentProjects.get(0).getId();
+    }
+
+    public int getUserId() {
+        User user = userDao.getUser("test");
+        return user.getId();
+    }
+
     @Test
     public void DaoTest0_DBConnectionTest() throws SQLException {
         Connection connection = dataSource.getConnection();
@@ -59,11 +69,11 @@ public class DaoTest {
     @Test
     public void DaoTest1_UserTest1() {
         // add newUser
-        User newUser = User.builder().id(-1)
+        User newUser = User.builder()
                 .password("1234").name("test").createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now()).build();
-        int result = userDao.addUser(newUser);
-        Assert.assertNotEquals(result, 0);
+        int newId = userDao.addUser(newUser);
+        Assert.assertTrue(newId >= 0);
 
         // find user
         User user = userDao.getUser("test");
@@ -72,60 +82,72 @@ public class DaoTest {
 
     @Test
     public void DaoTest2_UserTest2() {
+        int userId = getUserId();
+        // add userRole
+        UserRole userRole = new UserRole(userId, UserAuthority.USER);
+        int newId = userRoleDao.addUserRole(userRole);
+        Assert.assertTrue(newId >= 0);
+
         // find userRole
-        User user = userDao.getUser("test");
-        List<UserRole> userRole = userRoleDao.getUserRole(user);
-        Assert.assertNotEquals(userRole.size(), 0);
+        List<UserRole> userRoles = userRoleDao.getUserRole(userId);
+        Assert.assertNotEquals(userRoles.size(), 0);
     }
 
     @Test
     public void DaoTest3_ProjectTest1() {
         // add newProject
-        Project newProject = Project.builder().id(-1).title("test").startDate(LocalDateTime.now())
+        Project newProject = Project.builder().title("test").startDate(LocalDateTime.now())
                 .finishDate(LocalDateTime.now()).projectType(ProjectType.ErrorResolution)
                 .situation("test").content("test").testScenario("test").createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now()).build();
-        int result1 = projectDao.addProject(newProject);
-        Assert.assertNotEquals(result1, 0);
+        int newId = projectDao.addProject(newProject);
+        Assert.assertTrue(newId >= 0);
 
         // find project
-        Project project = projectDao.getProject(-1);
+        Project project = projectDao.getProject(newId);
         Assert.assertNotNull(project);
     }
 
     @Test
     public void DaoTest4_ProjectTest2() {
+        int projectId = getProjectId();
+        int userId = getUserId();
+
         // add newProjectMember
-        ProjectMember newProjectMember = ProjectMember.builder().userId(-1).projectId(-1).build();
-        int result2 = projectMemberDao.addProjectMember(newProjectMember);
-        Assert.assertNotEquals(result2, 0);
+        ProjectMember newProjectMember = ProjectMember.builder().userId(userId).projectId(projectId).build();
+        int newId = projectMemberDao.addProjectMember(newProjectMember);
+        Assert.assertNotEquals(newId, 0);
 
         // find projectMembers
-        List<ProjectMember> projectMembers = projectMemberDao.getProjectMembers(-1);
+        List<ProjectMember> projectMembers = projectMemberDao.getProjectMembers(projectId);
         Assert.assertNotEquals(projectMembers.size(), 0);
     }
 
     @Test
     public void DaoTest5_ProjectTest3() {
+        int projectId = getProjectId();
+
         // add newProjectCard
-        ProjectCard newProjectCard = ProjectCard.builder().id(-1).projectId(-1).build();
-        int result3 = projectCardDao.addProjectCard(newProjectCard);
-        Assert.assertNotEquals(result3, 0);
+        ProjectCard newProjectCard = ProjectCard.builder().projectId(projectId).build();
+        int newId = projectCardDao.addProjectCard(newProjectCard);
+        Assert.assertNotEquals(newId, 0);
 
         // find projectCard
-        ProjectCard projectCard = projectCardDao.getProjectCard(-1);
+        ProjectCard projectCard = projectCardDao.getProjectCard(projectId);
         Assert.assertNotNull(projectCard);
     }
 
     @Test
     public void DaoTest6_ProjectTest4() {
+        int projectId = getProjectId();
+
         // update project
-        Project modifiedProject = Project.builder().id(-1).title("test_updated").startDate(LocalDateTime.now())
+        Project modifiedProject = Project.builder().id(projectId).title("test_updated").startDate(LocalDateTime.now())
                 .finishDate(LocalDateTime.now()).projectType(ProjectType.FunctionDevelopment)
                 .situation("test_updated").content("test_updated").testScenario("test_updated").createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now()).build();
-        int result4 = projectDao.updateProject(modifiedProject);
-        Assert.assertNotEquals(result4, 0);
+        int result = projectDao.updateProject(modifiedProject);
+        Assert.assertNotEquals(result, 0);
     }
 
 }
