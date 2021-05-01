@@ -1,4 +1,4 @@
-package diary.dto;
+package diary.dto.user;
 
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;

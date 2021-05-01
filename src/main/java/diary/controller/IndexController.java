@@ -1,10 +1,8 @@
 package diary.controller;
 
-import diary.dto.User;
 import diary.utility.Utility;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -29,24 +27,24 @@ public class IndexController {
     }
 
     /** History **/
-    @GetMapping("/history/cards")
-    public String history() {
-        return "/history/cards";
+    @GetMapping("/projects/cards")
+    public String projects() {
+        return "/projects/cards";
     }
 
-    @GetMapping("/history/register")
+    @GetMapping("/projects/register")
     public String register() {
-        return "/history/register";
+        return "/projects/register";
     }
 
-    @GetMapping("/history/modify")
+    @GetMapping("/projects/modify")
     public String modify() {
-        return "/history/modify";
+        return "/projects/modify";
     }
 
-    @GetMapping("/history/lookup")
+    @GetMapping("/projects/lookup")
     public String lookup() {
-        return "/history/lookup";
+        return "/projects/lookup";
     }
 
     /** Algorithm **/

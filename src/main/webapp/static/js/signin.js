@@ -23,7 +23,7 @@ $('#password-field').keydown(function(key){
 });
 
 $('#login-form-signup').click(function() {
-    window.location.href = '/diary/signup';
+    window.location.href = '/diary/user/signup';
 });
 
 //    e.preventDefault();

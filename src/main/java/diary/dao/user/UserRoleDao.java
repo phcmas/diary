@@ -1,8 +1,9 @@
-package diary.dao;
+package diary.dao.user;
 
-import diary.dto.User;
-import diary.dto.UserRole;
-import org.springframework.dao.EmptyResultDataAccessException;
+import diary.dto.enums.UserAuthority;
+import diary.dto.user.User;
+import diary.dto.user.UserRole;
+import diary.utility.Utility;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -20,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import static diary.dao.loginsqls.LoginSqls.*;
+import static diary.dao.sqls.LoginSqls.*;
 
 @Repository
 public class UserRoleDao {
@@ -30,7 +31,7 @@ public class UserRoleDao {
             return UserRole.builder()
                     .id(rs.getInt("id"))
                     .userId(rs.getInt("userId"))
-                    .roleName(rs.getString("roleName")).build();
+                    .roleName(Utility.getUserAuthority(rs.getString("roleName"))).build();
         }
     }
     private final NamedParameterJdbcTemplate jdbc;
@@ -45,13 +46,13 @@ public class UserRoleDao {
 
     @Transactional
     public List<UserRole> getUserRole(User user) {
-        Map<String, ?> param = Collections.singletonMap("user_id", user.getId());
+        Map<String, ?> param = Collections.singletonMap("userId", user.getId());
         return jdbc.query(SELECT_USER_ROLE, param, rowMapper);
     }
 
     @Transactional
     public int addUserRole(User user) {
-        UserRole userRole = new UserRole(user.getId(), "ROLE_USER");
+        UserRole userRole = new UserRole(user.getId(), UserAuthority.USER);
         SqlParameterSource params = new BeanPropertySqlParameterSource(userRole);
         return insertAction.execute(params);
     }

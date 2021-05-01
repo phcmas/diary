@@ -1,9 +1,9 @@
 package diary.utility;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import diary.dto.enums.ProjectType;
+import diary.dto.enums.UserAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -20,6 +20,14 @@ public class Utility {
         UserDetails userDetails = (UserDetails)principal;
 
         return userDetails.getUsername();
+    }
+
+    public static ProjectType getProjectType(String projectType) {
+        return ProjectType.valueOf(projectType);
+    }
+
+    public static UserAuthority getUserAuthority(String userAuthority) {
+        return UserAuthority.valueOf(userAuthority);
     }
 
 }

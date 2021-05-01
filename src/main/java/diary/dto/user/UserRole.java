@@ -1,5 +1,6 @@
-package diary.dto;
+package diary.dto.user;
 
+import diary.dto.enums.UserAuthority;
 import lombok.*;
 
 @Data
@@ -9,9 +10,9 @@ import lombok.*;
 public class UserRole {
     private int id;
     private int userId;
-    private String roleName;
+    private UserAuthority roleName;
 
-    public UserRole (int userId, String roleName) {
+    public UserRole (int userId, UserAuthority roleName) {
         this.userId = userId;
         this.roleName = roleName;
     }

@@ -1,6 +1,6 @@
 package diary.param;
 
-import diary.dto.User;
+import diary.dto.user.User;
 import lombok.*;
 
 import java.time.LocalDateTime;

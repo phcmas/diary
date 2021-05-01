@@ -1,8 +1,7 @@
 package diary.service;
 
-import diary.dto.User;
-import diary.dto.UserRole;
-import org.springframework.stereotype.Service;
+import diary.dto.user.User;
+import diary.dto.user.UserRole;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package diary.service.impl;
 
-import diary.dao.UserDao;
-import diary.dao.UserRoleDao;
-import diary.dto.User;
-import diary.dto.UserRole;
+import diary.dao.user.UserDao;
+import diary.dao.user.UserRoleDao;
+import diary.dto.user.User;
+import diary.dto.user.UserRole;
 import diary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

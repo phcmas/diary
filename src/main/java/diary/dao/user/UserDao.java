@@ -1,7 +1,6 @@
-package diary.dao;
+package diary.dao.user;
 
-import diary.dto.User;
-import diary.dto.UserRole;
+import diary.dto.user.User;
 import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -20,7 +19,7 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Map;
 
-import static diary.dao.loginsqls.LoginSqls.*;
+import static diary.dao.sqls.LoginSqls.*;
 
 @Repository
 public class UserDao {

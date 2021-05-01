@@ -1,8 +1,8 @@
 package diary.service.impl;
 
-import diary.dto.CustomUserDetails;
-import diary.dto.User;
-import diary.dto.UserRole;
+import diary.dto.user.CustomUserDetails;
+import diary.dto.user.User;
+import diary.dto.user.UserRole;
 import diary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         if (userRoles != null) {
             for (UserRole userRole : userRoles) {
-                authorities.add(new SimpleGrantedAuthority(userRole.getRoleName()));
+                authorities.add(new SimpleGrantedAuthority(userRole.getRoleName().getString()));
             }
         }
 
