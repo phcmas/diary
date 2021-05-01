@@ -67,7 +67,7 @@ public class DaoTest {
     }
 
     @Test
-    public void DaoTest1_UserTest1() {
+    public void DaoTest1_User() {
         // add newUser
         User newUser = User.builder()
                 .password("1234").name("test").createDate(LocalDateTime.now())
@@ -81,7 +81,7 @@ public class DaoTest {
     }
 
     @Test
-    public void DaoTest2_UserTest2() {
+    public void DaoTest2_UserRole() {
         int userId = getUserId();
         // add userRole
         UserRole userRole = new UserRole(userId, UserAuthority.USER);
@@ -94,10 +94,10 @@ public class DaoTest {
     }
 
     @Test
-    public void DaoTest3_ProjectTest1() {
+    public void DaoTest3_Project() {
         // add newProject
         Project newProject = Project.builder().title("test").startDate(LocalDateTime.now())
-                .finishDate(LocalDateTime.now()).projectType(ProjectType.ErrorResolution)
+                .endDate(LocalDateTime.now()).projectType(ProjectType.ErrorResolution)
                 .situation("test").content("test").testScenario("test").createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now()).build();
         int newId = projectDao.addProject(newProject);
@@ -109,7 +109,7 @@ public class DaoTest {
     }
 
     @Test
-    public void DaoTest4_ProjectTest2() {
+    public void DaoTest4_ProjectMember() {
         int projectId = getProjectId();
         int userId = getUserId();
 
@@ -124,7 +124,7 @@ public class DaoTest {
     }
 
     @Test
-    public void DaoTest5_ProjectTest3() {
+    public void DaoTest5_ProjectCard() {
         int projectId = getProjectId();
 
         // add newProjectCard
@@ -138,12 +138,12 @@ public class DaoTest {
     }
 
     @Test
-    public void DaoTest6_ProjectTest4() {
+    public void DaoTest6_ProjectUpdate() {
         int projectId = getProjectId();
 
         // update project
         Project modifiedProject = Project.builder().id(projectId).title("test_updated").startDate(LocalDateTime.now())
-                .finishDate(LocalDateTime.now()).projectType(ProjectType.FunctionDevelopment)
+                .endDate(LocalDateTime.now()).projectType(ProjectType.FunctionDevelopment)
                 .situation("test_updated").content("test_updated").testScenario("test_updated").createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now()).build();
         int result = projectDao.updateProject(modifiedProject);

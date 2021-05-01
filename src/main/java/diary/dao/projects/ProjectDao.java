@@ -30,7 +30,7 @@ public class ProjectDao {
             return Project.builder()
                     .id(rs.getInt("id"))
                     .title((rs.getString("title"))).startDate(Utility.convertDate(rs.getDate("startDate")))
-                    .finishDate(Utility.convertDate(rs.getDate("finishDate")))
+                    .endDate(Utility.convertDate(rs.getDate("finishDate")))
                     .projectType(Utility.getProjectType(rs.getString("projectType")))
                     .situation(rs.getString("situation"))
                     .content(rs.getString("content"))

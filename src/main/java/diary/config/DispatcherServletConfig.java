@@ -19,8 +19,12 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
                 .addResourceLocations("/static/css/").setCachePeriod(0);
         registry.addResourceHandler("/img/**","/projects/img/**", "/algorithm/img/**")
                 .addResourceLocations("/static/img/").setCachePeriod(0);
-        registry.addResourceHandler("/js/**","/user/js/**","/projects/js/**", "/algorithm/js/**")
+        registry.addResourceHandler("/js/**", "/algorithm/js/**")
                 .addResourceLocations("/static/js/").setCachePeriod(0);
+        registry.addResourceHandler("/user/js/**")
+                .addResourceLocations("/static/js/user/").setCachePeriod(0);
+        registry.addResourceHandler("/projects/js/**")
+                .addResourceLocations("/static/js/projects/").setCachePeriod(0);
     }
 
     @Override

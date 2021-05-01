@@ -23,7 +23,7 @@ create table project (
 	id int(11) not null auto_increment,
 	title varchar(150) not null,
 	start_date datetime null,
-	finish_date datetime null,
+	end_date datetime null,
 	project_type varchar(50) null,
 	situation text not null,
 	content text not null,

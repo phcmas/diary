@@ -16,7 +16,7 @@ public class Project {
     private int id;
     private String title;
     private LocalDateTime startDate;
-    private LocalDateTime finishDate;
+    private LocalDateTime endDate;
     private ProjectType projectType;
     private String situation;
     private String content;

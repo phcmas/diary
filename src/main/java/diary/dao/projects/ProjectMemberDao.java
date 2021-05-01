@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,13 +42,22 @@ public class ProjectMemberDao {
 
     @Transactional
     public List<ProjectMember> getProjectMembers(int projectId) {
-        Map<String, ?> param = Collections.singletonMap("project_id", projectId);
+        Map<String, ?> param = Collections.singletonMap("projectId", projectId);
         return jdbc.query(SELECT_PROJECT_MEMBER, param, rowMapper);
     }
 
     @Transactional
     public int addProjectMember(ProjectMember projectMember) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(projectMember);
+        return insertAction.executeAndReturnKey(params).intValue();
+    }
+
+    @Transactional
+    public int addProjectMember(int userId, int projectId) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("userId", userId);
+        params.put("projectId", projectId);
+
         return insertAction.executeAndReturnKey(params).intValue();
     }
 

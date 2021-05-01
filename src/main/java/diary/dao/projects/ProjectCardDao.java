@@ -41,7 +41,7 @@ public class ProjectCardDao {
 
     public ProjectCard getProjectCard(int projectId) {
         try {
-            Map<String, ?> param = Collections.singletonMap("project_id", projectId);
+            Map<String, ?> param = Collections.singletonMap("projectId", projectId);
             return jdbc.queryForObject(SELECT_PROJECT_CARD, param, rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
@@ -52,6 +52,12 @@ public class ProjectCardDao {
     public int addProjectCard(ProjectCard projectCard) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(projectCard);
         return insertAction.executeAndReturnKey(params).intValue();
+    }
+
+    @Transactional
+    public int addProjectCard(int projectId) {
+        Map<String, ?> param = Collections.singletonMap("projectId", projectId);
+        return insertAction.executeAndReturnKey(param).intValue();
     }
 
 }
