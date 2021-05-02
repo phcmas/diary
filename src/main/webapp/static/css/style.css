@@ -603,7 +603,7 @@ pre code {
 }
 
 .main-content {
-    min-height:1150px;
+    min-height:1190px;
     height:100%;
 }
 
@@ -2131,11 +2131,11 @@ pre code {
 	border: 0
 }
 
-.diary-date {
-    display:inline;
-    width : 180px;
+.diary-elem {
+    display : inline;
+    width : 170px;
     margin-left:10px;
-    margin-right:10px
+    margin-right:10px;
 	height: calc(1.5em + .75rem + 2px);
 	padding: .375rem .75rem;
 	font-size: 1rem;
@@ -2149,11 +2149,11 @@ pre code {
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
-.diary-type {
-    display : inline;
-    width : 180px;
-    margin-left:10px;
-    margin-right:10px
+.form-control-inline {
+	display: inline;
+	width: 170px;
+	margin-left : 10px;
+	margin-right : 10px;
 	height: calc(1.5em + .75rem + 2px);
 	padding: .375rem .75rem;
 	font-size: 1rem;
@@ -2321,8 +2321,8 @@ select.form-control[size] {
 }
 
 textarea.form-control {
-    min-height : 220px;
-	height:auto
+    min-height : 200px;
+	height:200px;
 }
 
 #blank {

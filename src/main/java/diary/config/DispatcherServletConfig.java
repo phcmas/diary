@@ -15,7 +15,9 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //cache period 31556926
-        registry.addResourceHandler("/css/**","/user/css/**","/projects/css/**", "/algorithm/css/**")
+        registry.addResourceHandler("/css/**","/user/css/**","/projects/css/**",
+                                    "/projects/modification/css/**","/projects/lookup/css/**",
+                                    "/algorithm/css/**")
                 .addResourceLocations("/static/css/").setCachePeriod(0);
         registry.addResourceHandler("/img/**","/projects/img/**", "/algorithm/img/**")
                 .addResourceLocations("/static/img/").setCachePeriod(0);
@@ -23,7 +25,7 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
                 .addResourceLocations("/static/js/").setCachePeriod(0);
         registry.addResourceHandler("/user/js/**")
                 .addResourceLocations("/static/js/user/").setCachePeriod(0);
-        registry.addResourceHandler("/projects/js/**")
+        registry.addResourceHandler("/projects/js/**", "/projects/modification/js/**")
                 .addResourceLocations("/static/js/projects/").setCachePeriod(0);
     }
 

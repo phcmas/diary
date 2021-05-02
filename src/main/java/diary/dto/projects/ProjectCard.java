@@ -12,4 +12,8 @@ import lombok.NoArgsConstructor;
 public class ProjectCard {
     private int id;
     private int projectId;
+
+    public ProjectCard(int projectId) {
+        this.projectId = projectId;
+    }
 }

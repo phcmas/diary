@@ -29,14 +29,14 @@ public class ProjectDao {
         public Project mapRow(ResultSet rs, int rowNum) throws SQLException {
             return Project.builder()
                     .id(rs.getInt("id"))
-                    .title((rs.getString("title"))).startDate(Utility.convertDate(rs.getDate("startDate")))
-                    .endDate(Utility.convertDate(rs.getDate("finishDate")))
+                    .title((rs.getString("title"))).startDate(Utility.convert(rs.getDate("startDate")))
+                    .endDate(Utility.convert(rs.getDate("finishDate")))
                     .projectType(Utility.getProjectType(rs.getString("projectType")))
                     .situation(rs.getString("situation"))
                     .content(rs.getString("content"))
                     .testScenario(rs.getString("testScenario"))
-                    .createDate(Utility.convertDate(rs.getDate("createDate")))
-                    .modifyDate(Utility.convertDate(rs.getDate("modifyDate")))
+                    .createDate(Utility.convert(rs.getDate("createDate")))
+                    .modifyDate(Utility.convert(rs.getDate("modifyDate")))
                     .build();
         }
     }

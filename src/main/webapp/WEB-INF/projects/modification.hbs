@@ -1,4 +1,5 @@
 {{>layout/header}}
+
   {{>layout/history_side}}
 
       <div class="col-lg-9">
@@ -9,17 +10,21 @@
             <form class="project-container">
             <div class="form-group">
                 <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+                <input type="text" class="form-control" id="title" value="{{project.title}}">
             </div>
             <div class="form-group">
-                <label for="author">프로젝트 수행기간</label>
-                <input type="date" class="diary-date" id="start-date">
+                <label for="title">수행기간</label>
+                <input type="date" class="form-control-inline" id="start-date" value="{{project.startDateFormat}}">
                 ~
-                <input type="date" class="diary-date" id="end-date">
+                <input type="date" class="form-control-inline" id="end-date" value="{{project.endDateFormat}}">
+            </div>
+            <div class="form-group">
+                <label for="author">참여멤버</label>
+                <input type="text" class="form-control-inline" id="member" value="{{project.endDateFormat}}" readonly>
             </div>
             <div class="form-group">
                 <label for="author">종류</label>
-                <select id="project-type" class="diary-type">
+                <select id="project-type" class="form-control-inline">
                     <option value="0" selected>종류
                     <option value="FunctionDevelopment">기능개발</option>
                     <option value="PerformanceImprovement">성능개선</option>
@@ -28,19 +33,19 @@
             </div>
             <div class="form-group">
                 <label for="author">문제 상황</label>
-                <textarea class="form-control" id="situation" placeholder="작성자를 입력하세요"></textarea>
+                <textarea class="form-control" id="situation">{{project.situation}}</textarea>
             </div>
             <div class="form-group">
                 <label for="author">내용</label>
-                <textarea class="form-control" id="content" placeholder="작성자를 입력하세요"></textarea>
+                <textarea class="form-control" id="content">{{project.content}}</textarea>
             </div>
             <div class="form-group">
                 <label for="content">테스트 시나리오</label>
-                <textarea class="form-control" id="test-scenario" placeholder="내용을 입력하세요"></textarea>
+                <textarea class="form-control" id="test-scenario">{{project.testScenario}}</textarea>
             </div>
             </form>
-                <a href="/diary/projects/cards" role="button" class="btn btn-secondary">취소</a>
-                <button type="button" class="btn btn-secondary" id="project-save">등록</button>
+                <a href="/diary/projects" role="button" class="btn btn-secondary">취소</a>
+                <button type="button" class="btn btn-secondary" id="project-update" value="{{project.id}}">수정완료</button>
             </div>
         </div>
         <!-- /.row -->
@@ -53,8 +58,7 @@
 
   </div>
   <!-- /.container -->
-
   <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="js/register.js?ver=1"></script>
+  <script src="js/modification.js?ver=1"></script>
 
 {{>layout/footer}}

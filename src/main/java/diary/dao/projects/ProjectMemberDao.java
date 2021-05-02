@@ -53,12 +53,9 @@ public class ProjectMemberDao {
     }
 
     @Transactional
-    public int addProjectMember(int userId, int projectId) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("userId", userId);
-        params.put("projectId", projectId);
-
-        return insertAction.executeAndReturnKey(params).intValue();
+    public int addProjectMember(int userId, String userName, int projectId) {
+        ProjectMember newMember = new ProjectMember(userId, userName, projectId);
+        return addProjectMember(newMember);
     }
 
 

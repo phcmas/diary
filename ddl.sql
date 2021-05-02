@@ -35,6 +35,7 @@ create table project (
 create table project_member (
 	id int(11) not null auto_increment,
 	user_id int(11) not null,
+	user_name varchar(50) not null,
 	project_id int(11) not null,
 	primary key(id),
 	foreign key(user_id) references user(id),

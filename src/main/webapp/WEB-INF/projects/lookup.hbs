@@ -10,35 +10,38 @@
             <form class="project-container">
             <div class="form-group">
                 <label for="title">제목</label>
-                <div class="text-content">2020</div>
+                <input type="text" class="form-control" id="title" value="{{project.title}}" readonly>
             </div>
             <div class="form-group">
-                <label for="title">기간</label>
-                <div class="text-content">2020</div>
+                <label for="title">수행기간</label>
+                <input type="text" class="form-control-inline" id="start-date" value="{{project.startDateFormat}}" readonly>
+                ~
+                <input type="text" class="form-control-inline" id="end-date" value="{{project.endDateFormat}}" readonly>
             </div>
             <div class="form-group">
-                <label for="author">작성자</label>
-                <div class="text-content">2020</div>
+                <label for="author">참여멤버</label>
+                <input type="text" class="form-control-inline" id="end-date" value="{{project.endDateFormat}}" readonly>
             </div>
             <div class="form-group">
                 <label for="author">종류</label>
-                <div class="text-content">2020</div>
+                <input type="text" class="form-control-inline" id="project-type" value="{{project.projectType}}" readonly>
             </div>
             <div class="form-group">
                 <label for="author">문제 상황</label>
-                <textarea class="form-control" id="scenario" readonly>문제상황</textarea>
+                <textarea class="form-control" id="scenario" readonly>{{project.situation}}</textarea>
             </div>
             <div class="form-group">
                 <label for="author">내용</label>
-                <textarea class="form-control" id="scenario" readonly>시나리오</textarea>
+                <textarea class="form-control" id="scenario" readonly>{{project.content}}</textarea>
             </div>
             <div class="form-group">
                 <label for="content">테스트 시나리오</label>
-                <textarea class="form-control" id="content" readonly>내용</textarea>
+                <textarea class="form-control" id="content" readonly>{{project.testScenario}}</textarea>
             </div>
             </form>
-                <a href="/diary/projects" role="button" class="btn btn-secondary">취소</a>
-                <button type="button" class="btn btn-secondary" id="btn-save">수정</button>
+                <a href="/diary/projects/cards" role="button" class="btn btn-secondary">취소</a>
+                <a href="/diary/projects/modification/{{project.id}}" role="button" class="btn btn-secondary">수정</a>
+                <!--button type="button" class="btn btn-secondary" id="btn-save">수정</button-->
             </div>
         </div>
         <!-- /.row -->

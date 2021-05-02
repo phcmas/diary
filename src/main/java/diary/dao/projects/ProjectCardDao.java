@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,8 +57,8 @@ public class ProjectCardDao {
 
     @Transactional
     public int addProjectCard(int projectId) {
-        Map<String, ?> param = Collections.singletonMap("projectId", projectId);
-        return insertAction.executeAndReturnKey(param).intValue();
+        ProjectCard newCard = new ProjectCard(projectId);
+        return addProjectCard(newCard);
     }
 
 }

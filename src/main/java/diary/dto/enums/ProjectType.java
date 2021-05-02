@@ -14,4 +14,17 @@ public enum ProjectType {
     public String getString() {
         return projectType;
     }
+
+    public String getStringFormat() {
+        switch (projectType) {
+            case "FunctionDevelopment":
+                return "기능개발";
+            case "PerformanceImprovement":
+                return "성능개선";
+            case "ErrorResolution":
+                return "오류해결";
+            default:
+                return "??";
+        }
+    }
 }

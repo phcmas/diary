@@ -9,6 +9,7 @@ import diary.service.ProjectService;
 import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,13 +30,14 @@ public class ProjectServiceImpl implements ProjectService {
     private final int CARD_LIMIT = 4;
 
     @Override
+    @Transactional
     public int addProject(Project project) {
         int projectId = projectDao.addProject(project);
         String userName = Utility.getCurrentUserName();
         int userId = userDao.getUser(userName).getId();
 
         // 일단은 project와 member card가 모두 일대일 대응일때만 고려
-        projectMemberDao.addProjectMember(userId, projectId);
+        projectMemberDao.addProjectMember(userId, userName, projectId);
         projectCardDao.addProjectCard(projectId);
 
         return projectId;

@@ -26,27 +26,6 @@ public class IndexController {
         return "main";
     }
 
-    /** History **/
-    @GetMapping("/projects/cards")
-    public String projects() {
-        return "/projects/cards";
-    }
-
-    @GetMapping("/projects/register")
-    public String register() {
-        return "/projects/register";
-    }
-
-    @GetMapping("/projects/modify")
-    public String modify() {
-        return "/projects/modify";
-    }
-
-    @GetMapping("/projects/lookup")
-    public String lookup() {
-        return "/projects/lookup";
-    }
-
     /** Algorithm **/
     @GetMapping("/algorithm/cards")
     public String algorithm() {

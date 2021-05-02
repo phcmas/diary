@@ -1,6 +1,8 @@
 package diary.dto.projects;
 
 import diary.dto.enums.ProjectType;
+import diary.param.ProjectParam;
+import diary.utility.Utility;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,4 +25,17 @@ public class Project {
     private String testScenario;
     private LocalDateTime createDate;
     private LocalDateTime modifyDate;
+
+    public ProjectParam toProjectParam() {
+        ProjectParam param = ProjectParam.builder()
+                .id(id).title(title)
+                .projectType(projectType.getStringFormat())
+                .situation(situation)
+                .content(content)
+                .testScenario(testScenario)
+                .build();
+        param.setStartDateFormat(Utility.getFormat(startDate));
+        param.setEndDateFormat(Utility.getFormat(endDate));
+        return param;
+    }
 }

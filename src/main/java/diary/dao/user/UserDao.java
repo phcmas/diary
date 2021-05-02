@@ -2,7 +2,6 @@ package diary.dao.user;
 
 import diary.dto.user.User;
 import diary.utility.Utility;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -30,8 +29,8 @@ public class UserDao {
                     .id(rs.getInt("id"))
                     .name(rs.getString("name"))
                     .password(rs.getString("password"))
-                    .createDate(Utility.convertDate(rs.getDate("createDate")))
-                    .modifyDate(Utility.convertDate(rs.getDate("modifyDate"))).build();
+                    .createDate(Utility.convert(rs.getDate("createDate")))
+                    .modifyDate(Utility.convert(rs.getDate("modifyDate"))).build();
         }
     }
 

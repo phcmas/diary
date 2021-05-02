@@ -1,0 +1,64 @@
+{{>layout/header}}
+  {{>layout/history_side}}
+
+      <div class="col-lg-9">
+        <div id="blank"></div>
+        <div class="row">
+
+            <div class="col-lg-9 col-md-7 mb-5">
+            <form class="project-container">
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="author">수행기간</label>
+                <input type="date" class="form-control-inline" id="start-date">
+                ~
+                <input type="date" class="form-control-inline" id="end-date">
+            </div>
+            <div class="form-group">
+                <label for="author">참여멤버</label>
+                <input type="text" class="form-control-inline" id="title" placeholder="아직 미구현">
+            </div>
+            <div class="form-group">
+                <label for="author">종류</label>
+                <select id="project-type" class="form-control-inline">
+                    <option value="0" selected>종류
+                    <option value="FunctionDevelopment">기능개발</option>
+                    <option value="PerformanceImprovement">성능개선</option>
+                    <option value="ErrorResolution">오류해결</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="author">문제 상황</label>
+                <textarea class="form-control" id="situation" placeholder="작성자를 입력하세요"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="author">내용</label>
+                <textarea class="form-control" id="content" placeholder="작성자를 입력하세요"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="content">테스트 시나리오</label>
+                <textarea class="form-control" id="test-scenario" placeholder="내용을 입력하세요"></textarea>
+            </div>
+            </form>
+                <a href="/diary/projects/cards" role="button" class="btn btn-secondary">취소</a>
+                <button type="button" class="btn btn-secondary" id="project-save">등록</button>
+            </div>
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="js/registration.js?ver=1"></script>
+
+{{>layout/footer}}
