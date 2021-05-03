@@ -5,6 +5,7 @@ import diary.dto.projects.Project;
 import diary.utility.Utility;
 import lombok.*;
 
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -16,17 +17,14 @@ import java.util.Date;
 public class ProjectParam {
     private int id;
     private String title;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private String projectType;
     private String situation;
     private String content;
     private String testScenario;
 
-    private String startDateFormat;
-    private String endDateFormat;
-
-    public Project toProject() {
+    public Project toProject() throws ParseException {
         Project newProject = Project.builder().title(title)
                 .startDate(Utility.convert(startDate))
                 .endDate(Utility.convert(endDate))

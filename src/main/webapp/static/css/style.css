@@ -1449,9 +1449,9 @@ pre code {
 		max-width: 33.333333%
 	}
 	.col-lg-5 {
-		-ms-flex: 0 0 41.666667%;
-		flex: 0 0 41.666667%;
-		max-width: 41.666667%
+		-ms-flex: 0 0 43.1%;
+		flex: 0 0 43.1%;
+		max-width: 43.1%
 	}
 	.col-lg-6 {
 		-ms-flex: 0 0 50%;
@@ -5138,11 +5138,14 @@ input[type=submit].btn-block {
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
+    margin-top : .9rem;
+    font-size : 1rem;
 }
 
 .card-title {
 	color:black;
-	margin-bottom: .75rem
+	margin-bottom: .9rem;
+	font-size: 1.25rem;
 }
 
 .card-subtitle {

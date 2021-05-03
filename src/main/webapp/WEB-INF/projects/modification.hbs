@@ -1,6 +1,6 @@
 {{>layout/header}}
 
-  {{>layout/history_side}}
+  {{>layout/project_side}}
 
       <div class="col-lg-9">
         <div id="blank"></div>
@@ -14,21 +14,21 @@
             </div>
             <div class="form-group">
                 <label for="title">수행기간</label>
-                <input type="date" class="form-control-inline" id="start-date" value="{{project.startDateFormat}}">
+                <input type="date" class="form-control-inline" id="start-date" value="{{project.startDate}}">
                 ~
-                <input type="date" class="form-control-inline" id="end-date" value="{{project.endDateFormat}}">
+                <input type="date" class="form-control-inline" id="end-date" value="{{project.endDate}}">
             </div>
             <div class="form-group">
                 <label for="author">참여멤버</label>
-                <input type="text" class="form-control-inline" id="member" value="{{project.endDateFormat}}" readonly>
+                <input type="text" class="form-control-inline" id="member" value="{{project.endDate}}" readonly>
             </div>
             <div class="form-group">
                 <label for="author">종류</label>
                 <select id="project-type" class="form-control-inline">
                     <option value="0" selected>종류
-                    <option value="FunctionDevelopment">기능개발</option>
-                    <option value="PerformanceImprovement">성능개선</option>
-                    <option value="ErrorResolution">오류해결</option>
+                    <option value="FUNCTION_DEVELOPMENT">기능개발</option>
+                    <option value="PERFORMANCE_IMPROVEMENT">성능개선</option>
+                    <option value="ERROR_RESOLUTION">오류해결</option>
                 </select>
             </div>
             <div class="form-group">
@@ -44,7 +44,7 @@
                 <textarea class="form-control" id="test-scenario">{{project.testScenario}}</textarea>
             </div>
             </form>
-                <a href="/diary/projects" role="button" class="btn btn-secondary">취소</a>
+                <a href="/diary/projects/cards" role="button" class="btn btn-secondary">취소</a>
                 <button type="button" class="btn btn-secondary" id="project-update" value="{{project.id}}">수정완료</button>
             </div>
         </div>

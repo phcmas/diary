@@ -2,6 +2,8 @@ package diary.dao.projects;
 
 import diary.dto.projects.ProjectMember;
 import static diary.dao.sqls.ProjectSqls.*;
+
+import diary.utility.Utility;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -15,7 +17,6 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,8 @@ public class ProjectMemberDao {
         @Override
         public ProjectMember mapRow(ResultSet rs, int rowNum) throws SQLException {
             return ProjectMember.builder().id(rs.getInt("id")).userId(rs.getInt("userId"))
-                    .projectId(rs.getInt("projectId")).build();
+                    .userName(rs.getString("userName")).projectId(rs.getInt("projectId"))
+                    .build();
         }
     }
 

@@ -24,7 +24,7 @@ create table project (
 	title varchar(150) not null,
 	start_date datetime null,
 	end_date datetime null,
-	project_type varchar(50) null,
+	project_type varchar(40) null,
 	situation text not null,
 	content text not null,
 	test_scenario text not null,
@@ -44,6 +44,11 @@ create table project_member (
 create table project_card ( 
 	id int(11) not null auto_increment,
 	project_id int(11) not null,
+	project_type varchar(40) null,
+	short_title varchar(60) not null,
+	short_content varchar(100) not null,
+	member_count int(11) not null,
+	start_date datetime null,
 	primary key(id),
 	foreign key(project_id) references project(id)) engine=InnoDB default charset=utf8;
 

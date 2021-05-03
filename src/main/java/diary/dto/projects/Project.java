@@ -27,15 +27,14 @@ public class Project {
     private LocalDateTime modifyDate;
 
     public ProjectParam toProjectParam() {
-        ProjectParam param = ProjectParam.builder()
+        return ProjectParam.builder()
                 .id(id).title(title)
+                .startDate(Utility.convert(startDate))
+                .endDate(Utility.convert(endDate))
                 .projectType(projectType.getStringFormat())
                 .situation(situation)
                 .content(content)
                 .testScenario(testScenario)
                 .build();
-        param.setStartDateFormat(Utility.getFormat(startDate));
-        param.setEndDateFormat(Utility.getFormat(endDate));
-        return param;
     }
 }
