@@ -74,6 +74,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public int deleteProject(int id) {
+        projectMemberDao.deleteProjectMember(id);
+        projectCardDao.deleteProjectCard(id);
+        return projectDao.deleteProject(id);
+    }
+
+    @Override
     public Project getProject(int id) {
         return projectDao.getProject(id);
     }

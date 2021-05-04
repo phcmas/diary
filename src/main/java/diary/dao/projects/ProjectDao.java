@@ -84,6 +84,12 @@ public class ProjectDao {
         return jdbc.update(UPDATE_PROJECT, params);
     }
 
+    @Transactional
+    public int deleteProject(int id) {
+        Map<String, ?> param = Collections.singletonMap("id", id);
+        return jdbc.update(DELETE_PROJECT, param);
+    }
+
 }
 
 

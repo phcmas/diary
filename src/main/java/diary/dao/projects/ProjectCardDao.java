@@ -83,6 +83,13 @@ public class ProjectCardDao {
         return jdbc.update(UPDATE_PROJECT_CARD, params);
     }
 
+    @Transactional
+    public int deleteProjectCard(int projectId) {
+        Map<String, ?> param = Collections.singletonMap("projectId", projectId);
+        return jdbc.update(DELETE_PROJECT_CARD, param);
+    }
+
+
 }
 
 

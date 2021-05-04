@@ -16,4 +16,8 @@ public class ProjectSqls {
     public static final String UPDATE_PROJECT_CARD = "UPDATE project_card SET " +
             "project_type = :projectType, short_title = :shortTitle, short_content = :shortContent, " +
             "member_count = :memberCount, start_date = :startDate WHERE id = :id";
+
+    public static final String DELETE_PROJECT = "DELETE FROM project WHERE id = :id";
+    public static final String DELETE_PROJECT_CARD = "DELETE FROM project_card WHERE project_id = :projectId";
+    public static final String DELETE_PROJECT_MEMBER = "DELETE FROM project_member WHERE project_id = :projectId";
 }

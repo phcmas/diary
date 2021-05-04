@@ -41,13 +41,14 @@ public class ProjectController {
     }
 
     @GetMapping("/cards")
-    public String showCards(@RequestParam(name = "year", required = false, defaultValue = "2021") String date,
+    public String showCards(@RequestParam(name = "year", required = false, defaultValue = "2021") String year,
                             @RequestParam(name = "start", required = false, defaultValue = "0") int start,
                             Model model) throws ParseException {
-        Date startDate = Utility.yearToDate(date);
+        Date startDate = Utility.yearToDate(year);
         Date endDate = Utility.addTime(startDate,1,0,0);
         List<ProjectCard> projects = projectService.getProjectCards(start, startDate, endDate);
         model.addAttribute("projectCards", projects);
+        model.addAttribute("year", year);
         return "/projects/cards";
     }
 

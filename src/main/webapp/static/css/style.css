@@ -491,7 +491,10 @@ mark {
 }
 
 .list-inline-item {
-	display: inline-block
+	display: inline-block;
+	margin-left : 1rem;
+	vertical-align : middle;
+	font-size: 1.2rem;
 }
 
 .list-inline-item:not(:last-child) {

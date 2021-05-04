@@ -25,7 +25,7 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
                 .addResourceLocations("/static/js/").setCachePeriod(0);
         registry.addResourceHandler("/user/js/**")
                 .addResourceLocations("/static/js/user/").setCachePeriod(0);
-        registry.addResourceHandler("/projects/js/**", "/projects/modification/js/**")
+        registry.addResourceHandler("/projects/js/**","/projects/lookup/js/**","/projects/modification/js/**")
                 .addResourceLocations("/static/js/projects/").setCachePeriod(0);
     }
 

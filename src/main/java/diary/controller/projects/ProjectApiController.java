@@ -31,4 +31,9 @@ public class ProjectApiController {
         return projectService.updateProject(project);
     }
 
+
+    @DeleteMapping(path="/{id}")
+    public int deleteProject(@PathVariable(name="id", required = true) int id) {
+        return projectService.deleteProject(id);
+    }
 }

@@ -60,5 +60,10 @@ public class ProjectMemberDao {
         return addProjectMember(newMember);
     }
 
+    @Transactional
+    public int deleteProjectMember(int projectId) {
+        Map<String, ?> param = Collections.singletonMap("projectId", projectId);
+        return jdbc.update(DELETE_PROJECT_MEMBER, param);
+    }
 
 }

@@ -166,6 +166,15 @@ public class DaoTest {
         Assert.assertNotEquals(projectCards.size(), 0);
     }
 
+    @Test
+    public void DaoTest8_ProjectDelete() {
+        int projectId = getProjectId();
+
+        projectMemberDao.deleteProjectMember(projectId);
+        projectCardDao.deleteProjectCard(projectId);
+        projectDao.deleteProject(projectId);
+    }
+
 }
 
 
