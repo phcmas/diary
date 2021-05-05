@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,14 +43,14 @@ public class ProjectController {
 
     @GetMapping("/cards")
     public String showCards(@RequestParam(name = "year", required = false, defaultValue = "2021") String year,
-                            @RequestParam(name = "start", required = false, defaultValue = "0") int start,
+                            @RequestParam(name = "start", required = false, defaultValue = "1") int pageNum,
                             Model model) throws ParseException {
         Date startDate = Utility.yearToDate(year);
         Date endDate = Utility.addTime(startDate,1,0,0);
-        List<ProjectCard> projects = projectService.getProjectCards(start, startDate, endDate);
+        List<ProjectCard> projects = projectService.getProjectCards(pageNum, startDate, endDate);
+
         model.addAttribute("projectCards", projects);
         model.addAttribute("year", year);
         return "/projects/cards";
     }
-
 }

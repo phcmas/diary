@@ -10,7 +10,7 @@
         {{#projectCards}}
           <div class="col-lg-5 col-md-7 mb-5">
             <div class="card h-100">
-              <div class="card-header"></div>
+              <button class="card-header" value="{{year}}"></button>
               <div class="card-body">
                 <h4 class="card-title">
                   <a href="/diary/projects/lookup/{{id}}">{{shortTitle}}</a>
@@ -27,12 +27,10 @@
 
         </div>
         <!-- /.row -->
+
         <div class="footer-button">
           <a href="/diary/projects/registration" role="button" class="btn btn-secondary">글 등록</a>
           <div class="list-inline-item" id="page-number">
-              <a href="/diary/signin">1</a>
-              <a href="/diary/signin">2</a>
-              <a href="/diary/signin">3</a>
           </div>
         </div>
       </div>
@@ -43,5 +41,7 @@
 
   </div>
   <!-- /.container -->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="js/cards.js?ver=1"></script>
 
 {{>layout/footer}}

@@ -161,6 +161,7 @@ public class DaoTest {
     public void DaoTest7_ProjectCards() throws ParseException {
         Date startDate = Utility.yearToDate("2021");
         Date endDate = Utility.addTime(startDate, 1, 0, 0);
+
         List<ProjectCard> projectCards = projectCardDao.getProjectCards(0,4, startDate, endDate);
 
         Assert.assertNotEquals(projectCards.size(), 0);

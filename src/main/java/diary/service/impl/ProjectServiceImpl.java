@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -86,7 +87,23 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<ProjectCard> getProjectCards(int start, Date startDate, Date endDate) {
+    public List<Integer> getPageNumber(Date startDate, Date endDate) {
+        List<Integer> pageNumbers = new ArrayList<>();
+        int totalCount = projectDao.getProjectCount(startDate, endDate);
+        int maxPage = totalCount / CARD_LIMIT;
+
+        if (totalCount % CARD_LIMIT > 0) maxPage++;
+
+        for (int i = 1; i <= maxPage; ++i) {
+            pageNumbers.add(i);
+        }
+
+        return pageNumbers;
+    }
+
+    @Override
+    public List<ProjectCard> getProjectCards(int pageNum, Date startDate, Date endDate) {
+        int start = CARD_LIMIT * (pageNum-1);
         return projectCardDao.getProjectCards(start, CARD_LIMIT, startDate, endDate);
     }
 

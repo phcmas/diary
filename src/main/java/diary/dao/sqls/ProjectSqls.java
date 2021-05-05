@@ -5,8 +5,9 @@ public class ProjectSqls {
     public static final String SELECT_PROJECT_MEMBER = "SELECT * FROM project_member WHERE project_id = :projectId";
     public static final String SELECT_PROJECT_CARD_BY_PROJECT_ID = "SELECT * FROM project_card WHERE project_id = :projectId";
     public static final String SELECT_PROJECT_CARD_BY_DATE
-            = "SELECT * FROM project_card WHERE" + " start_date >= :startDate AND start_date < :endDate ORDER BY start_date limit :start, :limit";
+            = "SELECT * FROM project_card WHERE" + " start_date >= :startDate AND start_date < :endDate ORDER BY start_date DESC limit :start, :limit";
     public static final String SELECT_RECENT_PROJECTS = "SELECT * FROM project ORDER BY modify_date DESC limit :start, :limit";
+    public static final String SELECT_PROJECT_COUNT = "SELECT count(*) FROM project WHERE start_date >= :startDate AND start_date < :endDate";
 
     public static final String UPDATE_PROJECT = "UPDATE project SET " +
             "title = :title, start_date = :startDate, end_date = :endDate, project_type = :projectType, " +

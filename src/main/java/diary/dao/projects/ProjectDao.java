@@ -16,10 +16,8 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import static diary.dao.sqls.ProjectSqls.*;
 
 @Repository
@@ -60,6 +58,15 @@ public class ProjectDao {
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
+    }
+
+    @Transactional
+    public int getProjectCount(Date startDate, Date endDate) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return jdbc.queryForObject(SELECT_PROJECT_COUNT, params, Integer.class);
     }
 
     @Transactional

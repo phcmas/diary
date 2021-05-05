@@ -12,7 +12,8 @@ public interface ProjectService {
     public int updateProject(Project project);
     public int deleteProject(int id);
     public Project getProject(int id);
-    public List<ProjectCard> getProjectCards(int start, Date startDate, Date endDate);
+    public List<Integer> getPageNumber(Date startDate, Date endDate);
+    public List<ProjectCard> getProjectCards(int pageNum, Date startDate, Date endDate);
     public List<Project> getRecentProject(int start);
     public ProjectCard makeProjectCard(Project project, int projectId, int memberCount);
 }
