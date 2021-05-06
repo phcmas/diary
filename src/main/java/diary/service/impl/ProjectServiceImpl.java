@@ -4,8 +4,11 @@ import diary.dao.projects.ProjectCardDao;
 import diary.dao.projects.ProjectDao;
 import diary.dao.projects.ProjectMemberDao;
 import diary.dao.user.UserDao;
+import diary.dto.enums.ProjectRole;
+import diary.dto.projects.MemberInfo;
 import diary.dto.projects.Project;
 import diary.dto.projects.ProjectCard;
+import diary.dto.projects.ProjectMember;
 import diary.service.ProjectService;
 import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public ProjectCard makeProjectCard(Project project, int projectId, int memberCount) {
         ProjectCard projectCard = ProjectCard.builder()
-                .projectId(projectId).projectType(project.getProjectType().getStringFormat())
+                .projectId(projectId).projectType(project.getProjectType().getDisplayFormat())
                 .memberCount(1).startDate(project.getStartDate()).build();
 
         String shortTitle = Utility.cutString(project.getTitle(), 10);
@@ -51,23 +54,23 @@ public class ProjectServiceImpl implements ProjectService {
     public int addProject(Project project, List<String> members) {
         int projectId = projectDao.addProject(project);
 
-        // 일단은 project와 member card가 모두 일대일 대응일때만 고려
-        String userName = Utility.getCurrentUserName();
-        int userId = userDao.getUser(userName).getId();
-        projectMemberDao.addProjectMember(userId, userName, projectId);
+        // project Role에 관련한 로직은 이후에 구현할 계획
+        for (String member : members) {
+            projectMemberDao.addProjectMember(member, projectId);
+        }
 
-        ProjectCard projectCard = makeProjectCard(project, projectId, 1);
+        ProjectCard projectCard = makeProjectCard(project, projectId, members.size());
         projectCardDao.addProjectCard(projectCard);
 
         return projectId;
     }
 
     @Override
-    public int updateProject(Project project) {
+    public int updateProject(Project project, List<String> members) {
         int projectId = project.getId();
         int projectCardId = projectCardDao.getProjectCard(projectId).getId();
 
-        ProjectCard projectCard = makeProjectCard(project, projectId, 1);
+        ProjectCard projectCard = makeProjectCard(project, projectId, members.size());
         projectCard.setId(projectCardId);
         projectCardDao.updateProjectCard(projectCard);
 
@@ -90,6 +93,8 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Integer> getPageNumber(Date startDate, Date endDate) {
         List<Integer> pageNumbers = new ArrayList<>();
         int totalCount = projectDao.getProjectCount(startDate, endDate);
+
+        if (totalCount <= CARD_LIMIT) return pageNumbers;
         int maxPage = totalCount / CARD_LIMIT;
 
         if (totalCount % CARD_LIMIT > 0) maxPage++;
@@ -99,6 +104,11 @@ public class ProjectServiceImpl implements ProjectService {
         }
 
         return pageNumbers;
+    }
+
+    @Override
+    public List<ProjectMember> getProjectMembers(int projectId) {
+        return projectMemberDao.getProjectMembers(projectId);
     }
 
     @Override

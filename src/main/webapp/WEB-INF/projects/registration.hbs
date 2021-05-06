@@ -1,7 +1,7 @@
 {{>layout/header}}
   {{>layout/project_side}}
 
-      <div class="col-lg-9">
+<div class="col-lg-9" xmlns="http://www.w3.org/1999/html">
         <div id="blank"></div>
         <div class="row">
 
@@ -18,8 +18,9 @@
                 <input type="date" class="form-control-inline" id="end-date">
             </div>
             <div class="form-group">
-                <label for="author">참여멤버</label>
-                <input type="text" class="form-control-inline" id="title" placeholder="아직 미구현">
+                <label for="author">참여멤버</label><input type="text" class="form-control-name" id="newMember" placeholder="멤버">
+                <input type="button" class="btn-add" id="add-member" value="+"><br>
+                <input type="text" class="form-control-names" name="members" id="members" value="{{currentUser}}">
             </div>
             <div class="form-group">
                 <label for="author">종류</label>
@@ -29,10 +30,6 @@
                     <option value="PERFORMANCE_IMPROVEMENT">성능개선</option>
                     <option value="ERROR_RESOLUTION">오류해결</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <label for="author">문제상황</label>
-                <textarea class="form-control" id="situation" placeholder="작성자를 입력하세요"></textarea>
             </div>
             <div class="form-group">
                 <label for="author">내용</label>

@@ -1,7 +1,9 @@
 package diary.utility;
 
 import diary.dto.enums.ProjectType;
-import diary.dto.enums.UserAuthority;
+import diary.dto.projects.MemberInfo;
+import diary.dto.projects.Project;
+import diary.param.ProjectParam;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Utility {
 
@@ -63,14 +66,6 @@ public class Utility {
         }
 
         return result;
-    }
-
-    public static ProjectType getProjectType(String projectType) {
-        return ProjectType.valueOf(projectType);
-    }
-
-    public static UserAuthority getUserAuthority(String userAuthority) {
-        return UserAuthority.valueOf(userAuthority);
     }
 
 }

@@ -1,5 +1,7 @@
 package diary.dao.projects;
 
+import diary.dto.enums.ProjectRole;
+import diary.dto.projects.MemberInfo;
 import diary.dto.projects.ProjectMember;
 import static diary.dao.sqls.ProjectSqls.*;
 
@@ -25,7 +27,7 @@ public class ProjectMemberDao {
     static class ProjectMemberRowMapper implements RowMapper<ProjectMember> {
         @Override
         public ProjectMember mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return ProjectMember.builder().id(rs.getInt("id")).userId(rs.getInt("userId"))
+            return ProjectMember.builder().id(rs.getInt("id"))
                     .userName(rs.getString("userName")).projectId(rs.getInt("projectId"))
                     .build();
         }
@@ -55,8 +57,8 @@ public class ProjectMemberDao {
     }
 
     @Transactional
-    public int addProjectMember(int userId, String userName, int projectId) {
-        ProjectMember newMember = new ProjectMember(userId, userName, projectId);
+    public int addProjectMember(String userName, int projectId) {
+        ProjectMember newMember = new ProjectMember(userName, projectId);
         return addProjectMember(newMember);
     }
 

@@ -1,7 +1,9 @@
 package diary.controller.projects;
 
+import diary.dto.projects.MemberInfo;
 import diary.dto.projects.Project;
 import diary.dto.projects.ProjectCard;
+import diary.dto.projects.ProjectMember;
 import diary.service.ProjectService;
 import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +25,23 @@ public class ProjectController {
     @GetMapping(path="/lookup/{id}")
     public String showProject(@PathVariable(name = "id") int id, Model model) {
         Project project = projectService.getProject(id);
-        model.addAttribute("project", project.toProjectParam());
+        List<ProjectMember> members = projectService.getProjectMembers(id);
+        model.addAttribute("project", project.toProjectParam(members));
 
         return "/projects/lookup";
     }
 
     @GetMapping("/registration")
-    public String register() {
+    public String register(Model model) {
+        model.addAttribute("currentUser", Utility.getCurrentUserName());
         return "/projects/registration";
     }
 
     @GetMapping(path="/modification/{id}")
     public String moveModificationPage(@PathVariable(name="id") int id, Model model) {
         Project project = projectService.getProject(id);
-        model.addAttribute("project", project.toProjectParam());
+        List<ProjectMember> members = projectService.getProjectMembers(id);
+        model.addAttribute("project", project.toProjectParam(members));
 
         return "/projects/modification";
     }
@@ -54,3 +59,4 @@ public class ProjectController {
         return "/projects/cards";
     }
 }
+

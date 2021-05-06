@@ -15,7 +15,7 @@ public enum ProjectType {
         return projectType;
     }
 
-    public String getStringFormat() {
+    public String getDisplayFormat() {
         switch (projectType) {
             case "FUNCTION_DEVELOPMENT":
                 return "기능개발";

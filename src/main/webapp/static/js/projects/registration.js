@@ -1,13 +1,27 @@
+$('#add-member').click((e) => {
+    var prev = $('#members').val();
+    var newMember = $('#newMember').val();
+    $('#members').val(prev + ', '+ newMember);
+});
+
+
 $('#project-save').click((e) => {
+    var members = [];
+
+    $('input[name=members]').each(function(idx) {
+        var value = $(this).val();
+        members.push(value);
+    });
+
     var projectData = {
         id : -1,
         title : $('#title').val(),
         startDate : $('#start-date').val(),
         endDate : $('#end-date').val(),
         projectType : $('#project-type').val(),
-        situation : $('#situation').val(),
         content : $('#content').val(),
-        testScenario : $('#test-scenario').val()
+        testScenario : $('#test-scenario').val(),
+        members: members
     };
 
     $.ajax({

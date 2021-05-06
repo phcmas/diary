@@ -1,12 +1,11 @@
 package diary.dto.projects;
 
 
+import diary.dto.enums.ProjectRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Builder
 @Data
@@ -14,12 +13,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ProjectMember {
     private int id;
-    private int userId;
     private String userName;
     private int projectId;
 
-    public ProjectMember(int userId, String userName, int projectId) {
-        this.userId = userId;
+    public ProjectMember(String userName, int projectId) {
         this.userName = userName;
         this.projectId = projectId;
     }

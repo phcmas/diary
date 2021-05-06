@@ -7,7 +7,6 @@ $('#project-update').click((e) => {
         startDate : $('#start-date').val(),
         endDate : $('#end-date').val(),
         projectType : $('#project-type').val(),
-        situation : $('#situation').val(),
         content : $('#content').val(),
         testScenario : $('#test-scenario').val()
     };

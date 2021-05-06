@@ -5,6 +5,7 @@ import diary.dao.projects.ProjectDao;
 import diary.dao.projects.ProjectMemberDao;
 import diary.dao.user.UserDao;
 import diary.dao.user.UserRoleDao;
+import diary.dto.enums.ProjectRole;
 import diary.dto.enums.UserAuthority;
 import diary.dto.projects.Project;
 import diary.dto.projects.ProjectCard;
@@ -102,7 +103,7 @@ public class DaoTest {
         // add newProject
         Project newProject = Project.builder().title("test").startDate(LocalDateTime.now())
                 .endDate(LocalDateTime.now()).projectType(ProjectType.ERROR_RESOLUTION)
-                .situation("test").content("test").testScenario("test").createDate(LocalDateTime.now())
+                .content("test").testScenario("test").createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now()).build();
         int newId = projectDao.addProject(newProject);
         Assert.assertTrue(newId >= 0);
@@ -118,7 +119,7 @@ public class DaoTest {
         int userId = getUserId();
 
         // add newProjectMember
-        ProjectMember newProjectMember = ProjectMember.builder().userId(userId).userName("test")
+        ProjectMember newProjectMember = ProjectMember.builder().userName("test")
                 .projectId(projectId).build();
         int newId = projectMemberDao.addProjectMember(newProjectMember);
         Assert.assertNotEquals(newId, 0);
@@ -151,7 +152,7 @@ public class DaoTest {
         // update project
         Project modifiedProject = Project.builder().id(projectId).title("test_updated").startDate(LocalDateTime.now())
                 .endDate(LocalDateTime.now()).projectType(ProjectType.FUNCTION_DEVELOPMENT)
-                .situation("test_updated").content("test_updated").testScenario("test_updated").createDate(LocalDateTime.now())
+                .content("test_updated").testScenario("test_updated").createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now()).build();
         int result = projectDao.updateProject(modifiedProject);
         Assert.assertNotEquals(result, 0);

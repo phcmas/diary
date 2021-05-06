@@ -31,7 +31,7 @@ public class UserRoleDao {
             return UserRole.builder()
                     .id(rs.getInt("id"))
                     .userId(rs.getInt("userId"))
-                    .roleName(Utility.getUserAuthority(rs.getString("roleName"))).build();
+                    .roleName(UserAuthority.valueOf(rs.getString("roleName"))).build();
         }
     }
     private final NamedParameterJdbcTemplate jdbc;

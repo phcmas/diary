@@ -1,5 +1,6 @@
 package diary.controller.projects;
 
+import diary.dto.projects.MemberInfo;
 import diary.dto.projects.Project;
 import diary.param.ProjectParam;
 import diary.service.ProjectService;
@@ -21,16 +22,17 @@ public class ProjectApiController {
     @PostMapping(path="/")
     public int addProject(@RequestBody ProjectParam param) throws ParseException {
         Project project = param.toProject();
-        // members에 관한 처리는 이후 구현계획
-        List<String> members = new ArrayList<>();
-        members.add("temp");
+        List<String> members = param.getMemberInfo();
+
         return projectService.addProject(project, members);
     }
 
     @PutMapping(path="/{id}")
     public int updateProject(@RequestBody ProjectParam param) throws ParseException {
         Project project = param.toProject();
-        return projectService.updateProject(project);
+        List<String> members = param.getMemberInfo();
+
+        return projectService.updateProject(project, members);
     }
 
 

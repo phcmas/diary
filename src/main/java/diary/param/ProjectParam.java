@@ -1,13 +1,16 @@
 package diary.param;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import diary.dto.enums.ProjectRole;
+import diary.dto.enums.ProjectType;
+import diary.dto.projects.MemberInfo;
 import diary.dto.projects.Project;
 import diary.utility.Utility;
 import lombok.*;
 
 import java.text.ParseException;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 @Builder
@@ -20,22 +23,26 @@ public class ProjectParam {
     private String startDate;
     private String endDate;
     private String projectType;
-    private String situation;
     private String content;
     private String testScenario;
+    private List<String> members;
 
     public Project toProject() throws ParseException {
         Project newProject = Project.builder().title(title)
                 .startDate(Utility.convert(startDate))
                 .endDate(Utility.convert(endDate))
-                .projectType(Utility.getProjectType(projectType))
-                .situation(situation).content(content)
+                .projectType(ProjectType.valueOf(projectType))
+                .content(content)
                 .testScenario(testScenario)
                 .createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now()).build();
 
         if (id != -1) newProject.setId(id);
         return newProject;
+    }
+
+    public List<String> getMemberInfo() {
+        return members;
     }
 
 }

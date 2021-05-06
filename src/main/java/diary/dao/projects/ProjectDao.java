@@ -1,5 +1,6 @@
 package diary.dao.projects;
 
+import diary.dto.enums.ProjectType;
 import diary.dto.projects.Project;
 import diary.utility.Utility;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -29,8 +30,7 @@ public class ProjectDao {
                     .id(rs.getInt("id"))
                     .title((rs.getString("title"))).startDate(Utility.convert(rs.getDate("startDate")))
                     .endDate(Utility.convert(rs.getDate("finishDate")))
-                    .projectType(Utility.getProjectType(rs.getString("projectType")))
-                    .situation(rs.getString("situation"))
+                    .projectType(ProjectType.valueOf(rs.getString("projectType")))
                     .content(rs.getString("content"))
                     .testScenario(rs.getString("testScenario"))
                     .createDate(Utility.convert(rs.getDate("createDate")))
