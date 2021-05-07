@@ -119,7 +119,7 @@ public class DaoTest {
         int userId = getUserId();
 
         // add newProjectMember
-        ProjectMember newProjectMember = ProjectMember.builder().userName("test")
+        ProjectMember newProjectMember = ProjectMember.builder().name("test")
                 .projectId(projectId).build();
         int newId = projectMemberDao.addProjectMember(newProjectMember);
         Assert.assertNotEquals(newId, 0);

@@ -26,7 +26,7 @@ public class ProjectController {
     public String showProject(@PathVariable(name = "id") int id, Model model) {
         Project project = projectService.getProject(id);
         List<ProjectMember> members = projectService.getProjectMembers(id);
-        model.addAttribute("project", project.toProjectParam(members));
+        model.addAttribute("project", project.toProjectParam());
 
         return "/projects/lookup";
     }
@@ -41,7 +41,7 @@ public class ProjectController {
     public String moveModificationPage(@PathVariable(name="id") int id, Model model) {
         Project project = projectService.getProject(id);
         List<ProjectMember> members = projectService.getProjectMembers(id);
-        model.addAttribute("project", project.toProjectParam(members));
+        model.addAttribute("project", project.toProjectParam());
 
         return "/projects/modification";
     }

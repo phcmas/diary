@@ -31,6 +31,7 @@ public class ProjectDao {
                     .title((rs.getString("title"))).startDate(Utility.convert(rs.getDate("startDate")))
                     .endDate(Utility.convert(rs.getDate("finishDate")))
                     .projectType(ProjectType.valueOf(rs.getString("projectType")))
+                    .situation(rs.getString("situation"))
                     .content(rs.getString("content"))
                     .testScenario(rs.getString("testScenario"))
                     .createDate(Utility.convert(rs.getDate("createDate")))

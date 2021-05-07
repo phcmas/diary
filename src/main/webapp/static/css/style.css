@@ -252,7 +252,8 @@ th {
 
 label {
 	display: inline-block;
-	margin-bottom: .5rem
+	margin-bottom: .5rem;
+	margin-right : 1.5rem;
 }
 
 button {
@@ -2155,7 +2156,6 @@ pre code {
 .form-control-inline {
 	display: inline;
 	width: 170px;
-	margin-left : 10px;
 	margin-right : 10px;
 	height: calc(1.5em + .75rem + 2px);
 	padding: .375rem .75rem;
@@ -2172,9 +2172,9 @@ pre code {
 
 .form-control-name {
 	display: inline;
-	width: 120px;
-	margin-left : 10px;
+	width: auto;
 	margin-right : 5px;
+	margin-bottom : 5px;
 	height: calc(1.5em + .75rem + 2px);
 	padding: .375rem .75rem;
 	font-size: 1rem;
@@ -2185,25 +2185,10 @@ pre code {
 	background-clip: padding-box;
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
+	text-align: left;
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
-.form-control-names {
-	display: inline;
-	width: 100%;
-	margin-right : 5px;
-	height: calc(1.5em + .75rem + 2px);
-	padding: .375rem .75rem;
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 1.5;
-	color: #495057;
-	background-color: #fff;
-	background-clip: padding-box;
-	border: 1px solid #ced4da;
-	border-radius: .25rem;
-	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
-}
 .form-control {
 	display: block;
 	width: 100%;
@@ -2898,7 +2883,7 @@ fieldset:disabled a.btn {
 	background-color: #fff;
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
-	margin-bottom: .8rem
+	margin-right: .05rem;
 }
 
 .btn-success {
@@ -5535,6 +5520,7 @@ input[type=submit].btn-block {
 	white-space: nowrap;
 	vertical-align: baseline;
 	border-radius: .25rem;
+	margin-left : .7rem;
 	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 

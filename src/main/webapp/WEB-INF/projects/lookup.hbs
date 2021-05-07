@@ -15,16 +15,19 @@
             <div class="form-group">
                 <label for="title">수행기간</label>
                 <input type="text" class="form-control-inline" id="start-date" value="{{project.startDate}}" readonly>
-                ~
+                ~ &nbsp;
                 <input type="text" class="form-control-inline" id="end-date" value="{{project.endDate}}" readonly>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="member-names">
                 <label for="author">참여멤버</label>
-                <input type="text" class="form-control-inline" id="end-date" value="{{project.endDate}}" readonly>
             </div>
             <div class="form-group">
                 <label for="author">종류</label>
                 <input type="text" class="form-control-inline" id="project-type" value="{{project.projectType}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="situation">문제상황</label>
+                <textarea class="form-control" id="situation" readonly>{{project.situation}}</textarea>
             </div>
             <div class="form-group">
                 <label for="author">내용</label>

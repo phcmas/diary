@@ -21,27 +21,22 @@ public class Project {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private ProjectType projectType;
+    private String situation;
     private String content;
     private String testScenario;
     private LocalDateTime createDate;
     private LocalDateTime modifyDate;
 
-    public ProjectParam toProjectParam(List<ProjectMember> members) {
-        ProjectParam param = ProjectParam.builder()
+    public ProjectParam toProjectParam() {
+        return ProjectParam.builder()
                 .id(id).title(title)
                 .startDate(Utility.convert(startDate))
                 .endDate(Utility.convert(endDate))
                 .projectType(projectType.getDisplayFormat())
+                .situation(situation)
                 .content(content)
                 .testScenario(testScenario)
                 .build();
-
-        List<String> memberNames = new ArrayList<>();
-        for (ProjectMember member : members) {
-            memberNames.add(member.getUserName());
-        }
-
-        return param;
     }
 }
 

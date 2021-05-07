@@ -39,7 +39,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectCard makeProjectCard(Project project, int projectId, int memberCount) {
         ProjectCard projectCard = ProjectCard.builder()
                 .projectId(projectId).projectType(project.getProjectType().getDisplayFormat())
-                .memberCount(1).startDate(project.getStartDate()).build();
+                .memberCount(memberCount).startDate(project.getStartDate()).build();
 
         String shortTitle = Utility.cutString(project.getTitle(), 10);
         String shortContent = Utility.cutString(project.getContent(), 50);
@@ -51,26 +51,25 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     @Transactional
-    public int addProject(Project project, List<String> members) {
+    public int addProject(Project project, List<String> names) {
         int projectId = projectDao.addProject(project);
 
-        // project Role에 관련한 로직은 이후에 구현할 계획
-        for (String member : members) {
-            projectMemberDao.addProjectMember(member, projectId);
+        for (String name : names) {
+            projectMemberDao.addProjectMember(name, projectId);
         }
 
-        ProjectCard projectCard = makeProjectCard(project, projectId, members.size());
+        ProjectCard projectCard = makeProjectCard(project, projectId, names.size());
         projectCardDao.addProjectCard(projectCard);
 
         return projectId;
     }
 
     @Override
-    public int updateProject(Project project, List<String> members) {
+    public int updateProject(Project project, List<String> names) {
         int projectId = project.getId();
         int projectCardId = projectCardDao.getProjectCard(projectId).getId();
 
-        ProjectCard projectCard = makeProjectCard(project, projectId, members.size());
+        ProjectCard projectCard = makeProjectCard(project, projectId, names.size());
         projectCard.setId(projectCardId);
         projectCardDao.updateProjectCard(projectCard);
 

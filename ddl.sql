@@ -25,6 +25,7 @@ create table project (
 	start_date datetime null,
 	end_date datetime null,
 	project_type varchar(40) null,
+	situation text null,
 	content text not null,
 	test_scenario text not null,
 	create_date datetime null,
@@ -33,9 +34,8 @@ create table project (
 
 create table project_member (
 	id int(11) not null auto_increment,
-	user_name varchar(50) not null,
+	name varchar(50) not null,
 	project_id int(11) not null,
-	role varchar(50) null,
 	primary key(id),
 	foreign key(project_id) references project(id)) engine=InnoDB default charset=utf8;
 

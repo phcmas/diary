@@ -1,16 +1,35 @@
+var memberId = 0;
+
 $('#add-member').click((e) => {
-    var prev = $('#members').val();
-    var newMember = $('#newMember').val();
-    $('#members').val(prev + ', '+ newMember);
+    let buttonTag = document.createElement('button');
+    let name = $('#newMember').val();
+    let buttonText = document.createTextNode(name);
+    let spanTag = document.createElement('span');
+    let spanText = document.createTextNode('X');
+
+    buttonTag.setAttribute('class', 'form-control-name');
+    buttonTag.setAttribute('name','member-name');
+    buttonTag.setAttribute('type', 'button');
+    buttonTag.setAttribute('value', name);
+    buttonTag.append(buttonText);
+    spanTag.setAttribute('class', 'badge badge-secondary');
+    spanTag.setAttribute('id', memberId++);
+    spanTag.append(spanText);
+
+    buttonTag.append(spanTag);
+    $('#member-names').append(buttonTag);
 });
 
+$(document).on('click', '.badge', function() {
+    var id = $(this).attr('id');
+    var upperButton = $('#'+id).closest('button');
+    upperButton.remove();
+});
 
 $('#project-save').click((e) => {
-    var members = [];
-
-    $('input[name=members]').each(function(idx) {
-        var value = $(this).val();
-        members.push(value);
+    var names = [];
+    $('button[name=member-name]').each(function(idx) {
+        names.push($(this).val());
     });
 
     var projectData = {
@@ -19,9 +38,10 @@ $('#project-save').click((e) => {
         startDate : $('#start-date').val(),
         endDate : $('#end-date').val(),
         projectType : $('#project-type').val(),
+        situation : $('#situation').val(),
         content : $('#content').val(),
         testScenario : $('#test-scenario').val(),
-        members: members
+        names : names
     };
 
     $.ajax({

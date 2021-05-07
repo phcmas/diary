@@ -1,7 +1,7 @@
 {{>layout/header}}
   {{>layout/project_side}}
 
-<div class="col-lg-9" xmlns="http://www.w3.org/1999/html">
+      <div class="col-lg-9">
         <div id="blank"></div>
         <div class="row">
 
@@ -12,18 +12,18 @@
                 <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
             </div>
             <div class="form-group">
-                <label for="author">수행기간</label>
+                <label for="date">수행기간</label>
                 <input type="date" class="form-control-inline" id="start-date">
-                ~
+                ~&nbsp;&nbsp;
                 <input type="date" class="form-control-inline" id="end-date">
             </div>
-            <div class="form-group">
-                <label for="author">참여멤버</label><input type="text" class="form-control-name" id="newMember" placeholder="멤버">
+            <div class="form-group" id="member-names">
+                <label for="members">참여멤버</label>
+                <input type="text" class="form-control-name" id="newMember" placeholder="멤버">
                 <input type="button" class="btn-add" id="add-member" value="+"><br>
-                <input type="text" class="form-control-names" name="members" id="members" value="{{currentUser}}">
             </div>
             <div class="form-group">
-                <label for="author">종류</label>
+                <label for="project-type">종류</label>
                 <select id="project-type" class="form-control-inline">
                     <option value="0" selected>종류
                     <option value="FUNCTION_DEVELOPMENT">기능개발</option>
@@ -32,12 +32,16 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="author">내용</label>
-                <textarea class="form-control" id="content" placeholder="작성자를 입력하세요"></textarea>
+                <label for="situation">문제상황</label>
+                <textarea class="form-control" id="situation" placeholder="문제상황을 입력하세요"></textarea>
             </div>
             <div class="form-group">
-                <label for="content">테스트 시나리오</label>
-                <textarea class="form-control" id="test-scenario" placeholder="내용을 입력하세요"></textarea>
+                <label for="content">내용</label>
+                <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="test-scenario">테스트 시나리오</label>
+                <textarea class="form-control" id="test-scenario" placeholder="테스트 시나리오를 입력하세요"></textarea>
             </div>
             </form>
                 <a href="/diary/projects/cards" role="button" class="btn btn-secondary">취소</a>

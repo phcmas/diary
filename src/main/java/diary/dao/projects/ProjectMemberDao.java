@@ -28,7 +28,7 @@ public class ProjectMemberDao {
         @Override
         public ProjectMember mapRow(ResultSet rs, int rowNum) throws SQLException {
             return ProjectMember.builder().id(rs.getInt("id"))
-                    .userName(rs.getString("userName")).projectId(rs.getInt("projectId"))
+                    .name(rs.getString("userName")).projectId(rs.getInt("projectId"))
                     .build();
         }
     }
@@ -57,8 +57,8 @@ public class ProjectMemberDao {
     }
 
     @Transactional
-    public int addProjectMember(String userName, int projectId) {
-        ProjectMember newMember = new ProjectMember(userName, projectId);
+    public int addProjectMember(String name, int projectId) {
+        ProjectMember newMember = new ProjectMember(name, projectId);
         return addProjectMember(newMember);
     }
 
@@ -67,5 +67,4 @@ public class ProjectMemberDao {
         Map<String, ?> param = Collections.singletonMap("projectId", projectId);
         return jdbc.update(DELETE_PROJECT_MEMBER, param);
     }
-
 }

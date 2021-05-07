@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProjectMember {
     private int id;
-    private String userName;
+    private String name;
     private int projectId;
 
     public ProjectMember(String userName, int projectId) {
-        this.userName = userName;
+        this.name = userName;
         this.projectId = projectId;
     }
 }

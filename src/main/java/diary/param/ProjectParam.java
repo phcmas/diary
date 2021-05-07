@@ -2,14 +2,12 @@ package diary.param;
 
 import diary.dto.enums.ProjectRole;
 import diary.dto.enums.ProjectType;
-import diary.dto.projects.MemberInfo;
 import diary.dto.projects.Project;
 import diary.utility.Utility;
 import lombok.*;
 
 import java.text.ParseException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
@@ -23,15 +21,17 @@ public class ProjectParam {
     private String startDate;
     private String endDate;
     private String projectType;
+    private String situation;
     private String content;
     private String testScenario;
-    private List<String> members;
+    private List<String> names;
 
     public Project toProject() throws ParseException {
         Project newProject = Project.builder().title(title)
                 .startDate(Utility.convert(startDate))
                 .endDate(Utility.convert(endDate))
                 .projectType(ProjectType.valueOf(projectType))
+                .situation(situation)
                 .content(content)
                 .testScenario(testScenario)
                 .createDate(LocalDateTime.now())
@@ -41,8 +41,8 @@ public class ProjectParam {
         return newProject;
     }
 
-    public List<String> getMemberInfo() {
-        return members;
+    public List<String> getMemberNames() {
+        return names;
     }
 
 }

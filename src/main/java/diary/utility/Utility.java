@@ -3,6 +3,7 @@ package diary.utility;
 import diary.dto.enums.ProjectType;
 import diary.dto.projects.MemberInfo;
 import diary.dto.projects.Project;
+import diary.dto.projects.ProjectMember;
 import diary.param.ProjectParam;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -66,6 +68,15 @@ public class Utility {
         }
 
         return result;
+    }
+
+    public static List<String> getNames(List<ProjectMember> projectMembers) {
+        List<String> names = new ArrayList<>();
+        for (ProjectMember projectMember : projectMembers) {
+            names.add(projectMember.getName());
+        }
+
+        return names;
     }
 
 }
