@@ -1,11 +1,8 @@
 package diary.dao.projects;
 
-import diary.dto.enums.ProjectRole;
-import diary.dto.projects.MemberInfo;
 import diary.dto.projects.ProjectMember;
 import static diary.dao.sqls.ProjectSqls.*;
 
-import diary.utility.Utility;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -18,9 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class ProjectMemberDao {
@@ -45,26 +40,53 @@ public class ProjectMemberDao {
     }
 
     @Transactional
-    public List<ProjectMember> getProjectMembers(int projectId) {
+    public List<ProjectMember> getByProjectId(int projectId) {
         Map<String, ?> param = Collections.singletonMap("projectId", projectId);
         return jdbc.query(SELECT_PROJECT_MEMBER, param, rowMapper);
     }
 
     @Transactional
-    public int addProjectMember(ProjectMember projectMember) {
+    public int add(ProjectMember projectMember) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(projectMember);
         return insertAction.executeAndReturnKey(params).intValue();
     }
 
     @Transactional
-    public int addProjectMember(String name, int projectId) {
-        ProjectMember newMember = new ProjectMember(name, projectId);
-        return addProjectMember(newMember);
+    public void addBatch(List<String> names, int projectId) {
+        int count = names.size();
+        List<Map<String, Object>> params = new ArrayList<>(count);
+
+        for (String name : names) {
+            Map<String, Object> param = new HashMap<>();
+            param.put("name", name);
+            param.put("project_id", projectId);
+
+            params.add(param);
+        }
+
+        insertAction.executeBatch(params.toArray(new Map[count]));
     }
 
     @Transactional
-    public int deleteProjectMember(int projectId) {
+    public void addByProjectId(String name, int projectId) {
+        ProjectMember newMember = new ProjectMember(name, projectId);
+        add(newMember);
+    }
+
+    @Transactional
+    public void deleteByProjectId(int projectId) {
         Map<String, ?> param = Collections.singletonMap("projectId", projectId);
-        return jdbc.update(DELETE_PROJECT_MEMBER, param);
+        jdbc.update(DELETE_PROJECT_MEMBER, param);
+    }
+
+    public int[] update(List<ProjectMember> projectMembers) {
+        int count = projectMembers.size();
+        SqlParameterSource[] params = new SqlParameterSource[count];
+
+        for (int i = 0; i < count; ++i) {
+            params[i] = new BeanPropertySqlParameterSource(projectMembers.get(i));
+        }
+
+        return jdbc.batchUpdate(UPDATE_PROJECT_MEMBER, params);
     }
 }

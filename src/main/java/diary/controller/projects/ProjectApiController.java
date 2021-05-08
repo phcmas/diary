@@ -1,6 +1,5 @@
 package diary.controller.projects;
 
-import diary.dto.projects.MemberInfo;
 import diary.dto.projects.Project;
 import diary.dto.projects.ProjectMember;
 import diary.param.ProjectParam;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

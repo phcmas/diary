@@ -1,6 +1,5 @@
 package diary.param;
 
-import diary.dto.enums.ProjectRole;
 import diary.dto.enums.ProjectType;
 import diary.dto.projects.Project;
 import diary.utility.Utility;

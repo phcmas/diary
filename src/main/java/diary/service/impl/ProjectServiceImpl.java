@@ -4,8 +4,6 @@ import diary.dao.projects.ProjectCardDao;
 import diary.dao.projects.ProjectDao;
 import diary.dao.projects.ProjectMemberDao;
 import diary.dao.user.UserDao;
-import diary.dto.enums.ProjectRole;
-import diary.dto.projects.MemberInfo;
 import diary.dto.projects.Project;
 import diary.dto.projects.ProjectCard;
 import diary.dto.projects.ProjectMember;
@@ -52,14 +50,14 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     @Transactional
     public int addProject(Project project, List<String> names) {
-        int projectId = projectDao.addProject(project);
+        int projectId = projectDao.add(project);
 
         for (String name : names) {
-            projectMemberDao.addProjectMember(name, projectId);
+            projectMemberDao.addByProjectId(name, projectId);
         }
 
         ProjectCard projectCard = makeProjectCard(project, projectId, names.size());
-        projectCardDao.addProjectCard(projectCard);
+        projectCardDao.add(projectCard);
 
         return projectId;
     }
@@ -67,31 +65,34 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public int updateProject(Project project, List<String> names) {
         int projectId = project.getId();
-        int projectCardId = projectCardDao.getProjectCard(projectId).getId();
+        int projectCardId = projectCardDao.getByProjectId(projectId).getId();
 
         ProjectCard projectCard = makeProjectCard(project, projectId, names.size());
         projectCard.setId(projectCardId);
-        projectCardDao.updateProjectCard(projectCard);
+        projectCardDao.update(projectCard);
 
-        return projectDao.updateProject(project);
+        projectMemberDao.deleteByProjectId(projectId);
+        projectMemberDao.addBatch(names, projectId);
+
+        return projectDao.update(project);
     }
 
     @Override
     public int deleteProject(int id) {
-        projectMemberDao.deleteProjectMember(id);
-        projectCardDao.deleteProjectCard(id);
-        return projectDao.deleteProject(id);
+        projectMemberDao.deleteByProjectId(id);
+        projectCardDao.deleteByProjectId(id);
+        return projectDao.delete(id);
     }
 
     @Override
     public Project getProject(int id) {
-        return projectDao.getProject(id);
+        return projectDao.get(id);
     }
 
     @Override
     public List<Integer> getPageNumber(Date startDate, Date endDate) {
         List<Integer> pageNumbers = new ArrayList<>();
-        int totalCount = projectDao.getProjectCount(startDate, endDate);
+        int totalCount = projectDao.getCount(startDate, endDate);
 
         if (totalCount <= CARD_LIMIT) return pageNumbers;
         int maxPage = totalCount / CARD_LIMIT;
@@ -107,18 +108,18 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<ProjectMember> getProjectMembers(int projectId) {
-        return projectMemberDao.getProjectMembers(projectId);
+        return projectMemberDao.getByProjectId(projectId);
     }
 
     @Override
     public List<ProjectCard> getProjectCards(int pageNum, Date startDate, Date endDate) {
         int start = CARD_LIMIT * (pageNum-1);
-        return projectCardDao.getProjectCards(start, CARD_LIMIT, startDate, endDate);
+        return projectCardDao.getList(start, CARD_LIMIT, startDate, endDate);
     }
 
     @Override
     public List<Project> getRecentProject(int start) {
-        return projectDao.getRecentProjects(start, CARD_LIMIT);
+        return projectDao.getRecentList(start, CARD_LIMIT);
     }
 
 }

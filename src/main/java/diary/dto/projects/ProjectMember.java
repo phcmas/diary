@@ -1,7 +1,6 @@
 package diary.dto.projects;
 
 
-import diary.dto.enums.ProjectRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

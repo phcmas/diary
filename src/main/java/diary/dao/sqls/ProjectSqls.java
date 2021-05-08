@@ -13,10 +13,10 @@ public class ProjectSqls {
             "title = :title, start_date = :startDate, end_date = :endDate, project_type = :projectType, " +
             "situation = :situation, content = :content, test_scenario = :testScenario, " +
             "create_date = :createDate, modify_date = :modifyDate WHERE id = :id";
-
     public static final String UPDATE_PROJECT_CARD = "UPDATE project_card SET " +
             "project_type = :projectType, short_title = :shortTitle, short_content = :shortContent, " +
             "member_count = :memberCount, start_date = :startDate WHERE id = :id";
+    public static final String UPDATE_PROJECT_MEMBER = "UPDATE project_member SET name = :name WHERE project_id = :projectId";
 
     public static final String DELETE_PROJECT = "DELETE FROM project WHERE id = :id";
     public static final String DELETE_PROJECT_CARD = "DELETE FROM project_card WHERE project_id = :projectId";

@@ -1,10 +1,6 @@
 package diary.utility;
 
-import diary.dto.enums.ProjectType;
-import diary.dto.projects.MemberInfo;
-import diary.dto.projects.Project;
 import diary.dto.projects.ProjectMember;
-import diary.param.ProjectParam;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 

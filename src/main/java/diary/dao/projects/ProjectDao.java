@@ -52,7 +52,7 @@ public class ProjectDao {
     }
 
     @Transactional
-    public Project getProject(int id) {
+    public Project get(int id) {
         try {
             Map<String, ?> param = Collections.singletonMap("id", id);
             return jdbc.queryForObject(SELECT_PROJECT_BY_ID, param, rowMapper);
@@ -62,7 +62,7 @@ public class ProjectDao {
     }
 
     @Transactional
-    public int getProjectCount(Date startDate, Date endDate) {
+    public int getCount(Date startDate, Date endDate) {
         Map<String, Object> params = new HashMap<>();
         params.put("startDate", startDate);
         params.put("endDate", endDate);
@@ -71,7 +71,7 @@ public class ProjectDao {
     }
 
     @Transactional
-    public List<Project> getRecentProjects(int start, int limit) {
+    public List<Project> getRecentList(int start, int limit) {
         Map<String, Object> params = new HashMap<>();
         params.put("start", start);
         params.put("limit", limit);
@@ -80,20 +80,20 @@ public class ProjectDao {
     }
 
     @Transactional
-    public int addProject(Project project) {
+    public int add(Project project) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(project);
         return insertAction.executeAndReturnKey(params).intValue();
     }
 
     @Transactional
-    public int updateProject(Project project) {
+    public int update(Project project) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(project);
         params.registerSqlType("projectType", Types.VARCHAR);
         return jdbc.update(UPDATE_PROJECT, params);
     }
 
     @Transactional
-    public int deleteProject(int id) {
+    public int delete(int id) {
         Map<String, ?> param = Collections.singletonMap("id", id);
         return jdbc.update(DELETE_PROJECT, param);
     }

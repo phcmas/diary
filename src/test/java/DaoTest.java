@@ -5,7 +5,6 @@ import diary.dao.projects.ProjectDao;
 import diary.dao.projects.ProjectMemberDao;
 import diary.dao.user.UserDao;
 import diary.dao.user.UserRoleDao;
-import diary.dto.enums.ProjectRole;
 import diary.dto.enums.UserAuthority;
 import diary.dto.projects.Project;
 import diary.dto.projects.ProjectCard;
@@ -28,7 +27,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +55,7 @@ public class DaoTest {
     ProjectCardDao projectCardDao;
 
     public int getProjectId() {
-        List<Project> recentProjects = projectDao.getRecentProjects(0,4);
+        List<Project> recentProjects = projectDao.getRecentList(0,4);
         return recentProjects.get(0).getId();
     }
 
@@ -105,11 +104,11 @@ public class DaoTest {
                 .endDate(LocalDateTime.now()).projectType(ProjectType.ERROR_RESOLUTION)
                 .content("test").testScenario("test").createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now()).build();
-        int newId = projectDao.addProject(newProject);
+        int newId = projectDao.add(newProject);
         Assert.assertTrue(newId >= 0);
 
         // find project
-        Project project = projectDao.getProject(newId);
+        Project project = projectDao.get(newId);
         Assert.assertNotNull(project);
     }
 
@@ -121,11 +120,11 @@ public class DaoTest {
         // add newProjectMember
         ProjectMember newProjectMember = ProjectMember.builder().name("test")
                 .projectId(projectId).build();
-        int newId = projectMemberDao.addProjectMember(newProjectMember);
+        int newId = projectMemberDao.add(newProjectMember);
         Assert.assertNotEquals(newId, 0);
 
         // find projectMembers
-        List<ProjectMember> projectMembers = projectMemberDao.getProjectMembers(projectId);
+        List<ProjectMember> projectMembers = projectMemberDao.getByProjectId(projectId);
         Assert.assertNotEquals(projectMembers.size(), 0);
     }
 
@@ -137,11 +136,11 @@ public class DaoTest {
         ProjectCard newProjectCard = ProjectCard.builder().projectId(projectId)
                 .projectType("기능개발").shortTitle("test").shortContent("test")
                 .memberCount(1).startDate(LocalDateTime.now()).build();
-        int newId = projectCardDao.addProjectCard(newProjectCard);
+        int newId = projectCardDao.add(newProjectCard);
         Assert.assertNotEquals(newId, 0);
 
         // find projectCard
-        ProjectCard projectCard = projectCardDao.getProjectCard(projectId);
+        ProjectCard projectCard = projectCardDao.getByProjectId(projectId);
         Assert.assertNotNull(projectCard);
     }
 
@@ -154,7 +153,7 @@ public class DaoTest {
                 .endDate(LocalDateTime.now()).projectType(ProjectType.FUNCTION_DEVELOPMENT)
                 .content("test_updated").testScenario("test_updated").createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now()).build();
-        int result = projectDao.updateProject(modifiedProject);
+        int result = projectDao.update(modifiedProject);
         Assert.assertNotEquals(result, 0);
     }
 
@@ -163,19 +162,36 @@ public class DaoTest {
         Date startDate = Utility.yearToDate("2021");
         Date endDate = Utility.addTime(startDate, 1, 0, 0);
 
-        List<ProjectCard> projectCards = projectCardDao.getProjectCards(0,4, startDate, endDate);
+        List<ProjectCard> projectCards = projectCardDao.getList(0,4, startDate, endDate);
 
         Assert.assertNotEquals(projectCards.size(), 0);
     }
 
     @Test
-    public void DaoTest8_ProjectDelete() {
+    public void DaoTest8_ProjectMemberBatchInsert() {
         int projectId = getProjectId();
 
-        projectMemberDao.deleteProjectMember(projectId);
-        projectCardDao.deleteProjectCard(projectId);
-        projectDao.deleteProject(projectId);
+        String name1 = "TEST1";
+        String name2 = "TEST2";
+        String name3 = "TEST3";
+
+        List<String> names = new ArrayList<>();
+        names.add(name1);
+        names.add(name2);
+        names.add(name3);
+
+        projectMemberDao.addBatch(names, 1);
     }
+
+    @Test
+    public void DaoTest9_ProjectDelete() {
+        int projectId = getProjectId();
+
+        projectMemberDao.deleteByProjectId(projectId);
+        projectCardDao.deleteByProjectId(projectId);
+        projectDao.delete(projectId);
+    }
+
 
 }
 

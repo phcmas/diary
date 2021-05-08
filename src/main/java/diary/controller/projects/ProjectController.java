@@ -1,6 +1,5 @@
 package diary.controller.projects;
 
-import diary.dto.projects.MemberInfo;
 import diary.dto.projects.Project;
 import diary.dto.projects.ProjectCard;
 import diary.dto.projects.ProjectMember;
@@ -12,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,13 +30,12 @@ public class ProjectController {
     }
 
     @GetMapping("/registration")
-    public String register(Model model) {
-        model.addAttribute("currentUser", Utility.getCurrentUserName());
+    public String addProject() {
         return "/projects/registration";
     }
 
     @GetMapping(path="/modification/{id}")
-    public String moveModificationPage(@PathVariable(name="id") int id, Model model) {
+    public String modifyProject(@PathVariable(name="id") int id, Model model) {
         Project project = projectService.getProject(id);
         List<ProjectMember> members = projectService.getProjectMembers(id);
         model.addAttribute("project", project.toProjectParam());

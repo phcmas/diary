@@ -46,7 +46,7 @@ public class ProjectCardDao {
                                 .usingGeneratedKeyColumns("id");
     }
 
-    public ProjectCard getProjectCard(int projectId) {
+    public ProjectCard getByProjectId(int projectId) {
         try {
             Map<String, ?> param = Collections.singletonMap("projectId", projectId);
             return jdbc.queryForObject(SELECT_PROJECT_CARD_BY_PROJECT_ID, param, rowMapper);
@@ -55,7 +55,7 @@ public class ProjectCardDao {
         }
     }
 
-    public List<ProjectCard> getProjectCards(int start, int limit, Date startDate, Date endDate) {
+    public List<ProjectCard> getList(int start, int limit, Date startDate, Date endDate) {
         Map<String, Object> param = new HashMap<>();
 
         param.put("startDate", startDate);
@@ -66,27 +66,21 @@ public class ProjectCardDao {
     }
 
     @Transactional
-    public int addProjectCard(ProjectCard projectCard) {
+    public int add(ProjectCard projectCard) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(projectCard);
         return insertAction.executeAndReturnKey(params).intValue();
     }
 
     @Transactional
-    public int addProjectCard(int projectId) {
-        ProjectCard newCard = new ProjectCard(projectId);
-        return addProjectCard(newCard);
-    }
-
-    @Transactional
-    public int updateProjectCard(ProjectCard projectCard) {
+    public void update(ProjectCard projectCard) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(projectCard);
-        return jdbc.update(UPDATE_PROJECT_CARD, params);
+        jdbc.update(UPDATE_PROJECT_CARD, params);
     }
 
     @Transactional
-    public int deleteProjectCard(int projectId) {
+    public void deleteByProjectId(int projectId) {
         Map<String, ?> param = Collections.singletonMap("projectId", projectId);
-        return jdbc.update(DELETE_PROJECT_CARD, param);
+        jdbc.update(DELETE_PROJECT_CARD, param);
     }
 
 
