@@ -7,39 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class IndexController {
-
-    /** Login **/
-    @GetMapping(path="/user/signin")
-    public String signin() {
-        return "/user/signin";
-    }
-
-    @GetMapping(path="/user/signup")
-    public String signup() {
-        return "/user/signup";
-    }
-
-    /** Main Page**/
     @GetMapping("/main")
     public String main(Model model) {
         model.addAttribute("name", Utility.getCurrentUserName());
         return "main";
-    }
-
-    /** Algorithm **/
-    @GetMapping("/algorithm/cards")
-    public String algorithm() {
-        return "/algorithm/cards";
-    }
-
-    @GetMapping("/algorithm/lookup")
-    public String alookup() {
-        return "/algorithm/lookup";
-    }
-
-    @GetMapping("/algorithm/register")
-    public String aregister() {
-        return "/algorithm/register";
     }
 
     @GetMapping("/cs")

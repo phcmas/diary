@@ -1,4 +1,4 @@
-package diary.controller;
+package diary.controller.user;
 
 import diary.dto.user.User;
 import diary.param.UserParam;
@@ -19,6 +19,16 @@ public class LoginController {
     public int join(@RequestBody UserParam userParam) {
         User newUser = userParam.toUser();
         return userService.addUser(newUser);
+    }
+
+    @GetMapping(path="/signin")
+    public String signin() {
+        return "/user/signin";
+    }
+
+    @GetMapping(path="/signup")
+    public String signup() {
+        return "/user/signup";
     }
 
 }

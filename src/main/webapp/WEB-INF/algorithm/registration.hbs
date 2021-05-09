@@ -1,0 +1,90 @@
+{{>layout/header}}
+  {{>layout/algorithm_side}}
+
+      <div class="col-lg-9">
+        <div id="blank"></div>
+        <div class="row">
+
+            <div class="col-lg-9 col-md-7 mb-5">
+            <form class="project-container">
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+            </div>
+            <div class="form-group">
+                <div class="select-inline">
+                <label for="date">푼 날짜</label>
+                <input type="date" class="form-control-inline" id="solved-date">
+                </div>
+                <div class="select-inline">
+                <label for="source">출처</label>
+                    <select id="source" class="form-control-inline">
+                        <option value="0" selected>사이트
+                        <option value="function_develop">LeetCode</option>
+                        <option value="enhanced_improvement">AlgoSpot</option>
+                        <option value="enhanced_improvement">Programmers</option>
+                        <option value="enhanced_improvement">HackerRank</option>
+                        <option value="error_resolution">ETC</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class ="select-inline">
+                <label for="algorithm-type">종류</label>
+                <select id="algorithm-type" class="form-control-inline">
+                    <option value="0" selected>종류
+                    <option value="function_develop">DP</option>
+                    <option value="enhanced_improvement">DFS</option>
+                    <option value="enhanced_improvement">DFS</option>
+                    <option value="error_resolution">Greedy</option>
+                    <option value="error_resolution">Two Pointer</option>
+                    <option value="error_resolution">Hash Table</option>
+                    <option value="error_resolution">Heap</option>
+                    <option value="error_resolution">Union Find</option>
+                    <option value="error_resolution">ETC</option>
+                </select>
+                </div>
+            <!--/div>
+            <div class="form-group"-->
+                <div class="select-inline">
+                <label for="language">언어</label>
+                <select id="language" class="form-control-inline">
+                    <option value="0" selected>언어
+                    <option value="function_develop">C++</option>
+                    <option value="enhanced_improvement">Java</option>
+                    <option value="error_resolution">JavaScript</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="explanation">문제설명</label>
+                <textarea class="form-control" id="explanation" placeholder="작성자를 입력하세요"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="content">코드내용</label>
+                <textarea class="form-control" id="content" placeholder="작성자를 입력하세요"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="file">코드업로드</label>
+                <div class="custom-file">
+                <input type="file" class="custom-file-input" id="file" placeholder="파일을 업로드하세요">
+                <label class="custom-file-label">파일을 선택하세요</label>
+                </div>
+            </div>
+            </form>
+                <a href="/diary/algorithm/cards" role="button" class="btn btn-secondary">취소</a>
+                <button type="button" class="btn btn-secondary" id="btn-save">등록</button>
+            </div>
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+{{>layout/footer}}

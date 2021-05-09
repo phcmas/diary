@@ -538,8 +538,9 @@ mark {
 	height: auto
 }
 
-.figure {
-	display: inline-block
+.select-inline {
+	display: inline;
+	margin-right : 15px;
 }
 
 .figure-img {
@@ -2276,8 +2277,8 @@ select.form-control:focus::-ms-value {
 
 .form-control-file,
 .form-control-range {
-	display: block;
-	width: 100%
+	display: inline;
+	width: 150px;
 }
 
 .col-form-label {

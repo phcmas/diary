@@ -5,7 +5,6 @@ import diary.dto.enums.Difficulty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -21,6 +20,7 @@ public class Algorithm {
     private String source;
     private Difficulty difficulty;
     private String explanation;
+    private String content;
     private LocalDateTime createDate;
     private LocalDateTime modifyDate;
     private int fileId;
