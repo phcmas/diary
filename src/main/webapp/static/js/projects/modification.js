@@ -1,5 +1,5 @@
 var memberId = 0;
-var id = $('#project-update').val();
+var id = $('#btn-update').val();
 
 $.getJSON('/diary/projects/names', {id : id},
 function(data) {
@@ -49,7 +49,7 @@ $(document).on('click', '.badge', function() {
     upperButton.remove();
 });
 
-$('#project-update').click((e) => {
+$('#btn-update').click((e) => {
     var names = [];
     $('button[name=member-name]').each(function(){
         names.push($(this).val());

@@ -26,7 +26,7 @@ $(document).on('click', '.badge', function() {
     upperButton.remove();
 });
 
-$('#project-save').click((e) => {
+$('#btn-save').click((e) => {
     var names = [];
     $('button[name=member-name]').each(function(idx) {
         names.push($(this).val());

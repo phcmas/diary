@@ -20,7 +20,4 @@ public class ProjectCard {
     private int memberCount;
     private LocalDateTime startDate;
 
-    public ProjectCard(int projectId) {
-        this.projectId = projectId;
-    }
 }

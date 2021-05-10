@@ -34,8 +34,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration(classes = {ApplicationConfig.class, SecurityConfig.class})
-public class DaoTest {
-
+public class ProjectDaoTest {
     @Autowired
     DataSource dataSource;
 

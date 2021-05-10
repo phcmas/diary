@@ -21,4 +21,9 @@ public class AlgorithmController {
         return "/algorithm/registration";
     }
 
+    @GetMapping("/algorithm/modification")
+    public String modifyAlgorithm() {
+        return "/algorithm/modification";
+    }
+
 }

@@ -1,4 +1,4 @@
-var id = $('#project-delete').val();
+var id = $('#btn-delete').val();
 
 $.getJSON('/diary/projects/names', {id : id},
 function(data) {
@@ -15,7 +15,7 @@ function(data) {
     });
 });
 
-$('#project-delete').click((e) => {
+$('#btn-delete').click((e) => {
     if (!confirm("정말 삭제하시겠습니까?")) return;
 
     $.ajax({
