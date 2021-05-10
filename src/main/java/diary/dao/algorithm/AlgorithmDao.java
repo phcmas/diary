@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -74,6 +75,17 @@ public class AlgorithmDao {
     public int add(Algorithm algorithm) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(algorithm);
         return insertAction.executeAndReturnKey(params).intValue();
+    }
+
+    public int update(Algorithm algorithm) {
+        BeanPropertySqlParameterSource params
+                = new BeanPropertySqlParameterSource(algorithm);
+
+        params.registerSqlType("type", Types.VARCHAR);
+        params.registerSqlType("difficulty", Types.VARCHAR);
+
+        return jdbc.update(UPDATE_ALGORITHM, params);
+
     }
 
 

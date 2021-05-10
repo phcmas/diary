@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -55,9 +56,16 @@ public class AlgorithmCardDao {
         return jdbc.query(SELECT_ALGORITHM_CARD, param, rowMapper);
     }
 
-    public int add(AlgorithmCard algorithmCard) {
-        SqlParameterSource params = new BeanPropertySqlParameterSource(algorithmCard);
+    public int add(AlgorithmCard card) {
+        SqlParameterSource params = new BeanPropertySqlParameterSource(card);
         return insertAction.executeAndReturnKey(params).intValue();
+    }
+
+    public int update(AlgorithmCard card) {
+        BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(card);
+        params.registerSqlType("type", Types.VARCHAR);
+        params.registerSqlType("difficulty", Types.VARCHAR);
+        return jdbc.update(UPDATE_ALGORITHM_CARD, params);
     }
 
 

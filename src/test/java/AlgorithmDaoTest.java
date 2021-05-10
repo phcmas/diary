@@ -19,7 +19,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -61,16 +60,33 @@ public class AlgorithmDaoTest {
     }
 
     @Test
-    public void DaoTest1_AlgorithmCardTest() {
+    public void DaoTest1_AlgorithmUpdate() {
         int algorithmId = getAlgorithmId();
 
-        AlgorithmCard newAlgorithmCard = AlgorithmCard.builder().id(-1)
+        Algorithm newOne = Algorithm.builder().id(algorithmId)
+                .title("test").solvedDate(LocalDateTime.now())
+                .language("java").type(AlgorithmType.UNION_FIND)
+                .source("HackerRank").difficulty(Difficulty.MEDIDUM)
+                .explanation("test").content("test")
+                .createDate(LocalDateTime.now())
+                .modifyDate(LocalDateTime.now())
+                .fileId(1).build();
+
+        int count = algorithmDao.update(newOne);
+        Assert.assertTrue(count > 0);
+    }
+
+    @Test
+    public void DaoTest2_AlgorithmCardTest() {
+        int algorithmId = getAlgorithmId();
+
+        AlgorithmCard newCard = AlgorithmCard.builder().id(-1)
                 .algorithmId(algorithmId).shortTitle("test")
                 .shortExplanation("test").type(AlgorithmType.DP)
                 .difficulty(Difficulty.MEDIDUM).solvedDate(LocalDateTime.now())
                 .build();
 
-        int newId = algorithmCardDao.add(newAlgorithmCard);
+        int newId = algorithmCardDao.add(newCard);
         Assert.assertTrue(newId >= 0);
 
         List<AlgorithmCard> algorithmCards = algorithmCardDao.getByAlgorithmId(algorithmId);
@@ -78,7 +94,21 @@ public class AlgorithmDaoTest {
     }
 
     @Test
-    public void DaoTest2_FileInfoTest() {
+    public void DaoTest3_AlorithmCardUpdate() {
+        int algorithmId = getAlgorithmId();
+
+        AlgorithmCard updatedCard = AlgorithmCard.builder().id(1)
+                .algorithmId(algorithmId).shortTitle("test_updated")
+                .shortExplanation("test_updated").type(AlgorithmType.GREEDY)
+                .difficulty(Difficulty.EASY).solvedDate(LocalDateTime.now())
+                .build();
+
+        int count = algorithmCardDao.update(updatedCard);
+        Assert.assertTrue(count >= 0);
+    }
+
+    @Test
+    public void DaoTest4_FileInfoTest() {
         int algorithmId = getAlgorithmId();
 
         FileInfo newFileInfo = FileInfo.builder().id(-1)
