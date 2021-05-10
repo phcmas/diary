@@ -12,10 +12,10 @@
                 <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
             </div>
             <div class="form-group">
-                <div class="select-inline">
                 <label for="date">푼 날짜</label>
                 <input type="date" class="form-control-inline" id="solved-date">
-                </div>
+            </div>
+            <div class="form-group">
                 <div class="select-inline">
                 <label for="source">출처</label>
                     <select id="source" class="form-control-inline">
@@ -27,8 +27,6 @@
                         <option value="error_resolution">ETC</option>
                     </select>
                 </div>
-            </div>
-            <div class="form-group">
                 <div class ="select-inline">
                 <label for="algorithm-type">종류</label>
                 <select id="algorithm-type" class="form-control-inline">
@@ -44,8 +42,8 @@
                     <option value="error_resolution">ETC</option>
                 </select>
                 </div>
-            <!--/div>
-            <div class="form-group"-->
+            </div>
+            <div class="form-group">
                 <div class="select-inline">
                 <label for="language">언어</label>
                 <select id="language" class="form-control-inline">
@@ -53,6 +51,15 @@
                     <option value="function_develop">C++</option>
                     <option value="enhanced_improvement">Java</option>
                     <option value="error_resolution">JavaScript</option>
+                </select>
+                </div>
+                <div class="select-inline">
+                <label for="language">난이도</label>
+                <select id="language" class="form-control-inline">
+                    <option value="0" selected>난이도
+                    <option value="function_develop">Easy</option>
+                    <option value="enhanced_improvement">Medium</option>
+                    <option value="error_resolution">Hard</option>
                 </select>
                 </div>
             </div>

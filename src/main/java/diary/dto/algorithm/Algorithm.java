@@ -14,9 +14,9 @@ public class Algorithm {
     private int id;
     private String title;
     private LocalDateTime solvedDate;
-    private String language;
-    private AlgorithmType type;
     private String source;
+    private AlgorithmType type;
+    private String language;
     private Difficulty difficulty;
     private String explanation;
     private String content;
