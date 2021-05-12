@@ -17,16 +17,19 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
         //cache period 31556926
         registry.addResourceHandler("/css/**","/user/css/**","/projects/css/**",
                                     "/projects/modification/css/**","/projects/lookup/css/**",
-                                    "/algorithm/css/**")
+                                    "/algorithm/css/**", "/algorithm/lookup/css/**",
+                                    "/algorithm/modification/css/**")
                 .addResourceLocations("/static/css/").setCachePeriod(0);
         registry.addResourceHandler("/img/**","/projects/img/**", "/algorithm/img/**")
                 .addResourceLocations("/static/img/").setCachePeriod(0);
-        registry.addResourceHandler("/js/**", "/algorithm/js/**")
+        registry.addResourceHandler("/js/**")
                 .addResourceLocations("/static/js/").setCachePeriod(0);
         registry.addResourceHandler("/user/js/**")
                 .addResourceLocations("/static/js/user/").setCachePeriod(0);
         registry.addResourceHandler("/projects/js/**","/projects/lookup/js/**","/projects/modification/js/**")
                 .addResourceLocations("/static/js/projects/").setCachePeriod(0);
+        registry.addResourceHandler("/algorithm/js/**","/algorithm/lookup/js/**","/algorithm/modification/js/**")
+                .addResourceLocations("/static/js/algorithm/").setCachePeriod(0);
     }
 
     @Override

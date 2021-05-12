@@ -65,7 +65,13 @@ public class AlgorithmCardDao {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(card);
         params.registerSqlType("type", Types.VARCHAR);
         params.registerSqlType("difficulty", Types.VARCHAR);
+
         return jdbc.update(UPDATE_ALGORITHM_CARD, params);
+    }
+
+    public int deleteByAlgorithmId(int algorithmId) {
+        Map<String, ?> param = Collections.singletonMap("algorithmId", algorithmId);
+        return jdbc.update(DELETE_ALGORITHM_CARD, param);
     }
 
 

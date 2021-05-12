@@ -2,7 +2,7 @@ package diary.dto.enums;
 
 public enum Difficulty {
     EASY(0),
-    MEDIDUM(1),
+    MEDIUM(1),
     HARD(2);
 
     private final int difficulty;
@@ -11,9 +11,9 @@ public enum Difficulty {
 
     public String getString() {
         switch (difficulty) {
-            case 0: return "EASY";
-            case 1: return "MEDIUM";
-            case 2: return "HARD";
+            case 0: return "Easy";
+            case 1: return "Medium";
+            case 2: return "Hard";
             default: return "ERROR";
         }
     }

@@ -2,6 +2,8 @@ package diary.dto.algorithm;
 
 import diary.dto.enums.AlgorithmType;
 import diary.dto.enums.Difficulty;
+import diary.param.AlgorithmParam;
+import diary.utility.Utility;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -23,4 +25,14 @@ public class Algorithm {
     private LocalDateTime createDate;
     private LocalDateTime modifyDate;
     private int fileId;
+
+    public AlgorithmParam toAlgorithmParam() {
+        return AlgorithmParam.builder()
+                .id(id).title(title)
+                .solvedDate(Utility.convert(solvedDate))
+                .source(source).type(type.getString())
+                .language(language).difficulty(difficulty.getString())
+                .explanation(explanation).content(content)
+                .build();
+    }
 }

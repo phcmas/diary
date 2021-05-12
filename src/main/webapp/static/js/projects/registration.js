@@ -32,7 +32,7 @@ $('#btn-save').click((e) => {
         names.push($(this).val());
     });
 
-    var projectData = {
+    var projectParam = {
         id : -1,
         title : $('#title').val(),
         startDate : $('#start-date').val(),
@@ -49,7 +49,7 @@ $('#btn-save').click((e) => {
         url : '/diary/projects/',
         datatype : 'json',
         contentType : 'application/json; charset=utf-8',
-        data : JSON.stringify(projectData)
+        data : JSON.stringify(projectParam)
     }).done(function() {
         alert("글이 등록되었습니다");
         window.location.href = '/diary/projects/cards';

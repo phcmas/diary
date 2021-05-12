@@ -8,10 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 public interface ProjectService {
-    public int addProject(Project project, List<String> members);
-    public int updateProject(Project project, List<String> members);
-    public int deleteProject(int id);
-    public Project getProject(int id);
+    public int add(Project project, List<String> members);
+    public int update(Project project, List<String> members);
+    public int delete(int id);
+    public Project get(int id);
     public List<Integer> getPageNumber(Date startDate, Date endDate);
     public List<ProjectMember> getProjectMembers(int projectId);
     public List<ProjectCard> getProjectCards(int pageNum, Date startDate, Date endDate);

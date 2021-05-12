@@ -22,4 +22,10 @@ public class AlgorithmSqls {
             + "difficulty = :difficulty, explanation = :explanation, "
             + "content = :content, create_date = :createDate, modify_date = :modifyDate, "
             + "file_id = :fileId WHERE id = :id";
+
+
+    public static String DELETE_ALGORITHM
+            = "DELETE FROM algorithm WHERE id = :id";
+    public static String DELETE_ALGORITHM_CARD
+            = "DELETE FROM algorithm_card WHERE algorithm_id = :algorithmId";
 }

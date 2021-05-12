@@ -12,10 +12,10 @@ public enum Language {
 
     public String getString() {
         switch (language) {
-            case 0: return "JAVA";
+            case 0: return "Java";
             case 1: return "C";
-            case 2: return "CPP";
-            case 3: return "JAVA_SCRIPT";
+            case 2: return "C++";
+            case 3: return "JavaScript";
             default: return "ERROR";
         }
     }

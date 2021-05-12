@@ -49,11 +49,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     @Transactional
-    public int addProject(Project project, List<String> names) {
+    public int add(Project project, List<String> names) {
         int projectId = projectDao.add(project);
 
         for (String name : names) {
-            projectMemberDao.addByProjectId(name, projectId);
+            projectMemberDao.add(name, projectId);
         }
 
         ProjectCard projectCard = makeProjectCard(project, projectId, names.size());
@@ -63,7 +63,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public int updateProject(Project project, List<String> names) {
+    public int update(Project project, List<String> names) {
         int projectId = project.getId();
         int projectCardId = projectCardDao.getByProjectId(projectId).getId();
 
@@ -78,14 +78,14 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public int deleteProject(int id) {
+    public int delete(int id) {
         projectMemberDao.deleteByProjectId(id);
         projectCardDao.deleteByProjectId(id);
         return projectDao.delete(id);
     }
 
     @Override
-    public Project getProject(int id) {
+    public Project get(int id) {
         return projectDao.get(id);
     }
 

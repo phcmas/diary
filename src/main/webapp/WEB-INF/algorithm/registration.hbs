@@ -20,26 +20,26 @@
                 <label for="source">출처</label>
                     <select id="source" class="form-control-inline">
                         <option value="0" selected>사이트
-                        <option value="function_develop">LeetCode</option>
-                        <option value="enhanced_improvement">AlgoSpot</option>
-                        <option value="enhanced_improvement">Programmers</option>
-                        <option value="enhanced_improvement">HackerRank</option>
-                        <option value="error_resolution">ETC</option>
+                        <option value="LeetCode">LeetCode</option>
+                        <option value="AlgoSpot">AlgoSpot</option>
+                        <option value="Programmers">Programmers</option>
+                        <option value="HackerRank">HackerRank</option>
+                        <option value="ETC">ETC</option>
                     </select>
                 </div>
                 <div class ="select-inline">
-                <label for="algorithm-type">종류</label>
-                <select id="algorithm-type" class="form-control-inline">
+                <label for="type">종류</label>
+                <select id="type" class="form-control-inline">
                     <option value="0" selected>종류
-                    <option value="function_develop">DP</option>
-                    <option value="enhanced_improvement">DFS</option>
-                    <option value="enhanced_improvement">DFS</option>
-                    <option value="error_resolution">Greedy</option>
-                    <option value="error_resolution">Two Pointer</option>
-                    <option value="error_resolution">Hash Table</option>
-                    <option value="error_resolution">Heap</option>
-                    <option value="error_resolution">Union Find</option>
-                    <option value="error_resolution">ETC</option>
+                    <option value="DP">DP</option>
+                    <option value="DFS">DFS</option>
+                    <option value="BFS">DFS</option>
+                    <option value="GREEDY">Greedy</option>
+                    <option value="TWO_POINTER">Two Pointer</option>
+                    <option value="HASH_TABLE">Hash Table</option>
+                    <option value="HEAP">Heap</option>
+                    <option value="UNION_FIND">Union Find</option>
+                    <option value="ETC">ETC</option>
                 </select>
                 </div>
             </div>
@@ -48,18 +48,19 @@
                 <label for="language">언어</label>
                 <select id="language" class="form-control-inline">
                     <option value="0" selected>언어
-                    <option value="function_develop">C++</option>
-                    <option value="enhanced_improvement">Java</option>
-                    <option value="error_resolution">JavaScript</option>
+                    <option value="C">C</option>
+                    <option value="CPP">C++</option>
+                    <option value="JAVA">Java</option>
+                    <option value="JAVA_SCRIPT">JavaScript</option>
                 </select>
                 </div>
                 <div class="select-inline">
-                <label for="language">난이도</label>
-                <select id="language" class="form-control-inline">
+                <label for="difficulty">난이도</label>
+                <select id="difficulty" class="form-control-inline">
                     <option value="0" selected>난이도
-                    <option value="function_develop">Easy</option>
-                    <option value="enhanced_improvement">Medium</option>
-                    <option value="error_resolution">Hard</option>
+                    <option value="EASY">Easy</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HARD">Hard</option>
                 </select>
                 </div>
             </div>
@@ -93,5 +94,8 @@
 
   </div>
   <!-- /.container -->
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="js/registration.js?ver=1"></script>
 
 {{>layout/footer}}

@@ -47,7 +47,7 @@ public class AlgorithmDaoTest {
         Algorithm newAlgorithm = Algorithm.builder().id(-1)
                 .title("test").solvedDate(LocalDateTime.now())
                 .language("java").type(AlgorithmType.DP)
-                .source("LeetCode").difficulty(Difficulty.MEDIDUM)
+                .source("LeetCode").difficulty(Difficulty.MEDIUM)
                 .explanation("test").content("test")
                 .createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now())
@@ -66,7 +66,7 @@ public class AlgorithmDaoTest {
         Algorithm newOne = Algorithm.builder().id(algorithmId)
                 .title("test").solvedDate(LocalDateTime.now())
                 .language("java").type(AlgorithmType.UNION_FIND)
-                .source("HackerRank").difficulty(Difficulty.MEDIDUM)
+                .source("HackerRank").difficulty(Difficulty.MEDIUM)
                 .explanation("test").content("test")
                 .createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now())
@@ -83,7 +83,7 @@ public class AlgorithmDaoTest {
         AlgorithmCard newCard = AlgorithmCard.builder().id(-1)
                 .algorithmId(algorithmId).shortTitle("test")
                 .shortExplanation("test").type(AlgorithmType.DP)
-                .difficulty(Difficulty.MEDIDUM).solvedDate(LocalDateTime.now())
+                .difficulty(Difficulty.MEDIUM).solvedDate(LocalDateTime.now())
                 .build();
 
         int newId = algorithmCardDao.add(newCard);

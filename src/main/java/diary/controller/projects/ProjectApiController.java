@@ -23,7 +23,7 @@ public class ProjectApiController {
         Project project = param.toProject();
         List<String> names = param.getMemberNames();
 
-        return projectService.addProject(project, names);
+        return projectService.add(project, names);
     }
 
     @PutMapping(path="/{id}")
@@ -31,13 +31,13 @@ public class ProjectApiController {
         Project project = param.toProject();
         List<String> names = param.getMemberNames();
 
-        return projectService.updateProject(project, names);
+        return projectService.update(project, names);
     }
 
 
     @DeleteMapping(path="/{id}")
     public int deleteProject(@PathVariable(name="id", required = true) int id) {
-        return projectService.deleteProject(id);
+        return projectService.delete(id);
     }
 
     @GetMapping(path="/pagenum")

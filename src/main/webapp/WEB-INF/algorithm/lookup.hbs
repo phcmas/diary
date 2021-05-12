@@ -9,39 +9,39 @@
                 <form class="diary-container">
                     <div class="form-group">
                         <label for="title">제목</label>
-                        <input type="text" class="form-control" id="title" value="제목" readonly>
+                        <input type="text" class="form-control" id="title" value="{{algorithm.title}}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="date">푼 날짜</label>
-                        <input type="date" class="form-control-inline"  value="2020-02-22" readonly>
+                        <input type="date" class="form-control-inline"  value="{{algorithm.solvedDate}}" readonly>
                     </div>
                     <div class="form-group">
                         <div class="select-inline">
                             <label for="source">출처</label>
-                            <input type="date" class="form-control-inline"  value="2020-02-22" readonly>
+                            <input type="text" class="form-control-inline"  value="{{algorithm.source}}" readonly>
                         </div>
                         <div class ="select-inline">
-                            <label for="algorithm-type">종류</label>
-                            <input type="date" class="form-control-inline"  value="2020-02-22" readonly>
+                            <label for="algorithm-type">종류 </label>
+                            <input type="text" class="form-control-inline"  value="{{algorithm.type}}" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="select-inline">
                             <label for="language">언어</label>
-                            <input type="date" class="form-control-inline"  value="2020-02-22" readonly>
+                            <input type="text" class="form-control-inline"  value="{{algorithm.language}}" readonly>
                         </div>
                         <div class="select-inline">
                             <label for="language">난이도</label>
-                            <input type="date" class="form-control-inline"  value="2020-02-22" readonly>
+                            <input type="text" class="form-control-inline"  value="{{algorithm.difficulty}}" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="explanation">문제설명</label>
-                        <textarea class="form-control" id="explanation" readonly>문제설명</textarea>
+                        <textarea class="form-control" id="explanation" readonly>{{algorithm.explanation}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="content">코드내용</label>
-                        <textarea class="form-control" id="content" readonly>코드내용</textarea>
+                        <textarea class="form-control" id="content" readonly>{{algorithm.content}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="file">코드다운로드</label>
@@ -52,8 +52,8 @@
                     </div>
                 </form>
                 <a href="/diary/algorithm/cards" role="button" class="btn btn-secondary">취소</a>
-                <a href="/diary/algorithm/modification" role="button" class="btn btn-secondary">수정</a>
-                <button type="button" class="btn btn-secondary" id="btn-save">등록</button>
+                <a href="/diary/algorithm/modification/{{algorithm.id}}" role="button" class="btn btn-secondary">수정</a>
+                <button type="button" class="btn btn-secondary" id="btn-delete" value="{{algorithm.id}}">삭제</button>
             </div>
 
         </div>
@@ -67,5 +67,7 @@
 
   </div>
   <!-- /.container -->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="js/lookup.js?ver=1"></script>
 
 {{>layout/footer}}

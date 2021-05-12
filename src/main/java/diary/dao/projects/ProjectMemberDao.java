@@ -68,7 +68,7 @@ public class ProjectMemberDao {
     }
 
     @Transactional
-    public void addByProjectId(String name, int projectId) {
+    public void add(String name, int projectId) {
         ProjectMember newMember = new ProjectMember(name, projectId);
         add(newMember);
     }

@@ -85,7 +85,11 @@ public class AlgorithmDao {
         params.registerSqlType("difficulty", Types.VARCHAR);
 
         return jdbc.update(UPDATE_ALGORITHM, params);
+    }
 
+    public int delete(int id) {
+        Map<String, ?> param = Collections.singletonMap("id", id);
+        return jdbc.update(DELETE_ALGORITHM, param);
     }
 
 
