@@ -4,6 +4,7 @@ package diary.param;
 import diary.dto.algorithm.Algorithm;
 import diary.dto.enums.AlgorithmType;
 import diary.dto.enums.Difficulty;
+import diary.dto.enums.Language;
 import diary.utility.Utility;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,7 +33,7 @@ public class AlgorithmParam {
         return Algorithm.builder().id(id)
                 .title(title).solvedDate(Utility.convert(solvedDate))
                 .source(source).type(AlgorithmType.valueOf(type))
-                .language(language).difficulty(Difficulty.valueOf(difficulty))
+                .language(Language.valueOf(language)).difficulty(Difficulty.valueOf(difficulty))
                 .explanation(explanation).content(content)
                 .createDate(LocalDateTime.now())
                 .modifyDate(LocalDateTime.now())

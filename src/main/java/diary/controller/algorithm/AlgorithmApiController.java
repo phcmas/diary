@@ -4,9 +4,12 @@ import diary.dto.algorithm.Algorithm;
 import diary.param.AlgorithmParam;
 import diary.service.AlgorithmService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping(path="/algorithm")
@@ -30,6 +33,14 @@ public class AlgorithmApiController {
     @DeleteMapping(path="/{id}")
     public int deleteAlgorithm(@PathVariable(name="id", required = true) int id) {
         return algorithmService.delete(id);
+    }
+
+    @GetMapping(path="/pagenum")
+    public List<Integer> getPageNums(@RequestParam(name="date", required = false)
+                                         @DateTimeFormat(pattern = "yyyy-mm-dd") LocalDateTime date) {
+
+        System.out.println(date);
+        return null;
     }
 
 }

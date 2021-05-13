@@ -9,6 +9,9 @@ import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 @Service
 public class AlgorithmServiceImpl implements AlgorithmService {
     @Autowired
@@ -16,6 +19,8 @@ public class AlgorithmServiceImpl implements AlgorithmService {
 
     @Autowired
     AlgorithmCardDao algorithmCardDao;
+
+    final int CARD_LIMIT = 4;
 
     @Override
     public AlgorithmCard makeAlgorithmCard(Algorithm algorithm, int algorithmId) {
@@ -39,18 +44,27 @@ public class AlgorithmServiceImpl implements AlgorithmService {
     }
 
     @Override
+    public List<AlgorithmCard> getCards(int pageNum, Date startDate, Date endDate) {
+        int start = CARD_LIMIT * (pageNum-1);
+        return algorithmCardDao.getList(start, CARD_LIMIT, startDate, endDate);
+    }
+
+    @Override
     public int add(Algorithm algorithm) {
-        int algorithmId = algorithmDao.add(algorithm);
-        AlgorithmCard newCard = makeAlgorithmCard(algorithm, algorithmId);
+        int newId = algorithmDao.add(algorithm);
+        AlgorithmCard newCard = makeAlgorithmCard(algorithm, newId);
         algorithmCardDao.add(newCard);
 
-        return algorithmId;
+        return newId;
     }
 
     @Override
     public int update(Algorithm algorithm) {
         int algorithmId = algorithm.getId();
+        int cardId = algorithmCardDao.getByAlgorithmId(algorithmId).getId();
+
         AlgorithmCard newCard = makeAlgorithmCard(algorithm, algorithmId);
+        newCard.setId(cardId);
 
         algorithmCardDao.update(newCard);
         return algorithmDao.update(algorithm);

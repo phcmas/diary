@@ -34,8 +34,8 @@ public class Utility {
         return simpleDateFormat.format(date);
     }
 
-    public static Date yearToDate(String year) throws ParseException {
-        String dateString = year + "-01-01";
+    public static Date getDate(String year, String month, String day) throws ParseException {
+        String dateString = year + "-" + month + "-" + day;
         return new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
     }
 

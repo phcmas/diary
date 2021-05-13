@@ -42,7 +42,7 @@ public class ProjectApiController {
 
     @GetMapping(path="/pagenum")
     public List<Integer> getPageNum(@RequestParam(name="year") String year) throws ParseException {
-        Date startDate = Utility.yearToDate(year);
+        Date startDate = Utility.getDate(year,"1","1");
         Date endDate = Utility.addTime(startDate, 1, 0, 0);
 
         return projectService.getPageNumber(startDate, endDate);

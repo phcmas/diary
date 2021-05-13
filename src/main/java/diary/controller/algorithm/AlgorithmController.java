@@ -2,8 +2,11 @@ package diary.controller.algorithm;
 
 import diary.dto.algorithm.Algorithm;
 import diary.dto.algorithm.AlgorithmCard;
+import diary.param.AlgorithmCardParam;
 import diary.service.AlgorithmService;
+import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -22,12 +28,23 @@ public class AlgorithmController {
     AlgorithmService algorithmService;
 
     @GetMapping("/cards")
-    public String showCards(@RequestParam(name = "year", required = true, defaultValue = "2021-05") String year,
+    public String showCards(@RequestParam(name = "year", required = true, defaultValue = "2021") String year,
+                            @RequestParam(name = "month", required = true, defaultValue = "05") String month,
                             @RequestParam(name = "start", required = true, defaultValue = "1") int pageNum,
-                            Model model) {
-        List<AlgorithmCard> algorithmCards = new ArrayList<>();
-        model.addAttribute("algorithmCards", algorithmCards);
-        model.addAttribute("year", year);
+                            @RequestParam(name = "date", required = false)
+                                        @DateTimeFormat(iso= DateTimeFormat.ISO.DATE) LocalDate date,
+                            Model model) throws ParseException {
+        Date startDate = Utility.getDate(year, month,"1");
+        Date endDate = Utility.addTime(startDate, 0, 1,0);
+        List<AlgorithmCard> cards = algorithmService.getCards(pageNum, startDate, endDate);
+        List<AlgorithmCardParam> params = new ArrayList<>();
+
+        for (AlgorithmCard card : cards) {
+            params.add(card.toAlgorithmCardParam());
+        }
+
+        model.addAttribute("algorithmCards", params);
+        model.addAttribute("date", startDate);
         return "/algorithm/cards";
     }
 

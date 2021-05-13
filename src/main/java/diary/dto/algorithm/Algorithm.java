@@ -2,6 +2,7 @@ package diary.dto.algorithm;
 
 import diary.dto.enums.AlgorithmType;
 import diary.dto.enums.Difficulty;
+import diary.dto.enums.Language;
 import diary.param.AlgorithmParam;
 import diary.utility.Utility;
 import lombok.*;
@@ -18,7 +19,7 @@ public class Algorithm {
     private LocalDateTime solvedDate;
     private String source;
     private AlgorithmType type;
-    private String language;
+    private Language language;
     private Difficulty difficulty;
     private String explanation;
     private String content;
@@ -31,7 +32,7 @@ public class Algorithm {
                 .id(id).title(title)
                 .solvedDate(Utility.convert(solvedDate))
                 .source(source).type(type.getString())
-                .language(language).difficulty(difficulty.getString())
+                .language(language.getString()).difficulty(difficulty.getString())
                 .explanation(explanation).content(content)
                 .build();
     }

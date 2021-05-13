@@ -17,9 +17,7 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static diary.dao.sqls.AlgorithmSqls.*;
 
@@ -51,9 +49,23 @@ public class AlgorithmCardDao {
         this.rowMapper = BeanPropertyRowMapper.newInstance(AlgorithmCard.class);
     }
 
-    public List<AlgorithmCard> getByAlgorithmId(int algorithmId) {
-        Map<String, ?> param = Collections.singletonMap("algorithmId", algorithmId);
-        return jdbc.query(SELECT_ALGORITHM_CARD, param, rowMapper);
+    public AlgorithmCard getByAlgorithmId(int algorithmId) {
+        try {
+            Map<String, ?> param = Collections.singletonMap("algorithmId", algorithmId);
+            return jdbc.queryForObject(SELECT_ALGORITHM_CARD, param, rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public List<AlgorithmCard> getList(int start, int limit, Date startDate, Date endDate) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("start", start);
+        params.put("limit", limit);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return jdbc.query(SELECT_ALGORITHM_CARD_BY_DATE, params, rowMapper);
     }
 
     public int add(AlgorithmCard card) {

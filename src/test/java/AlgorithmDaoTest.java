@@ -8,6 +8,7 @@ import diary.dto.algorithm.AlgorithmCard;
 import diary.dto.algorithm.FileInfo;
 import diary.dto.enums.AlgorithmType;
 import diary.dto.enums.Difficulty;
+import diary.dto.enums.Language;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -46,7 +47,7 @@ public class AlgorithmDaoTest {
     public void DaoTest0_AlgorithmTest() {
         Algorithm newAlgorithm = Algorithm.builder().id(-1)
                 .title("test").solvedDate(LocalDateTime.now())
-                .language("java").type(AlgorithmType.DP)
+                .language(Language.JAVA).type(AlgorithmType.DP)
                 .source("LeetCode").difficulty(Difficulty.MEDIUM)
                 .explanation("test").content("test")
                 .createDate(LocalDateTime.now())
@@ -65,7 +66,7 @@ public class AlgorithmDaoTest {
 
         Algorithm newOne = Algorithm.builder().id(algorithmId)
                 .title("test").solvedDate(LocalDateTime.now())
-                .language("java").type(AlgorithmType.UNION_FIND)
+                .language(Language.CPP).type(AlgorithmType.UNION_FIND)
                 .source("HackerRank").difficulty(Difficulty.MEDIUM)
                 .explanation("test").content("test")
                 .createDate(LocalDateTime.now())
@@ -89,8 +90,8 @@ public class AlgorithmDaoTest {
         int newId = algorithmCardDao.add(newCard);
         Assert.assertTrue(newId >= 0);
 
-        List<AlgorithmCard> algorithmCards = algorithmCardDao.getByAlgorithmId(algorithmId);
-        Assert.assertNotEquals(algorithmCards.size(), 0);
+        AlgorithmCard card= algorithmCardDao.getByAlgorithmId(algorithmId);
+        Assert.assertNotEquals(card, null);
     }
 
     @Test

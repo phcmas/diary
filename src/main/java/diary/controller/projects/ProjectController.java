@@ -47,7 +47,7 @@ public class ProjectController {
     public String showCards(@RequestParam(name = "year", required = false, defaultValue = "2021") String year,
                             @RequestParam(name = "start", required = false, defaultValue = "1") int pageNum,
                             Model model) throws ParseException {
-        Date startDate = Utility.yearToDate(year);
+        Date startDate = Utility.getDate(year, "1", "1");
         Date endDate = Utility.addTime(startDate,1,0,0);
         List<ProjectCard> projects = projectService.getProjectCards(pageNum, startDate, endDate);
 

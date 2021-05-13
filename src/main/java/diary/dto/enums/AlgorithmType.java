@@ -21,10 +21,10 @@ public enum AlgorithmType {
             case 1 : return "DFS";
             case 2 : return "BFS";
             case 3 : return "Greedy";
-            case 4 : return "TwoPointer";
-            case 5 : return "HashTable";
+            case 4 : return "Two Pointer";
+            case 5 : return "Hash Table";
             case 6 : return "Heap";
-            case 7 : return "UnionFind";
+            case 7 : return "Union Find";
             case 8 : return "ETC";
             default: return "ERROR";
         }

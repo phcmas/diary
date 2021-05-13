@@ -3,6 +3,7 @@ package diary.dao.algorithm;
 import diary.dto.algorithm.Algorithm;
 import diary.dto.enums.AlgorithmType;
 import diary.dto.enums.Difficulty;
+import diary.dto.enums.Language;
 import diary.utility.Utility;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -32,7 +33,7 @@ public class AlgorithmDao {
             return Algorithm.builder()
                     .id(rs.getInt("id")).title(rs.getString("title"))
                     .solvedDate(Utility.convert(rs.getDate("solvedDate")))
-                    .language(rs.getString("language"))
+                    .language(Language.valueOf(rs.getString("language")))
                     .type(AlgorithmType.valueOf(rs.getString("type")))
                     .source(rs.getString("source"))
                     .difficulty(Difficulty.valueOf(rs.getString("difficulty")))
@@ -82,6 +83,7 @@ public class AlgorithmDao {
                 = new BeanPropertySqlParameterSource(algorithm);
 
         params.registerSqlType("type", Types.VARCHAR);
+        params.registerSqlType("language", Types.VARCHAR);
         params.registerSqlType("difficulty", Types.VARCHAR);
 
         return jdbc.update(UPDATE_ALGORITHM, params);

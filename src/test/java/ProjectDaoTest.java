@@ -158,7 +158,7 @@ public class ProjectDaoTest {
 
     @Test
     public void DaoTest7_ProjectCards() throws ParseException {
-        Date startDate = Utility.yearToDate("2021");
+        Date startDate = Utility.getDate("2021","1","1");
         Date endDate = Utility.addTime(startDate, 1, 0, 0);
 
         List<ProjectCard> projectCards = projectCardDao.getList(0,4, startDate, endDate);
