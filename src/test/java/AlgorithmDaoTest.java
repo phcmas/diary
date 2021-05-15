@@ -19,7 +19,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.sql.DataSource;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -46,12 +46,12 @@ public class AlgorithmDaoTest {
     @Test
     public void DaoTest0_AlgorithmTest() {
         Algorithm newAlgorithm = Algorithm.builder().id(-1)
-                .title("test").solvedDate(LocalDateTime.now())
+                .title("test").solvedDate(LocalDate.now())
                 .language(Language.JAVA).type(AlgorithmType.DP)
                 .source("LeetCode").difficulty(Difficulty.MEDIUM)
                 .explanation("test").content("test")
-                .createDate(LocalDateTime.now())
-                .modifyDate(LocalDateTime.now())
+                .createDate(LocalDate.now())
+                .modifyDate(LocalDate.now())
                 .fileId(1).build();
         int newId = algorithmDao.add(newAlgorithm);
         Assert.assertTrue(newId >= 0);
@@ -65,12 +65,12 @@ public class AlgorithmDaoTest {
         int algorithmId = getAlgorithmId();
 
         Algorithm newOne = Algorithm.builder().id(algorithmId)
-                .title("test").solvedDate(LocalDateTime.now())
+                .title("test").solvedDate(LocalDate.now())
                 .language(Language.CPP).type(AlgorithmType.UNION_FIND)
                 .source("HackerRank").difficulty(Difficulty.MEDIUM)
                 .explanation("test").content("test")
-                .createDate(LocalDateTime.now())
-                .modifyDate(LocalDateTime.now())
+                .createDate(LocalDate.now())
+                .modifyDate(LocalDate.now())
                 .fileId(1).build();
 
         int count = algorithmDao.update(newOne);
@@ -84,7 +84,7 @@ public class AlgorithmDaoTest {
         AlgorithmCard newCard = AlgorithmCard.builder().id(-1)
                 .algorithmId(algorithmId).shortTitle("test")
                 .shortExplanation("test").type(AlgorithmType.DP)
-                .difficulty(Difficulty.MEDIUM).solvedDate(LocalDateTime.now())
+                .difficulty(Difficulty.MEDIUM).solvedDate(LocalDate.now())
                 .build();
 
         int newId = algorithmCardDao.add(newCard);
@@ -101,7 +101,7 @@ public class AlgorithmDaoTest {
         AlgorithmCard updatedCard = AlgorithmCard.builder().id(1)
                 .algorithmId(algorithmId).shortTitle("test_updated")
                 .shortExplanation("test_updated").type(AlgorithmType.GREEDY)
-                .difficulty(Difficulty.EASY).solvedDate(LocalDateTime.now())
+                .difficulty(Difficulty.EASY).solvedDate(LocalDate.now())
                 .build();
 
         int count = algorithmCardDao.update(updatedCard);
@@ -114,7 +114,7 @@ public class AlgorithmDaoTest {
 
         FileInfo newFileInfo = FileInfo.builder().id(-1)
                 .algorithmId(algorithmId).fileName("test")
-                .language("JAVA").build();
+                .language(Language.CPP).build();
 
         int newId = fileInfoDao.add(newFileInfo);
         Assert.assertTrue(newId >= 0);

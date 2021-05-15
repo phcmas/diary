@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -15,15 +17,21 @@ import java.util.List;
 
 public class Utility {
 
-    public static LocalDateTime convert(Date date) {
-        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    public static LocalDate convert(Date date) {
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        Instant instant = date.toInstant();
+        return instant.atZone(defaultZoneId).toLocalDate();
     }
+
+    //public static LocalDateTime convert(Date date) {
+    //    return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    //}
 
     //public static Date convert(LocalDateTime localDateTime) {
     //    return java.util.Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
     //}
 
-    public static LocalDateTime convert(String dateString) throws ParseException {
+    public static LocalDate convert(String dateString) throws ParseException {
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
         return convert(date);
     }

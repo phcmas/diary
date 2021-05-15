@@ -3,7 +3,7 @@ package diary.param;
 import diary.dto.user.User;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
@@ -20,7 +20,7 @@ public class UserParam {
     public User toUser() {
         return User.builder()
                 .name(name).password(password)
-                .createDate(LocalDateTime.now()).modifyDate(LocalDateTime.now()).build();
+                .createDate(LocalDate.now()).modifyDate(LocalDate.now()).build();
     }
 
 }

@@ -1,6 +1,7 @@
 package diary.dao.algorithm;
 
 import diary.dto.algorithm.FileInfo;
+import diary.dto.enums.Language;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -25,7 +26,7 @@ public class FileInfoDao {
         public FileInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
             return FileInfo.builder().id(rs.getInt("id"))
                     .fileName(rs.getString("fileName"))
-                    .language(rs.getString("language"))
+                    .language(Language.valueOf(rs.getString("language")))
                     .algorithmId(rs.getInt("algorithmId"))
                     .build();
         }

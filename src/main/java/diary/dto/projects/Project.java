@@ -7,7 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -16,21 +17,20 @@ import java.time.LocalDateTime;
 public class Project {
     private int id;
     private String title;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private ProjectType projectType;
     private String situation;
     private String content;
     private String testScenario;
-    private LocalDateTime createDate;
-    private LocalDateTime modifyDate;
+    private LocalDate createDate;
+    private LocalDate modifyDate;
 
     public ProjectParam toProjectParam() {
         return ProjectParam.builder()
                 .id(id).title(title)
-                .startDate(Utility.convert(startDate))
-                .endDate(Utility.convert(endDate))
-                .projectType(projectType.getDisplayFormat())
+                .startDate(startDate).endDate(endDate)
+                .projectType(projectType.getString())
                 .situation(situation)
                 .content(content)
                 .testScenario(testScenario)

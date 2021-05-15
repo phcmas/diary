@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,7 +37,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public ProjectCard makeProjectCard(Project project, int projectId, int memberCount) {
         ProjectCard projectCard = ProjectCard.builder()
-                .projectId(projectId).projectType(project.getProjectType().getDisplayFormat())
+                .projectId(projectId).projectType(project.getProjectType())
                 .memberCount(memberCount).startDate(project.getStartDate()).build();
 
         String shortTitle = Utility.cutString(project.getTitle(), 10);
@@ -90,7 +91,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Integer> getPageNumber(Date startDate, Date endDate) {
+    public List<Integer> getPageNumber(LocalDate startDate, LocalDate endDate) {
         List<Integer> pageNumbers = new ArrayList<>();
         int totalCount = projectDao.getCount(startDate, endDate);
 
@@ -107,12 +108,12 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<ProjectMember> getProjectMembers(int projectId) {
+    public List<ProjectMember> getMembers(int projectId) {
         return projectMemberDao.getByProjectId(projectId);
     }
 
     @Override
-    public List<ProjectCard> getProjectCards(int pageNum, Date startDate, Date endDate) {
+    public List<ProjectCard> getCards(int pageNum, LocalDate startDate, LocalDate endDate) {
         int start = CARD_LIMIT * (pageNum-1);
         return projectCardDao.getList(start, CARD_LIMIT, startDate, endDate);
     }

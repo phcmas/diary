@@ -1,5 +1,6 @@
 package diary.dao.projects;
 
+import diary.dto.enums.ProjectType;
 import diary.dto.projects.ProjectCard;
 import static diary.dao.sqls.ProjectSqls.*;
 
@@ -17,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
+import java.time.LocalDate;
 import java.util.*;
 
 @Repository
@@ -26,7 +29,7 @@ public class ProjectCardDao {
         public ProjectCard mapRow(ResultSet rs, int rowNum) throws SQLException {
             return ProjectCard.builder().id(rs.getInt("id"))
                     .projectId(rs.getInt("projectId"))
-                    .projectType(rs.getString("projectType"))
+                    .projectType(ProjectType.valueOf(rs.getString("projectType")))
                     .shortTitle(rs.getString("shortTitle"))
                     .shortContent(rs.getString("shortContent"))
                     .memberCount(rs.getInt("memberCount"))
@@ -55,7 +58,7 @@ public class ProjectCardDao {
         }
     }
 
-    public List<ProjectCard> getList(int start, int limit, Date startDate, Date endDate) {
+    public List<ProjectCard> getList(int start, int limit, LocalDate startDate, LocalDate endDate) {
         Map<String, Object> param = new HashMap<>();
 
         param.put("startDate", startDate);
@@ -74,6 +77,7 @@ public class ProjectCardDao {
     @Transactional
     public void update(ProjectCard projectCard) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(projectCard);
+        params.registerSqlType("projectType", Types.VARCHAR);
         jdbc.update(UPDATE_PROJECT_CARD, params);
     }
 

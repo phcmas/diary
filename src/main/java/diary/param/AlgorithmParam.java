@@ -5,14 +5,13 @@ import diary.dto.algorithm.Algorithm;
 import diary.dto.enums.AlgorithmType;
 import diary.dto.enums.Difficulty;
 import diary.dto.enums.Language;
-import diary.utility.Utility;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.text.ParseException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -21,7 +20,7 @@ import java.time.LocalDateTime;
 public class AlgorithmParam {
     private int id;
     private String title;
-    private String solvedDate;
+    private LocalDate solvedDate;
     private String source;
     private String type;
     private String language;
@@ -31,12 +30,12 @@ public class AlgorithmParam {
 
     public Algorithm toAlgorithm() throws ParseException {
         return Algorithm.builder().id(id)
-                .title(title).solvedDate(Utility.convert(solvedDate))
+                .title(title).solvedDate(solvedDate)
                 .source(source).type(AlgorithmType.valueOf(type))
                 .language(Language.valueOf(language)).difficulty(Difficulty.valueOf(difficulty))
                 .explanation(explanation).content(content)
-                .createDate(LocalDateTime.now())
-                .modifyDate(LocalDateTime.now())
+                .createDate(LocalDate.now())
+                .modifyDate(LocalDate.now())
                 .build();
     }
 }

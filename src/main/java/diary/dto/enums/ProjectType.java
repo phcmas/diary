@@ -1,27 +1,23 @@
 package diary.dto.enums;
 
 public enum ProjectType {
-    FUNCTION_DEVELOPMENT("FUNCTION_DEVELOPMENT"),
-    PERFORMANCE_IMPROVEMENT("PERFORMANCE_IMPROVEMENT"),
-    ERROR_RESOLUTION("ERROR_RESOLUTION");
+    FUNCTION_DEVELOPMENT(0),
+    PERFORMANCE_IMPROVEMENT(1),
+    ERROR_RESOLUTION(2);
 
-    private final String projectType;
+    private final int projectType;
 
-    ProjectType(String projectType) {
+    ProjectType(int projectType) {
         this.projectType = projectType;
     }
 
     public String getString() {
-        return projectType;
-    }
-
-    public String getDisplayFormat() {
         switch (projectType) {
-            case "FUNCTION_DEVELOPMENT":
+            case 0:
                 return "기능개발";
-            case "PERFORMANCE_IMPROVEMENT":
+            case 1:
                 return "성능개선";
-            case "ERROR_RESOLUTION":
+            case 2:
                 return "오류해결";
             default:
                 return "??";

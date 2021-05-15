@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -21,7 +21,7 @@ public class AlgorithmCardParam {
     private String shortExplanation;
     private String type;
     private String difficulty;
-    private LocalDateTime solvedDate;
+    private LocalDate solvedDate;
 
     public AlgorithmCard toAlgorithmParam() {
         return AlgorithmCard.builder().id(id)

@@ -1,5 +1,6 @@
 package diary.dto.algorithm;
 
+import diary.dto.enums.Language;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,6 @@ import lombok.NoArgsConstructor;
 public class FileInfo {
     private int id;
     private String fileName;
-    private String language;
+    private Language language;
     private int algorithmId;
 }

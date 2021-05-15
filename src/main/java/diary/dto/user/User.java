@@ -1,7 +1,8 @@
 package diary.dto.user;
 
 import lombok.*;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -11,6 +12,6 @@ public class User {
     private int id;
     private String name;
     private String password;
-    private LocalDateTime createDate;
-    private LocalDateTime modifyDate;
+    private LocalDate createDate;
+    private LocalDate modifyDate;
 }

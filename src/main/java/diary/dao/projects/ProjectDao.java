@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.*;
 
 import static diary.dao.sqls.ProjectSqls.*;
@@ -62,7 +63,7 @@ public class ProjectDao {
     }
 
     @Transactional
-    public int getCount(Date startDate, Date endDate) {
+    public int getCount(LocalDate startDate, LocalDate endDate) {
         Map<String, Object> params = new HashMap<>();
         params.put("startDate", startDate);
         params.put("endDate", endDate);

@@ -26,6 +26,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -73,8 +74,8 @@ public class ProjectDaoTest {
     public void DaoTest1_User() {
         // add newUser
         User newUser = User.builder()
-                .password("1234").name("test").createDate(LocalDateTime.now())
-                .modifyDate(LocalDateTime.now()).build();
+                .password("1234").name("test").createDate(LocalDate.now())
+                .modifyDate(LocalDate.now()).build();
         int newId = userDao.addUser(newUser);
         Assert.assertTrue(newId >= 0);
 
@@ -99,10 +100,10 @@ public class ProjectDaoTest {
     @Test
     public void DaoTest3_Project() {
         // add newProject
-        Project newProject = Project.builder().title("test").startDate(LocalDateTime.now())
-                .endDate(LocalDateTime.now()).projectType(ProjectType.ERROR_RESOLUTION)
-                .content("test").testScenario("test").createDate(LocalDateTime.now())
-                .modifyDate(LocalDateTime.now()).build();
+        Project newProject = Project.builder().title("test").startDate(LocalDate.now())
+                .endDate(LocalDate.now()).projectType(ProjectType.ERROR_RESOLUTION)
+                .content("test").testScenario("test").createDate(LocalDate.now())
+                .modifyDate(LocalDate.now()).build();
         int newId = projectDao.add(newProject);
         Assert.assertTrue(newId >= 0);
 
@@ -133,8 +134,8 @@ public class ProjectDaoTest {
 
         // add newProjectCard
         ProjectCard newProjectCard = ProjectCard.builder().projectId(projectId)
-                .projectType("기능개발").shortTitle("test").shortContent("test")
-                .memberCount(1).startDate(LocalDateTime.now()).build();
+                .projectType(ProjectType.ERROR_RESOLUTION).shortTitle("test").shortContent("test")
+                .memberCount(1).startDate(LocalDate.now()).build();
         int newId = projectCardDao.add(newProjectCard);
         Assert.assertNotEquals(newId, 0);
 
@@ -148,18 +149,20 @@ public class ProjectDaoTest {
         int projectId = getProjectId();
 
         // update project
-        Project modifiedProject = Project.builder().id(projectId).title("test_updated").startDate(LocalDateTime.now())
-                .endDate(LocalDateTime.now()).projectType(ProjectType.FUNCTION_DEVELOPMENT)
-                .content("test_updated").testScenario("test_updated").createDate(LocalDateTime.now())
-                .modifyDate(LocalDateTime.now()).build();
+        Project modifiedProject = Project.builder().id(projectId).title("test_updated").startDate(LocalDate.now())
+                .endDate(LocalDate.now()).projectType(ProjectType.FUNCTION_DEVELOPMENT)
+                .content("test_updated").testScenario("test_updated").createDate(LocalDate.now())
+                .modifyDate(LocalDate.now()).build();
         int result = projectDao.update(modifiedProject);
         Assert.assertNotEquals(result, 0);
     }
 
     @Test
     public void DaoTest7_ProjectCards() throws ParseException {
-        Date startDate = Utility.getDate("2021","1","1");
-        Date endDate = Utility.addTime(startDate, 1, 0, 0);
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate = startDate.plusYears(1);
+        //Date startDate = Utility.getDate("2021","1","1");
+        //Date endDate = Utility.addTime(startDate, 1, 0, 0);
 
         List<ProjectCard> projectCards = projectCardDao.getList(0,4, startDate, endDate);
 

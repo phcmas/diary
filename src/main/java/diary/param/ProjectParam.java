@@ -1,12 +1,15 @@
 package diary.param;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import diary.dto.enums.ProjectType;
 import diary.dto.projects.Project;
-import diary.utility.Utility;
+import diary.utility.LocalDateDeserializer;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.ParseException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
@@ -17,8 +20,13 @@ import java.util.List;
 public class ProjectParam {
     private int id;
     private String title;
-    private String startDate;
-    private String endDate;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate startDate;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate endDate;
+
     private String projectType;
     private String situation;
     private String content;
@@ -27,14 +35,12 @@ public class ProjectParam {
 
     public Project toProject() throws ParseException {
         Project newProject = Project.builder().title(title)
-                .startDate(Utility.convert(startDate))
-                .endDate(Utility.convert(endDate))
+                .startDate(startDate).endDate(endDate)
                 .projectType(ProjectType.valueOf(projectType))
-                .situation(situation)
-                .content(content)
+                .situation(situation).content(content)
                 .testScenario(testScenario)
-                .createDate(LocalDateTime.now())
-                .modifyDate(LocalDateTime.now()).build();
+                .createDate(LocalDate.now())
+                .modifyDate(LocalDate.now()).build();
 
         if (id != -1) newProject.setId(id);
         return newProject;

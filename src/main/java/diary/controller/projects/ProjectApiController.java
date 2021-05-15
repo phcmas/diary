@@ -6,10 +6,11 @@ import diary.param.ProjectParam;
 import diary.service.ProjectService;
 import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -34,23 +35,20 @@ public class ProjectApiController {
         return projectService.update(project, names);
     }
 
-
     @DeleteMapping(path="/{id}")
     public int deleteProject(@PathVariable(name="id", required = true) int id) {
         return projectService.delete(id);
     }
 
     @GetMapping(path="/pagenum")
-    public List<Integer> getPageNum(@RequestParam(name="year") String year) throws ParseException {
-        Date startDate = Utility.getDate(year,"1","1");
-        Date endDate = Utility.addTime(startDate, 1, 0, 0);
-
-        return projectService.getPageNumber(startDate, endDate);
+    public List<Integer> getPageNum(@RequestParam(name="date", required = true)
+                                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return projectService.getPageNumber(date, date.plusYears(1));
     }
 
     @GetMapping(path="/names")
     public List<String> getMemberNames(@RequestParam(name="id") int id) {
-        List<ProjectMember> projectMembers = projectService.getProjectMembers(id);
+        List<ProjectMember> projectMembers = projectService.getMembers(id);
         return Utility.getNames(projectMembers);
     }
 
