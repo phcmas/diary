@@ -12,11 +12,13 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.*;
 
 import static diary.dao.sqls.AlgorithmSqls.*;
@@ -58,7 +60,7 @@ public class AlgorithmCardDao {
         }
     }
 
-    public List<AlgorithmCard> getList(int start, int limit, Date startDate, Date endDate) {
+    public List<AlgorithmCard> getList(int start, int limit, LocalDate startDate, LocalDate endDate) {
         Map<String, Object> params = new HashMap<>();
         params.put("start", start);
         params.put("limit", limit);
@@ -68,11 +70,13 @@ public class AlgorithmCardDao {
         return jdbc.query(SELECT_ALGORITHM_CARD_BY_DATE, params, rowMapper);
     }
 
+    @Transactional
     public int add(AlgorithmCard card) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(card);
         return insertAction.executeAndReturnKey(params).intValue();
     }
 
+    @Transactional
     public int update(AlgorithmCard card) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(card);
         params.registerSqlType("type", Types.VARCHAR);
@@ -81,6 +85,7 @@ public class AlgorithmCardDao {
         return jdbc.update(UPDATE_ALGORITHM_CARD, params);
     }
 
+    @Transactional
     public int deleteByAlgorithmId(int algorithmId) {
         Map<String, ?> param = Collections.singletonMap("algorithmId", algorithmId);
         return jdbc.update(DELETE_ALGORITHM_CARD, param);

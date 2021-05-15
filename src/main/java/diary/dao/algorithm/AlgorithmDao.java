@@ -13,11 +13,13 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -65,6 +67,14 @@ public class AlgorithmDao {
         }
     }
 
+    public int getCount(LocalDate startDate, LocalDate endDate) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return jdbc.queryForObject(SELECT_ALGORITHM_COUNT, params, Integer.class);
+    }
+
     public List<Algorithm> getRecentAlgorithms(int start, int limit) {
         Map<String, Object> params = new HashMap<>();
         params.put("start", start);
@@ -73,11 +83,13 @@ public class AlgorithmDao {
         return jdbc.query(SELECT_RECENT_ALGORITHM, params, rowMapper);
     }
 
+    @Transactional
     public int add(Algorithm algorithm) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(algorithm);
         return insertAction.executeAndReturnKey(params).intValue();
     }
 
+    @Transactional
     public int update(Algorithm algorithm) {
         BeanPropertySqlParameterSource params
                 = new BeanPropertySqlParameterSource(algorithm);
@@ -89,6 +101,7 @@ public class AlgorithmDao {
         return jdbc.update(UPDATE_ALGORITHM, params);
     }
 
+    @Transactional
     public int delete(int id) {
         Map<String, ?> param = Collections.singletonMap("id", id);
         return jdbc.update(DELETE_ALGORITHM, param);

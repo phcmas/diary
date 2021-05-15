@@ -12,7 +12,7 @@
               <button class="card-header" value="{{date}}"></button>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="/diary/algorithm/lookup/{{id}}">{{shortTitle}}</a>
+                  <a href="/diary/algorithm/lookup/{{algorithmId}}">{{shortTitle}}</a>
                 </h4>
                 <h6>{{type}}</h6>
                 <h6>{{difficulty}}</h6>
@@ -29,6 +29,7 @@
         <!-- /.row -->
         <div class="footer-button">
           <a href="/diary/algorithm/registration" role="button" class="btn btn-secondary">코드 업로드</a>
+          <div class="list-inline-item" id="page-number"></div>
         </div>
       </div>
       <!-- /.col-lg-9 -->

@@ -41,9 +41,9 @@ public class ProjectApiController {
     }
 
     @GetMapping(path="/pagenum")
-    public List<Integer> getPageNum(@RequestParam(name="date", required = true)
+    public List<Integer> getPageNumbers(@RequestParam(name="date", required = true)
                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        return projectService.getPageNumber(date, date.plusYears(1));
+        return projectService.getPageNumbers(date, date.plusYears(1));
     }
 
     @GetMapping(path="/names")

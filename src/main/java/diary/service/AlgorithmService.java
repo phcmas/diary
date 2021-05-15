@@ -3,12 +3,13 @@ package diary.service;
 import diary.dto.algorithm.Algorithm;
 import diary.dto.algorithm.AlgorithmCard;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface AlgorithmService {
     public Algorithm get(int id);
-    public List<AlgorithmCard> getCards(int pageNum, Date startDate, Date endDate);
+    public List<Integer> getPageNumbers(LocalDate startDate, LocalDate endDate);
+    public List<AlgorithmCard> getCards(int pageNum, LocalDate startDate, LocalDate endDate);
     public int add(Algorithm algorithm);
     public int update(Algorithm algorithm);
     public int delete(int id);

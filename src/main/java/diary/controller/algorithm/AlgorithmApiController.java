@@ -8,7 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -36,11 +36,9 @@ public class AlgorithmApiController {
     }
 
     @GetMapping(path="/pagenum")
-    public List<Integer> getPageNums(@RequestParam(name="date", required = false)
-                                         @DateTimeFormat(pattern = "yyyy-mm-dd") LocalDateTime date) {
-
-        System.out.println(date);
-        return null;
+    public List<Integer> getPageNumbers(@RequestParam(name="date", required = true)
+                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return algorithmService.getPageNumbers(date, date.plusMonths(1));
     }
 
 }

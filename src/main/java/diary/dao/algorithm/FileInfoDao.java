@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -48,6 +49,7 @@ public class FileInfoDao {
         return jdbc.query(SELECT_FILE_INFO, param, rowMapper);
     }
 
+    @Transactional
     public int add(FileInfo fileInfo) {
         SqlParameterSource param = new BeanPropertySqlParameterSource(fileInfo);
         return insertAction.executeAndReturnKey(param).intValue();

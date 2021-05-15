@@ -91,20 +91,9 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Integer> getPageNumber(LocalDate startDate, LocalDate endDate) {
-        List<Integer> pageNumbers = new ArrayList<>();
-        int totalCount = projectDao.getCount(startDate, endDate);
-
-        if (totalCount <= CARD_LIMIT) return pageNumbers;
-        int maxPage = totalCount / CARD_LIMIT;
-
-        if (totalCount % CARD_LIMIT > 0) maxPage++;
-
-        for (int i = 1; i <= maxPage; ++i) {
-            pageNumbers.add(i);
-        }
-
-        return pageNumbers;
+    public List<Integer> getPageNumbers(LocalDate startDate, LocalDate endDate) {
+        int count = projectDao.getCount(startDate, endDate);
+        return Utility.getPageList(count, CARD_LIMIT);
     }
 
     @Override

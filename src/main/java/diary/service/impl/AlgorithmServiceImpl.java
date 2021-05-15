@@ -9,7 +9,7 @@ import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -44,9 +44,14 @@ public class AlgorithmServiceImpl implements AlgorithmService {
     }
 
     @Override
-    public List<AlgorithmCard> getCards(int pageNum, Date startDate, Date endDate) {
+    public List<AlgorithmCard> getCards(int pageNum, LocalDate startDate, LocalDate endDate) {
         int start = CARD_LIMIT * (pageNum-1);
         return algorithmCardDao.getList(start, CARD_LIMIT, startDate, endDate);
+    }
+
+    public List<Integer> getPageNumbers(LocalDate startDate, LocalDate endDate) {
+        int count = algorithmDao.getCount(startDate, endDate);
+        return Utility.getPageList(count, CARD_LIMIT);
     }
 
     @Override

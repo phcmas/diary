@@ -1,10 +1,12 @@
 package diary.param;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import diary.dto.algorithm.Algorithm;
 import diary.dto.enums.AlgorithmType;
 import diary.dto.enums.Difficulty;
 import diary.dto.enums.Language;
+import diary.utility.LocalDateDeserializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +22,10 @@ import java.time.LocalDate;
 public class AlgorithmParam {
     private int id;
     private String title;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate solvedDate;
+
     private String source;
     private String type;
     private String language;

@@ -28,15 +28,11 @@ public class AlgorithmController {
     AlgorithmService algorithmService;
 
     @GetMapping("/cards")
-    public String showCards(@RequestParam(name = "year", required = true, defaultValue = "2021") String year,
-                            @RequestParam(name = "month", required = true, defaultValue = "05") String month,
+    public String showCards(@RequestParam(name = "date", required = false, defaultValue = "2021-05-01")
+                                @DateTimeFormat(iso= DateTimeFormat.ISO.DATE) LocalDate date,
                             @RequestParam(name = "start", required = true, defaultValue = "1") int pageNum,
-                            @RequestParam(name = "date", required = false)
-                                        @DateTimeFormat(iso= DateTimeFormat.ISO.DATE) LocalDate date,
                             Model model) throws ParseException {
-        Date startDate = Utility.getDate(year, month,"1");
-        Date endDate = Utility.addTime(startDate, 0, 1,0);
-        List<AlgorithmCard> cards = algorithmService.getCards(pageNum, startDate, endDate);
+        List<AlgorithmCard> cards = algorithmService.getCards(pageNum, date, date.plusMonths(1));
         List<AlgorithmCardParam> params = new ArrayList<>();
 
         for (AlgorithmCard card : cards) {
@@ -44,7 +40,7 @@ public class AlgorithmController {
         }
 
         model.addAttribute("algorithmCards", params);
-        model.addAttribute("date", startDate);
+        model.addAttribute("date", date);
         return "/algorithm/cards";
     }
 
