@@ -66,7 +66,7 @@ create table algorithm (
 	source varchar(40) null,
 	difficulty varchar(40) null,
 	explanation text not null,
-	content	text not null,
+	content	text null,
 	create_date datetime null,
 	modify_date datetime null,
 	file_id int(11) not null,

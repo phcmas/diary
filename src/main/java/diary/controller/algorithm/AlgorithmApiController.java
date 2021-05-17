@@ -6,9 +6,13 @@ import diary.service.AlgorithmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -22,6 +26,24 @@ public class AlgorithmApiController {
     public int addAlgorithm(@RequestBody AlgorithmParam param) throws ParseException {
         Algorithm algorithm = param.toAlgorithm();
         return algorithmService.add(algorithm);
+    }
+
+    @PostMapping(path="/file")
+    public int addFile(@RequestParam(name = "algorithmId") int algorithmId,
+                       @RequestParam(name = "file") MultipartFile file) {
+
+        try (FileOutputStream fos = new FileOutputStream("/tmp/Web/" + file.getOriginalFilename());
+             InputStream is = file.getInputStream();) {
+            int readCount = 0;
+            byte[] buffer = new byte[1024];
+            while ((readCount = is.read(buffer)) != -1) {
+                fos.write(buffer, 0, readCount);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("file save error");
+        }
+
+        return 0;
     }
 
     @PutMapping(path="/{id}")
