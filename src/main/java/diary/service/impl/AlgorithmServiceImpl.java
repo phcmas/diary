@@ -2,8 +2,10 @@ package diary.service.impl;
 
 import diary.dao.algorithm.AlgorithmCardDao;
 import diary.dao.algorithm.AlgorithmDao;
+import diary.dao.algorithm.FileInfoDao;
 import diary.dto.algorithm.Algorithm;
 import diary.dto.algorithm.AlgorithmCard;
+import diary.dto.algorithm.FileInfo;
 import diary.service.AlgorithmService;
 import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class AlgorithmServiceImpl implements AlgorithmService {
 
     @Autowired
     AlgorithmCardDao algorithmCardDao;
+
+    @Autowired
+    FileInfoDao fileInfoDao;
 
     final int CARD_LIMIT = 4;
 
@@ -44,6 +49,16 @@ public class AlgorithmServiceImpl implements AlgorithmService {
     }
 
     @Override
+    public FileInfo getFileInfo(int id) {
+        return fileInfoDao.get(id);
+    }
+
+    @Override
+    public int getFileId(int algorithmId) {
+        return fileInfoDao.getByAlgorithmId(algorithmId).getId();
+    }
+
+    @Override
     public List<AlgorithmCard> getCards(int pageNum, LocalDate startDate, LocalDate endDate) {
         int start = CARD_LIMIT * (pageNum-1);
         return algorithmCardDao.getList(start, CARD_LIMIT, startDate, endDate);
@@ -64,6 +79,15 @@ public class AlgorithmServiceImpl implements AlgorithmService {
     }
 
     @Override
+    public int addFileInfo(int algorithmId, String fileName, String saveFileName, String contentType) {
+        FileInfo fileInfo = FileInfo.builder().algorithmId(algorithmId)
+                .fileName(fileName).saveFileName(saveFileName)
+                .contentType(contentType).build();
+
+        return fileInfoDao.add(fileInfo);
+    }
+
+    @Override
     public int update(Algorithm algorithm) {
         int algorithmId = algorithm.getId();
         int cardId = algorithmCardDao.getByAlgorithmId(algorithmId).getId();
@@ -76,7 +100,18 @@ public class AlgorithmServiceImpl implements AlgorithmService {
     }
 
     @Override
+    public int updateFileInfo(int algorithmId, String fileName, String saveFileName, String contentType) {
+        int fileId = fileInfoDao.getByAlgorithmId(algorithmId).getId();
+        FileInfo fileInfo = FileInfo.builder().id(fileId)
+                .algorithmId(algorithmId).fileName(fileName)
+                .saveFileName(saveFileName).contentType(contentType).build();
+
+        return fileInfoDao.update(fileInfo);
+    }
+
+    @Override
     public int delete(int id) {
+        fileInfoDao.deleteByAlgorithmId(id);
         algorithmCardDao.deleteByAlgorithmId(id);
         return algorithmDao.delete(id);
     }

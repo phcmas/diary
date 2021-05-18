@@ -76,12 +76,12 @@ create index al_idx on algorithm(language);
 
 create table file_info (
 	id int(11) not null auto_increment,
-	file_name varchar(50) unique not null,
-	language varchar(50) not null,
 	algorithm_id int(11) not null,
+	file_name varchar(50) unique not null,
+	save_file_name varchar(100) not null,
+	content_type varchar(50) not null,
 	primary key(id),
-	foreign key(algorithm_id) references algorithm(id),
-	foreign key(language) references algorithm(language)) engine=InnoDB default charset=utf8;
+	foreign key(algorithm_id) references algorithm(id)) engine=InnoDB default charset=utf8;
 
 create table algorithm_card (
 	id int(11) not null auto_increment,

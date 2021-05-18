@@ -114,13 +114,15 @@ public class AlgorithmDaoTest {
 
         FileInfo newFileInfo = FileInfo.builder().id(-1)
                 .algorithmId(algorithmId).fileName("test")
-                .language(Language.CPP).build();
+                .saveFileName("/tmp/test")
+                .contentType("application/json")
+                .build();
 
         int newId = fileInfoDao.add(newFileInfo);
         Assert.assertTrue(newId >= 0);
 
-        List<FileInfo> fileInfos = fileInfoDao.getByAlgorithmId(algorithmId);
-        Assert.assertNotEquals(fileInfos.size(), 0);
+        FileInfo fileInfo = fileInfoDao.getByAlgorithmId(algorithmId);
+        Assert.assertNotNull(fileInfo);
     }
 
 }

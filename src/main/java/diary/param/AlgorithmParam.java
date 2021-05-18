@@ -21,6 +21,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class AlgorithmParam {
     private int id;
+    private int fileId;
+    private String fileName;
     private String title;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)

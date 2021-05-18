@@ -48,8 +48,7 @@ public class ProjectApiController {
 
     @GetMapping(path="/names")
     public List<String> getMemberNames(@RequestParam(name="id") int id) {
-        List<ProjectMember> projectMembers = projectService.getMembers(id);
-        return Utility.getNames(projectMembers);
+        return projectService.getMemberNames(id);
     }
 
 }

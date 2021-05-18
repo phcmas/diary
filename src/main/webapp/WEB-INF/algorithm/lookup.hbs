@@ -45,10 +45,7 @@
                     </div>
                     <div class="form-group">
                         <label for="file">코드다운로드</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="file" placeholder="파일을 업로드하세요">
-                            <label class="custom-file-label">파일을 선택하세요</label>
-                        </div>
+                        <a href="/diary/algorithm/file/{{algorithm.fileId}}" role="button" class="form-control-name">{{algorithm.fileName}}</a>
                     </div>
                 </form>
                 <a href="/diary/algorithm/cards" role="button" class="btn btn-secondary">취소</a>

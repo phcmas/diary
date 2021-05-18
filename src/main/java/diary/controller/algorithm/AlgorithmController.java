@@ -2,7 +2,9 @@ package diary.controller.algorithm;
 
 import diary.dto.algorithm.Algorithm;
 import diary.dto.algorithm.AlgorithmCard;
+import diary.dto.algorithm.FileInfo;
 import diary.param.AlgorithmCardParam;
+import diary.param.AlgorithmParam;
 import diary.service.AlgorithmService;
 import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -47,7 +48,9 @@ public class AlgorithmController {
     @GetMapping("/lookup/{id}")
     public String showAlgorithm(@PathVariable(name="id") int id, Model model) {
         Algorithm algorithm = algorithmService.get(id);
-        model.addAttribute("algorithm", algorithm.toAlgorithmParam());
+        FileInfo fileInfo = algorithmService.getFileInfo(id);
+        model.addAttribute("algorithm", algorithm.toAlgorithmParam(fileInfo));
+
         return "/algorithm/lookup";
     }
 
@@ -59,7 +62,9 @@ public class AlgorithmController {
     @GetMapping("/modification/{id}")
     public String modifyAlgorithm(@PathVariable(name="id") int id, Model model) {
         Algorithm algorithm = algorithmService.get(id);
-        model.addAttribute("algorithm", algorithm.toAlgorithmParam());
+        FileInfo fileInfo = algorithmService.getFileInfo(id);
+        model.addAttribute("algorithm", algorithm.toAlgorithmParam(fileInfo));
+
         return "/algorithm/modification";
     }
 

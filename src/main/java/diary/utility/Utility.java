@@ -3,7 +3,10 @@ package diary.utility;
 import diary.dto.projects.ProjectMember;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -32,6 +35,20 @@ public class Utility {
         ZoneId defaultZoneId = ZoneId.systemDefault();
         Instant instant = date.toInstant();
         return instant.atZone(defaultZoneId).toLocalDate();
+    }
+
+    public static void storeFile(String path, MultipartFile file) {
+        int readCount = 0;
+        byte[] buffer = new byte[1024];
+
+        try (FileOutputStream fos = new FileOutputStream(path + file.getOriginalFilename());
+             InputStream is = file.getInputStream();) {
+            while ((readCount = is.read(buffer)) != -1) {
+                fos.write(buffer, 0, readCount);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("File Save Error");
+        }
     }
 
     //public static LocalDateTime convert(Date date) {
@@ -83,15 +100,6 @@ public class Utility {
         }
 
         return result;
-    }
-
-    public static List<String> getNames(List<ProjectMember> projectMembers) {
-        List<String> names = new ArrayList<>();
-        for (ProjectMember projectMember : projectMembers) {
-            names.add(projectMember.getName());
-        }
-
-        return names;
     }
 
 }

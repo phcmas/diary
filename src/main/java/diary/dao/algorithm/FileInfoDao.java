@@ -1,7 +1,7 @@
 package diary.dao.algorithm;
 
 import diary.dto.algorithm.FileInfo;
-import diary.dto.enums.Language;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -26,9 +26,10 @@ public class FileInfoDao {
         @Override
         public FileInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
             return FileInfo.builder().id(rs.getInt("id"))
-                    .fileName(rs.getString("fileName"))
-                    .language(Language.valueOf(rs.getString("language")))
                     .algorithmId(rs.getInt("algorithmId"))
+                    .fileName(rs.getString("fileName"))
+                    .saveFileName(rs.getString("saveFileName"))
+                    .contentType(rs.getString("contentType"))
                     .build();
         }
     }
@@ -44,9 +45,22 @@ public class FileInfoDao {
        this.rowMapper = BeanPropertyRowMapper.newInstance(FileInfo.class);
     }
 
-    public List<FileInfo> getByAlgorithmId(int algorithmId) {
-        Map<String, ?> param = Collections.singletonMap("algorithmId", algorithmId);
-        return jdbc.query(SELECT_FILE_INFO, param, rowMapper);
+    public FileInfo get(int id) {
+        try {
+            Map<String, ?> param = Collections.singletonMap("id", id);
+            return jdbc.queryForObject(SELECT_FILE_INFO, param, rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public FileInfo getByAlgorithmId(int algorithmId) {
+        try {
+            Map<String, ?> param = Collections.singletonMap("algorithmId", algorithmId);
+            return jdbc.queryForObject(SELECT_FILE_INFO_BY_ALGORITHM_ID, param, rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Transactional
@@ -55,5 +69,16 @@ public class FileInfoDao {
         return insertAction.executeAndReturnKey(param).intValue();
     }
 
+    @Transactional
+    public int deleteByAlgorithmId(int algorithmId) {
+        Map<String, ?> param = Collections.singletonMap("algorithmId", algorithmId);
+        return jdbc.update(DELETE_FILE_INFO, param);
+    }
+
+    @Transactional
+    public int update(FileInfo fileInfo) {
+        SqlParameterSource params = new BeanPropertySqlParameterSource(fileInfo);
+        return jdbc.update(UPDATE_FILE_INFO, params);
+    }
 
 }

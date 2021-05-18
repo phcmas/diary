@@ -26,9 +26,12 @@ public class Algorithm {
     private LocalDate modifyDate;
     private int fileId;
 
-    public AlgorithmParam toAlgorithmParam() {
+    public AlgorithmParam toAlgorithmParam(FileInfo fileInfo) {
+        int fileId = fileInfo.getId();
+        String fileName = fileInfo.getFileName();
+
         return AlgorithmParam.builder()
-                .id(id).title(title)
+                .id(id).fileId(fileId).fileName(fileName).title(title)
                 .solvedDate(solvedDate)
                 .source(source).type(type.getString())
                 .language(language.getString()).difficulty(difficulty.getString())

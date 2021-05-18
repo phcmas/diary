@@ -102,6 +102,18 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<String> getMemberNames(int projectId) {
+        List<ProjectMember> members = projectMemberDao.getByProjectId(projectId);
+        List<String> names = new ArrayList<>();
+
+        for (ProjectMember member : members) {
+            names.add(member.getName());
+        }
+
+        return names;
+    }
+
+    @Override
     public List<ProjectCard> getCards(int pageNum, LocalDate startDate, LocalDate endDate) {
         int start = CARD_LIMIT * (pageNum-1);
         return projectCardDao.getList(start, CARD_LIMIT, startDate, endDate);

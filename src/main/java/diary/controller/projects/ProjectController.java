@@ -23,7 +23,6 @@ public class ProjectController {
     @GetMapping(path="/lookup/{id}")
     public String showProject(@PathVariable(name = "id") int id, Model model) {
         Project project = projectService.get(id);
-        List<ProjectMember> members = projectService.getMembers(id);
         model.addAttribute("project", project.toProjectParam());
 
         return "/projects/lookup";
@@ -37,7 +36,6 @@ public class ProjectController {
     @GetMapping(path="/modification/{id}")
     public String modifyProject(@PathVariable(name="id") int id, Model model) {
         Project project = projectService.get(id);
-        List<ProjectMember> members = projectService.getMembers(id);
         model.addAttribute("project", project.toProjectParam());
 
         return "/projects/modification";

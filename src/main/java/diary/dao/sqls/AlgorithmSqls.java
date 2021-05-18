@@ -6,6 +6,8 @@ public class AlgorithmSqls {
     public static String SELECT_ALGORITHM_CARD
             = "SELECT * FROM algorithm_card WHERE algorithm_id = :algorithmId";
     public static String SELECT_FILE_INFO
+            = "SELECT * FROM file_info WHERE id = :id";
+    public static String SELECT_FILE_INFO_BY_ALGORITHM_ID
             = "SELECT * FROM file_info WHERE algorithm_id = :algorithmId";
     public static String SELECT_RECENT_ALGORITHM
             = "SELECT * FROM algorithm ORDER BY modify_date DESC limit :start, :limit";
@@ -28,9 +30,15 @@ public class AlgorithmSqls {
             + "content = :content, create_date = :createDate, modify_date = :modifyDate, "
             + "file_id = :fileId WHERE id = :id";
 
+    public static String UPDATE_FILE_INFO
+            = "UPDATE file_info SET algorithm_id = :algorithmId, "
+            + "file_name = :fileName, save_file_name = :saveFileName, "
+            + "content_type = :contentType WHERE id = :id";
 
     public static String DELETE_ALGORITHM
             = "DELETE FROM algorithm WHERE id = :id";
     public static String DELETE_ALGORITHM_CARD
             = "DELETE FROM algorithm_card WHERE algorithm_id = :algorithmId";
+    public static String DELETE_FILE_INFO
+            = "DELETE FROM file_info WHERE algorithm_id = :algorithmId";
 }
