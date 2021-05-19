@@ -80,8 +80,7 @@ create table file_info (
 	file_name varchar(100) unique not null,
 	save_file_name varchar(150) not null,
 	content_type varchar(50) not null,
-	primary key(id),
-	foreign key(algorithm_id) references algorithm(id)) engine=InnoDB default charset=utf8;
+	primary key(id)) engine=InnoDB default charset=utf8;
 
 create table algorithm_card (
 	id int(11) not null auto_increment,

@@ -39,13 +39,11 @@ public class ProjectMemberDao {
                 .usingGeneratedKeyColumns("id");
     }
 
-    @Transactional
     public List<ProjectMember> getByProjectId(int projectId) {
         Map<String, ?> param = Collections.singletonMap("projectId", projectId);
         return jdbc.query(SELECT_PROJECT_MEMBER, param, rowMapper);
     }
 
-    @Transactional
     public int add(ProjectMember projectMember) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(projectMember);
         return insertAction.executeAndReturnKey(params).intValue();
@@ -67,18 +65,17 @@ public class ProjectMemberDao {
         insertAction.executeBatch(params.toArray(new Map[count]));
     }
 
-    @Transactional
     public void add(String name, int projectId) {
         ProjectMember newMember = new ProjectMember(name, projectId);
         add(newMember);
     }
 
-    @Transactional
     public void deleteByProjectId(int projectId) {
         Map<String, ?> param = Collections.singletonMap("projectId", projectId);
         jdbc.update(DELETE_PROJECT_MEMBER, param);
     }
 
+    @Transactional
     public int[] update(List<ProjectMember> projectMembers) {
         int count = projectMembers.size();
         SqlParameterSource[] params = new SqlParameterSource[count];

@@ -4,9 +4,8 @@ import diary.dto.algorithm.Algorithm;
 import diary.dto.algorithm.AlgorithmCard;
 import diary.dto.algorithm.FileInfo;
 import diary.param.AlgorithmCardParam;
-import diary.param.AlgorithmParam;
 import diary.service.AlgorithmService;
-import diary.utility.Utility;
+import diary.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -28,6 +27,9 @@ public class AlgorithmController {
     @Autowired
     AlgorithmService algorithmService;
 
+    @Autowired
+    FileService fileService;
+
     @GetMapping("/cards")
     public String showCards(@RequestParam(name = "date", required = false, defaultValue = "2021-05-01")
                                 @DateTimeFormat(iso= DateTimeFormat.ISO.DATE) LocalDate date,
@@ -48,7 +50,7 @@ public class AlgorithmController {
     @GetMapping("/lookup/{id}")
     public String showAlgorithm(@PathVariable(name="id") int id, Model model) {
         Algorithm algorithm = algorithmService.get(id);
-        FileInfo fileInfo = algorithmService.getFileInfo(id);
+        FileInfo fileInfo = fileService.getByAlgorithmId(id);
         model.addAttribute("algorithm", algorithm.toAlgorithmParam(fileInfo));
 
         return "/algorithm/lookup";
@@ -62,7 +64,7 @@ public class AlgorithmController {
     @GetMapping("/modification/{id}")
     public String modifyAlgorithm(@PathVariable(name="id") int id, Model model) {
         Algorithm algorithm = algorithmService.get(id);
-        FileInfo fileInfo = algorithmService.getFileInfo(id);
+        FileInfo fileInfo = fileService.getByAlgorithmId(id);
         model.addAttribute("algorithm", algorithm.toAlgorithmParam(fileInfo));
 
         return "/algorithm/modification";

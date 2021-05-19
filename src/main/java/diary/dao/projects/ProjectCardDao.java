@@ -68,20 +68,17 @@ public class ProjectCardDao {
         return jdbc.query(SELECT_PROJECT_CARD_BY_DATE, param, rowMapper);
     }
 
-    @Transactional
     public int add(ProjectCard projectCard) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(projectCard);
         return insertAction.executeAndReturnKey(params).intValue();
     }
 
-    @Transactional
     public void update(ProjectCard projectCard) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(projectCard);
         params.registerSqlType("projectType", Types.VARCHAR);
         jdbc.update(UPDATE_PROJECT_CARD, params);
     }
 
-    @Transactional
     public void deleteByProjectId(int projectId) {
         Map<String, ?> param = Collections.singletonMap("projectId", projectId);
         jdbc.update(DELETE_PROJECT_CARD, param);

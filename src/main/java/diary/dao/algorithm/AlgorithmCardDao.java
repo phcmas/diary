@@ -70,13 +70,11 @@ public class AlgorithmCardDao {
         return jdbc.query(SELECT_ALGORITHM_CARD_BY_DATE, params, rowMapper);
     }
 
-    @Transactional
     public int add(AlgorithmCard card) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(card);
         return insertAction.executeAndReturnKey(params).intValue();
     }
 
-    @Transactional
     public int update(AlgorithmCard card) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(card);
         params.registerSqlType("type", Types.VARCHAR);
@@ -85,7 +83,6 @@ public class AlgorithmCardDao {
         return jdbc.update(UPDATE_ALGORITHM_CARD, params);
     }
 
-    @Transactional
     public int deleteByAlgorithmId(int algorithmId) {
         Map<String, ?> param = Collections.singletonMap("algorithmId", algorithmId);
         return jdbc.update(DELETE_ALGORITHM_CARD, param);

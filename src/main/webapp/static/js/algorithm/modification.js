@@ -1,8 +1,30 @@
-var id = $('#btn-update').val();
+var algorithmId = $('#btn-update').val();
+
+function updateFile() {
+    var codeFile = $('#code-file')[0];
+    var formData = new FormData(codeFile);
+    var fileId = $('#btn-cancel').val();
+
+    formData.append("id", fileId);
+
+    $.ajax({
+        type : 'PUT',
+        method : 'PUT',
+        url : '/diary/algorithm/file',
+        data : formData,
+        contentType : false,
+        processData : false
+    }).done(function() {
+        alert("알고리즘이 수정되었습니다");
+        window.location.href = '/diary/algorithm/cards';
+    }).fail(function(error) {
+        alert(JSON.stringify(error));
+    });
+}
 
 $('#btn-update').click((e) => {
     var algorithmParam = {
-        id : id,
+        id : algorithmId,
         title : $('#title').val(),
         solvedDate : $('#solved-date').val(),
         source : $('#source').val(),
@@ -15,13 +37,14 @@ $('#btn-update').click((e) => {
 
     $.ajax({
         type : 'PUT',
-        url : '/diary/algorithm/' + id,
+        url : '/diary/algorithm/' + algorithmId,
         datatype : 'json',
         contentType : 'application/json; charset=utf-8',
         data : JSON.stringify(algorithmParam)
     }).done(function() {
         alert("알고리즘이 수정되었습니다");
         window.location.href = '/diary/algorithm/cards';
+        //updateFile();
     }).fail(function(error) {
         alert("수정 실패!!");
     });

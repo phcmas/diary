@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -52,7 +51,6 @@ public class ProjectDao {
                                 .usingGeneratedKeyColumns("id");
     }
 
-    @Transactional
     public Project get(int id) {
         try {
             Map<String, ?> param = Collections.singletonMap("id", id);
@@ -62,7 +60,6 @@ public class ProjectDao {
         }
     }
 
-    @Transactional
     public int getCount(LocalDate startDate, LocalDate endDate) {
         Map<String, Object> params = new HashMap<>();
         params.put("startDate", startDate);
@@ -71,7 +68,6 @@ public class ProjectDao {
         return jdbc.queryForObject(SELECT_PROJECT_COUNT, params, Integer.class);
     }
 
-    @Transactional
     public List<Project> getRecentList(int start, int limit) {
         Map<String, Object> params = new HashMap<>();
         params.put("start", start);
@@ -80,20 +76,17 @@ public class ProjectDao {
         return jdbc.query(SELECT_RECENT_PROJECTS, params, rowMapper);
     }
 
-    @Transactional
     public int add(Project project) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(project);
         return insertAction.executeAndReturnKey(params).intValue();
     }
 
-    @Transactional
     public int update(Project project) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(project);
         params.registerSqlType("projectType", Types.VARCHAR);
         return jdbc.update(UPDATE_PROJECT, params);
     }
 
-    @Transactional
     public int delete(int id) {
         Map<String, ?> param = Collections.singletonMap("id", id);
         return jdbc.update(DELETE_PROJECT, param);

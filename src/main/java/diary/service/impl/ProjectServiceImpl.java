@@ -64,6 +64,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional
     public int update(Project project, List<String> names) {
         int projectId = project.getId();
         int projectCardId = projectCardDao.getByProjectId(projectId).getId();
@@ -79,6 +80,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional
     public int delete(int id) {
         projectMemberDao.deleteByProjectId(id);
         projectCardDao.deleteByProjectId(id);

@@ -1,10 +1,10 @@
 package diary.utility;
 
-import diary.dto.projects.ProjectMember;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.time.Instant;
@@ -37,11 +37,12 @@ public class Utility {
         return instant.atZone(defaultZoneId).toLocalDate();
     }
 
-    public static void storeFile(String path, MultipartFile file) {
+    public static void storeFile(String fileRoot, MultipartFile file) {
         int readCount = 0;
+        String saveFileName = fileRoot + file.getOriginalFilename();
         byte[] buffer = new byte[1024];
 
-        try (FileOutputStream fos = new FileOutputStream(path + file.getOriginalFilename());
+        try (FileOutputStream fos = new FileOutputStream(saveFileName);
              InputStream is = file.getInputStream();) {
             while ((readCount = is.read(buffer)) != -1) {
                 fos.write(buffer, 0, readCount);
@@ -49,6 +50,11 @@ public class Utility {
         } catch (Exception e) {
             throw new RuntimeException("File Save Error");
         }
+    }
+
+    public static void deleteFile(String saveFileName) {
+        File file = new File(saveFileName);
+        file.delete();
     }
 
     //public static LocalDateTime convert(Date date) {

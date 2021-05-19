@@ -45,7 +45,8 @@
                     </div>
                     <div class="form-group">
                         <label for="file">코드다운로드</label>
-                        <a href="/diary/algorithm/file/{{algorithm.fileId}}" role="button" class="form-control-name">{{algorithm.fileName}}</a>
+                        <button type="button" onclick="location.href='/diary/algorithm/file/{{algorithm.fileId}}'"
+                        class="form-control-name" value="{{algorithm.fileId}}" id="file-download">{{algorithm.fileName}}</button>
                     </div>
                 </form>
                 <a href="/diary/algorithm/cards" role="button" class="btn btn-secondary">취소</a>
