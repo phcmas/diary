@@ -3,7 +3,6 @@ package diary.controller.algorithm;
 import diary.dto.algorithm.FileInfo;
 import diary.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,7 +42,7 @@ public class FileController {
 
     @PutMapping(path="/file")
     public int updateFile(@RequestParam(name="id") int id,
-                           @RequestParam(name="file") MultipartFile file) {
+                          @RequestParam(name="file") MultipartFile file) {
         return fileService.update(id, file);
     }
 

@@ -6,8 +6,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.Locale;
 
 @Configuration
 @EnableWebMvc
@@ -54,9 +59,22 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
 
     @Bean
     public MultipartResolver multipartResolver() {
-        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(1024 * 1024 * 10);
-        return multipartResolver;
+        return new CommonsMultipartResolver() {
+            @Override
+            public boolean isMultipart(HttpServletRequest request) {
+                String method = request.getMethod().toLowerCase();
+                if (!"put".equals(method) && !"post".equals(method)) {
+                    return false;
+                } else {
+                    String contentType = request.getContentType();
+                    if (contentType == null) {
+                        return false;
+                    } else {
+                        return contentType.toLowerCase().startsWith("multipart/");
+                    }
+                }
+            }
+        };
     }
 
     @Bean
