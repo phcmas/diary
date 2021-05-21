@@ -19,27 +19,27 @@
                 <div class="select-inline">
                 <label for="source">출처</label>
                     <select id="source" class="form-control-inline">
-                        <option value="0">사이트
-                        <option value="LeetCode">LeetCode</option>
-                        <option value="AlgoSpot" selected>AlgoSpot</option>
-                        <option value="Programmers">Programmers</option>
-                        <option value="HackerRank">HackerRank</option>
-                        <option value="ETC">ETC</option>
+                        <option id="prev-source" value="{{algorithm.source}}">사이트</option>
+                        <option id="leetcode" value="LeetCode">LeetCode</option>
+                        <option id="algospot" value="AlgoSpot">AlgoSpot</option>
+                        <option id="programmers" value="Programmers">Programmers</option>
+                        <option id="hacker-rank" value="HackerRank">HackerRank</option>
+                        <option id="etc" value="ETC">ETC</option>
                     </select>
                 </div>
                 <div class ="select-inline">
                 <label for="type">종류</label>
                 <select id="type" class="form-control-inline">
-                    <option value="0" selected>종류
-                    <option value="DP">DP</option>
-                    <option value="DFS">DFS</option>
-                    <option value="BFS">BFS</option>
-                    <option value="GREEDY">Greedy</option>
-                    <option value="TWO_POINTER">Two Pointer</option>
-                    <option value="HASH_TABLE">Hash Table</option>
-                    <option value="HEAP">Heap</option>
-                    <option value="UNION_FIND">Union Find</option>
-                    <option value="ETC">ETC</option>
+                    <option id="prev-type" value="{{algorithm.type}}">종류</option>
+                    <option id="dp" value="DP">DP</option>
+                    <option id="dfs" value="DFS">DFS</option>
+                    <option id="bfs" value="BFS">BFS</option>
+                    <option id="greedy" value="GREEDY">Greedy</option>
+                    <option id="two-pointer" value="TWO_POINTER">Two Pointer</option>
+                    <option id="hash-table" value="HASH_TABLE">Hash Table</option>
+                    <option id="heap" value="HEAP">Heap</option>
+                    <option id="union-find" value="UNION_FIND">Union Find</option>
+                    <option id="etc" value="ETC">ETC</option>
                 </select>
                 </div>
             </div>
@@ -47,20 +47,20 @@
                 <div class="select-inline">
                 <label for="language">언어</label>
                 <select id="language" class="form-control-inline">
-                    <option value="0" selected>언어
-                    <option value="C">C</option>
-                    <option value="CPP">C++</option>
-                    <option value="JAVA">Java</option>
-                    <option value="JAVA_SCRIPT">JavaScript</option>
+                    <option id="prev-language" value="{{algorithm.language}}">언어</option>
+                    <option id="c" value="C">C</option>
+                    <option id="cpp" value="CPP">C++</option>
+                    <option id="java" value="JAVA">Java</option>
+                    <option id="java-script" value="JAVA_SCRIPT">JavaScript</option>
                 </select>
                 </div>
                 <div class="select-inline">
                 <label for="difficulty">난이도</label>
                 <select id="difficulty" class="form-control-inline">
-                    <option value="0" selected>난이도
-                    <option value="EASY">Easy</option>
-                    <option value="MEDIUM">Medium</option>
-                    <option value="HARD">Hard</option>
+                    <option id="prev-difficulty" value="{{algorithm.difficulty}}">난이도
+                    <option id="easy" value="EASY">Easy</option>
+                    <option id="medium" value="MEDIUM">Medium</option>
+                    <option id="hard" value="HARD">Hard</option>
                 </select>
                 </div>
             </div>

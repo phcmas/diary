@@ -1,6 +1,41 @@
 var memberId = 0;
 var id = $('#btn-update').val();
 
+function makeOptionTag(id, value, text) {
+    let optionTag = document.createElement('option');
+    let textNode = document.createTextNode(text);
+
+    $('#'+id).remove();
+    optionTag.setAttribute('id', id);
+    optionTag.setAttribute('value', value);
+    optionTag.selected = true;
+    optionTag.append(textNode);
+    return optionTag;
+};
+
+$(document).ready(function() {
+    var type = $('#previous-type').val();
+    var optionTag;
+
+    switch (type) {
+        case "기능개발":
+            optionTag = makeOptionTag('function-development', 'FUNCTION_DEVELOPMENT','기능개발');
+            $('#previous-type').after(optionTag);
+            break;
+        case "성능개선":
+            optionTag = makeOptionTag('performance-improvement', 'PERFORMANCE_IMPROVEMENT','성능개선');
+            $('#function-development').after(optionTag);
+            break;
+        case "오류해결":
+            optionTag = makeOptionTag('error-resolution', 'ERROR_RESOLUTION', '오류해결');
+            $('#performance-improvement').after(optionTag);
+            break;
+        default:
+            console.log("Error");
+    }
+
+});
+
 $.getJSON('/diary/projects/names', {id : id},
 function(data) {
     data.forEach(function(e) {

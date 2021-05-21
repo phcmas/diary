@@ -26,10 +26,10 @@
             <div class="form-group">
                 <label for="author">종류</label>
                 <select id="project-type" class="form-control-inline">
-                    <option value="0" selected>종류
-                    <option value="FUNCTION_DEVELOPMENT">기능개발</option>
-                    <option value="PERFORMANCE_IMPROVEMENT">성능개선</option>
-                    <option value="ERROR_RESOLUTION">오류해결</option>
+                    <option id="previous-type" value="{{project.projectType}}">종류
+                    <option id="function-development" value="FUNCTION_DEVELOPMENT">기능개발</option>
+                    <option id="performance-improvement" value="PERFORMANCE_IMPROVEMENT">성능개선</option>
+                    <option id="error-resolution" value="ERROR_RESOLUTION">오류해결</option>
                 </select>
             </div>
             <div class="form-group">
