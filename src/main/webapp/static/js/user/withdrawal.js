@@ -1,12 +1,14 @@
-$('#login-form-signup').click((e) => {
+$('#login-form-withdrawal').click((e) => {
+    var name = $('#username-field').val();
+
     var userdata = {
-        name : $('#username-field').val(),
+        name : name,
         password : $('#password-field').val()
     };
 
     $.ajax({
-        type : 'POST',
-        url : '/diary/user/',
+        type : 'DELETE',
+        url : '/diary/user/' + name,
         datatype : 'json',
         contentType : 'application/json; charset=utf-8',
         data : JSON.stringify(userdata)
