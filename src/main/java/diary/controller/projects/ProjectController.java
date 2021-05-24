@@ -2,7 +2,6 @@ package diary.controller.projects;
 
 import diary.dto.projects.Project;
 import diary.dto.projects.ProjectCard;
-import diary.dto.projects.ProjectMember;
 import diary.param.ProjectCardParam;
 import diary.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;

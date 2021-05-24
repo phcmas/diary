@@ -4,6 +4,7 @@ import com.github.jknack.handlebars.springmvc.HandlebarsViewResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
@@ -16,7 +17,8 @@ import java.util.Locale;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "diary.controller")
+@EnableAspectJAutoProxy
+@ComponentScan(basePackages = {"diary.controller", "diary.aspect"})
 public class DispatcherServletConfig implements WebMvcConfigurer {
 
     @Override

@@ -19,7 +19,6 @@
     <orderEntry type="library" name="Maven: org.mockito:mockito-core:1.9.5" level="project" />
     <orderEntry type="library" name="Maven: org.objenesis:objenesis:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:5.2.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.2.2.RELEASE" level="project" />
@@ -71,5 +70,8 @@
     <orderEntry type="library" name="Maven: org.mozilla:rhino:1.7R4" level="project" />
     <orderEntry type="library" name="Maven: com.github.jknack:handlebars-jackson2:4.0.6" level="project" />
     <orderEntry type="library" name="Maven: com.github.jknack:handlebars-springmvc:4.0.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.2.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.8.6" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.8.6" level="project" />
   </component>
 </module>

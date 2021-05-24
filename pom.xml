@@ -218,7 +218,25 @@
 	   <version>${handlebars-version}</version>
 	</dependency>
 
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>5.2.3.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>1.8.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.8.6</version>
+    </dependency>
   </dependencies>
+
 
   <build>
     <finalName>reservation</finalName>
@@ -232,21 +250,6 @@
           	 <target>1.8</target>
           </configuration>
         </plugin>
-
-        <!--plugin>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-maven-plugin</artifactId>
-          <version>9.4.9.v20180320</version>
-          <configuration>
-            <httpConnector>
-              <port>8080</port>
-            </httpConnector>
-            <scanIntervalSeconds>0</scanIntervalSeconds>
-            <webApp>
-              <contextPath>/</contextPath>
-            </webApp>
-          </configuration>
-        </plugin-->
       </plugins>
   </build>
 </project>
