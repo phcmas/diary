@@ -21,7 +21,7 @@ public class LoginApiController {
 
     @DeleteMapping("/{name}")
     public int deleteUser(@PathVariable(name="name") String name) {
-        return 0;
+        return userService.delete(name);
     }
 
 }

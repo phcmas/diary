@@ -1,9 +1,7 @@
 package diary.dao.user;
 
 import diary.dto.enums.UserAuthority;
-import diary.dto.user.User;
 import diary.dto.user.UserRole;
-import diary.utility.Utility;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -31,6 +29,7 @@ public class UserRoleDao {
             return UserRole.builder()
                     .id(rs.getInt("id"))
                     .userId(rs.getInt("userId"))
+                    .name(rs.getString("name"))
                     .roleName(UserAuthority.valueOf(rs.getString("roleName"))).build();
         }
     }
@@ -44,17 +43,19 @@ public class UserRoleDao {
         this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("user_role");
     }
 
-    @Transactional
-    public List<UserRole> getUserRole(int userId) {
+    public List<UserRole> get(int userId) {
         Map<String, ?> param = Collections.singletonMap("userId", userId);
         return jdbc.query(SELECT_USER_ROLE, param, rowMapper);
     }
 
-    @Transactional
-    public int addUserRole(UserRole userRole) {
+    public int add(UserRole userRole) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(userRole);
         return insertAction.execute(params);
     }
 
+    public int delete(String name) {
+        Map<String, ?> param = Collections.singletonMap("name", name);
+        return jdbc.update(DELETE_USER_ROLE, param);
+    }
 
 }

@@ -1,29 +1,28 @@
-var authenticate = function() {
-    var userdata = "name=" + $('#username-field').val() + "&password=" + $('#password-field').val();
-
-    $.ajax({
-        type : 'POST',
-        url : '/diary/user/authenticate',
-        datatype : 'json',
-        data : userdata
-    }).done(function() {
-        alert("환영합니다.");
-        window.location.href = '/diary/main';
-    }).fail(function() {
-        alert("존재하지 않은 사용자입니다.");
-    });
+var windowChange = function(name) {
+    alert(name + "님 환영합니다");
+    window.location.href = '/diary/main';
 };
 
-$('#login-form-submit').click(function() {
-    authenticate();
+function goToMain() {
+    var name = $('#username').val();
+    var password = $('#password').val();
+    authenticate(name, password, windowChange);
+};
+
+$('#submit').click(function() {
+    goToMain();
 });
 
-$('#password-field').keydown(function(key){
-    if (key.keyCode == 13) authenticate();
+$('#password').keydown(function(key) {
+    if (key.keyCode == 13) goToMain();
 });
 
-$('#login-form-signup').click(function() {
+$('#signup').click(function() {
     window.location.href = '/diary/user/signup';
+});
+
+$('#withdrawal').click(function() {
+    window.location.href = '/diary/user/withdrawal';
 });
 
 //    e.preventDefault();

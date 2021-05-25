@@ -45,8 +45,7 @@ public class UserDao {
                                 .usingGeneratedKeyColumns("id");
     }
 
-    @Transactional
-    public User getUser(String name) {
+    public User get(String name) {
         try {
             Map<String, ?> param = Collections.singletonMap("name", name);
             return jdbc.queryForObject(SELECT_USER, param, rowMapper);
@@ -55,10 +54,16 @@ public class UserDao {
         }
     }
 
-    @Transactional
-    public int addUser(User user) {
+    public int add(User user) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(user);
         return insertAction.executeAndReturnKey(params).intValue();
     }
+
+    public int delete(String name) {
+        Map<String, ?> param = Collections.singletonMap("name", name);
+        return jdbc.update(DELETE_USER, param);
+    }
+
+
 
 }

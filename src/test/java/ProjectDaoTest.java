@@ -60,7 +60,7 @@ public class ProjectDaoTest {
     }
 
     public int getUserId() {
-        User user = userDao.getUser("test");
+        User user = userDao.get("test");
         return user.getId();
     }
 
@@ -76,11 +76,11 @@ public class ProjectDaoTest {
         User newUser = User.builder()
                 .password("1234").name("test").createDate(LocalDate.now())
                 .modifyDate(LocalDate.now()).build();
-        int newId = userDao.addUser(newUser);
+        int newId = userDao.add(newUser);
         Assert.assertTrue(newId >= 0);
 
         // find user
-        User user = userDao.getUser("test");
+        User user = userDao.get("test");
         Assert.assertNotNull(user);
     }
 
@@ -89,11 +89,11 @@ public class ProjectDaoTest {
         int userId = getUserId();
         // add userRole
         UserRole userRole = new UserRole(userId, UserAuthority.USER);
-        int newId = userRoleDao.addUserRole(userRole);
+        int newId = userRoleDao.add(userRole);
         Assert.assertTrue(newId >= 0);
 
         // find userRole
-        List<UserRole> userRoles = userRoleDao.getUserRole(userId);
+        List<UserRole> userRoles = userRoleDao.get(userId);
         Assert.assertNotEquals(userRoles.size(), 0);
     }
 

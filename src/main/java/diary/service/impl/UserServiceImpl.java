@@ -9,6 +9,7 @@ import diary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,25 +26,35 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String name) {
-        return userDao.getUser(name);
+        return userDao.get(name);
     }
 
     @Override
     public List<UserRole> getUserRole(int userId) {
-        return userRoleDao.getUserRole(userId);
+        return userRoleDao.get(userId);
     }
 
     @Override
+    @Transactional
     public int addUser(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        int newId = userDao.addUser(user);
+        int newId = userDao.add(user);
 
-        UserRole newUserRole = new UserRole(newId, UserAuthority.USER);
-        userRoleDao.addUserRole(newUserRole);
+        UserRole newUserRole = UserRole.builder()
+                .userId(newId).name(user.getName()).roleName(UserAuthority.USER)
+                .build();
+        userRoleDao.add(newUserRole);
 
         return newId;
     }
-}
 
+    @Override
+    @Transactional
+    public int delete(String name) {
+        userRoleDao.delete(name);
+        return userDao.delete(name);
+    }
+
+}
 

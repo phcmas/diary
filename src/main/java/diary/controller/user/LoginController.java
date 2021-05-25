@@ -7,14 +7,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path="/user")
 public class LoginController {
 
-    @GetMapping(path="/signin")
+    @GetMapping("/signin")
     public String signin() {
         return "/user/signin";
     }
 
-    @GetMapping(path="/signup")
+    @GetMapping("/signup")
     public String signup() {
         return "/user/signup";
+    }
+
+    @GetMapping("/withdrawal")
+    public String withdrawal() {
+        return "/user/withdrawal";
     }
 
 }

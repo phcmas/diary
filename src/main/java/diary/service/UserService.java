@@ -9,4 +9,5 @@ public interface UserService {
     public User getUser(String name);
     public List<UserRole> getUserRole(int userId);
     public int addUser(User user);
+    public int delete(String name);
 }

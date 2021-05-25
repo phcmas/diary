@@ -18,6 +18,7 @@ create table user (
 create table user_role (
 	id int(11) not null auto_increment,
 	user_id int(11) not null,
+	name varchar(50) not null,
 	role_name varchar(50) not null,
 	primary key(id),
 	foreign key(user_id) references user (id)) engine=InnoDB default charset=utf8;

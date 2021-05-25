@@ -10,6 +10,7 @@ import lombok.*;
 public class UserRole {
     private int id;
     private int userId;
+    private String name;
     private UserAuthority roleName;
 
     public UserRole (int userId, UserAuthority roleName) {
