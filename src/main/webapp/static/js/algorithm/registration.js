@@ -1,17 +1,6 @@
-//var formData = new FormData();
-//
-//var addCodeFile = function (e) {
-//    var file = e.target.files[0];
-//    formData.append("file", file);
-//};
-
-//$(document).ready(function() {
-//    $('#file-upload').on("change", addCodeFile);
-//});
-
 function addCodeFile(algorithmId) {
-    var codeFile = $('#code-file')[0];
-    var formData = new FormData(codeFile);
+    let codeFile = $('#code-file')[0];
+    let formData = new FormData(codeFile);
     formData.append("algorithmId", algorithmId);
 
     $.ajax({
@@ -47,8 +36,8 @@ $(document).ready(function() {
     $('#file-upload').on("change", addFileName);
 });
 
-$('#btn-save').click((e) => {
-    var algorithmParam = {
+$('#btn-save').click(function() {
+    let algorithmParam = {
         id : -1,
         title : $('#title').val(),
         solvedDate : $('#solved-date').val(),

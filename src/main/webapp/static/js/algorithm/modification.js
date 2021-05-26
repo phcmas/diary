@@ -1,10 +1,9 @@
-var algorithmId = $('#btn-update').val();
 var isFileUpdated = 0;
 
 function updateFile() {
-    var codeFile = $('#code-file')[0];
-    var formData = new FormData(codeFile);
-    var fileId = $('#btn-cancel').val();
+    let codeFile = $('#code-file')[0];
+    let formData = new FormData(codeFile);
+    let fileId = $('#btn-cancel').val();
 
     formData.append("id", fileId);
 
@@ -51,8 +50,8 @@ function makeOptionTag(id, value, text) {
 };
 
 function changeSourceTag() {
-    var source = $('#source').val();
-    var optionTag;
+    let source = $('#source').val();
+    let optionTag;
 
     switch (source) {
         case "LeetCode":
@@ -81,8 +80,8 @@ function changeSourceTag() {
 };
 
 function changeType() {
-    var type = $('#type').val();
-    var optionTag;
+    let type = $('#type').val();
+    let optionTag;
 
     switch (type) {
         case "DP":
@@ -127,8 +126,8 @@ function changeType() {
 };
 
 function changeLanguage() {
-    var language = $('#language').val();
-    var optionTag;
+    let language = $('#language').val();
+    let optionTag;
 
     switch (language) {
         case "C":
@@ -153,8 +152,8 @@ function changeLanguage() {
 };
 
 function changeDifficulty() {
-    var difficulty = $('#difficulty').val();
-    var optionTag;
+    let difficulty = $('#difficulty').val();
+    let optionTag;
 
     switch (difficulty) {
         case "Easy":
@@ -184,7 +183,8 @@ $(document).ready(function() {
 $('#file-upload').on("change", addFileName);
 
 $('#btn-update').click((e) => {
-    var algorithmParam = {
+    let algorithmId = $('#btn-update').val();
+    let algorithmParam = {
         id : algorithmId,
         title : $('#title').val(),
         solvedDate : $('#solved-date').val(),

@@ -1,22 +1,25 @@
-var id = $('#btn-delete').val();
+$(document).ready(function() {
+    let id = $('#btn-delete').val();
 
-$.getJSON('/diary/projects/names', {id : id},
-function(data) {
-    data.forEach(function(e) {
-        let buttonTag = document.createElement('button');
-        let buttonText = document.createTextNode(e);
+    $.getJSON('/diary/projects/' + id + '/names',
+    function(names) {
+        names.forEach(function(name) {
+            let buttonTag = document.createElement('button');
+            let buttonText = document.createTextNode(name);
 
-        buttonTag.setAttribute('class', 'form-control-name');
-        buttonTag.setAttribute('type', 'button');
-        buttonTag.setAttribute('disabled', true);
-        buttonTag.append(buttonText);
+            buttonTag.setAttribute('class', 'form-control-name');
+            buttonTag.setAttribute('type', 'button');
+            buttonTag.setAttribute('disabled', true);
+            buttonTag.append(buttonText);
 
-        $('#member-names').append(buttonTag);
+            $('#member-names').append(buttonTag);
+        });
     });
 });
 
-$('#btn-delete').click((e) => {
+$('#btn-delete').click(function() {
     if (!confirm("정말 삭제하시겠습니까?")) return;
+    let id = $('#btn-delete').val();
 
     $.ajax({
         type : 'DELETE',
@@ -29,5 +32,4 @@ $('#btn-delete').click((e) => {
     }).fail(function(error) {
         alert(JSON.stringify(error));
     });
-
 });

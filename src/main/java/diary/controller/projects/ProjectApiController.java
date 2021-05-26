@@ -40,14 +40,14 @@ public class ProjectApiController {
         return projectService.delete(id);
     }
 
-    @GetMapping(path="/pagenum")
-    public List<Integer> getPageNumbers(@RequestParam(name="date", required = true)
+    @GetMapping(path="/pagenum/{date}")
+    public List<Integer> getPageNumbers(@PathVariable(name="date", required = true)
                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return projectService.getPageNumbers(date, date.plusYears(1));
     }
 
-    @GetMapping(path="/names")
-    public List<String> getMemberNames(@RequestParam(name="id") int id) {
+    @GetMapping(path="/{id}/names")
+    public List<String> getMemberNames(@PathVariable(name="id") int id) {
         return projectService.getMemberNames(id);
     }
 

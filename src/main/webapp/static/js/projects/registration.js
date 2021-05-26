@@ -1,38 +1,20 @@
 var memberId = 0;
 
-$('#add-member').click((e) => {
-    let buttonTag = document.createElement('button');
-    let name = $('#newMember').val();
-    let buttonText = document.createTextNode(name);
-    let spanTag = document.createElement('span');
-    let spanText = document.createTextNode('X');
-
-    buttonTag.setAttribute('class', 'form-control-name');
-    buttonTag.setAttribute('name','member-name');
-    buttonTag.setAttribute('type', 'button');
-    buttonTag.setAttribute('value', name);
-    buttonTag.append(buttonText);
-    spanTag.setAttribute('class', 'badge badge-secondary');
-    spanTag.setAttribute('id', memberId++);
-    spanTag.append(spanText);
-
-    buttonTag.append(spanTag);
-    $('#member-names').append(buttonTag);
-});
+$('#add-member').click((e) => {addMembers(memberId);});
 
 $(document).on('click', '.badge', function() {
-    var id = $(this).attr('id');
-    var upperButton = $('#'+id).closest('button');
+    let id = $(this).attr('id');
+    let upperButton = $('#'+id).closest('button');
     upperButton.remove();
 });
 
-$('#btn-save').click((e) => {
-    var names = [];
-    $('button[name=member-name]').each(function(idx) {
+$('#btn-save').click(function() {
+    let names = [];
+    $('button[name=member-name]').each(function() {
         names.push($(this).val());
     });
 
-    var projectParam = {
+    let projectParam = {
         id : -1,
         title : $('#title').val(),
         startDate : $('#start-date').val(),

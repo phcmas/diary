@@ -1,7 +1,7 @@
-$('#login-form-signup').click((e) => {
+$('#signup').click((e) => {
     var userdata = {
-        name : $('#username-field').val(),
-        password : $('#password-field').val()
+        name : $('#username').val(),
+        password : $('#password').val()
     };
 
     $.ajax({

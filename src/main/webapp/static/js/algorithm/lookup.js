@@ -1,7 +1,5 @@
-var algorithmId = $('#btn-delete').val();
-
 function deleteFile() {
-    var fileId = $('#file-download').val();
+    let fileId = $('#file-download').val();
 
     $.ajax({
         type : 'DELETE',
@@ -14,7 +12,9 @@ function deleteFile() {
     });
 };
 
-$('#btn-delete').click((e) => {
+$('#btn-delete').click(function() {
+    let algorithmId = $('#btn-delete').val();
+
     if (!confirm("정말 삭제하시겠습니까?")) return;
 
     $.ajax({

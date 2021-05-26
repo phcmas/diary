@@ -1,7 +1,6 @@
 package diary.controller.algorithm;
 
 import diary.dto.algorithm.Algorithm;
-import diary.dto.algorithm.FileInfo;
 import diary.param.AlgorithmParam;
 import diary.service.AlgorithmService;
 import diary.service.FileService;
@@ -40,8 +39,8 @@ public class AlgorithmApiController {
         return algorithmService.delete(id);
     }
 
-    @GetMapping(path="/pagenum")
-    public List<Integer> getPageNumbers(@RequestParam(name="date", required = true)
+    @GetMapping(path="/pagenum/{date}")
+    public List<Integer> getPageNumbers(@PathVariable(name="date", required = true)
                                          @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return algorithmService.getPageNumbers(date, date.plusMonths(1));
     }

@@ -1,5 +1,4 @@
 var memberId = 0;
-var id = $('#btn-update').val();
 
 function makeOptionTag(id, value, text) {
     let optionTag = document.createElement('option');
@@ -11,11 +10,11 @@ function makeOptionTag(id, value, text) {
     optionTag.selected = true;
     optionTag.append(textNode);
     return optionTag;
-};
+}
 
-$(document).ready(function() {
-    var type = $('#previous-type').val();
-    var optionTag;
+function showOption() {
+    let type = $('#previous-type').val();
+    let optionTag;
 
     switch (type) {
         case "기능개발":
@@ -33,64 +32,55 @@ $(document).ready(function() {
         default:
             console.log("Error");
     }
+}
 
-});
+function showMembers() {
+    let id = $('#btn-update').val();
+    $.getJSON('/diary/projects/' + id + '/names',
+        function(names) {
+            names.forEach(function(e) {
+                let buttonTag = document.createElement('button');
+                let buttonText = document.createTextNode(e);
+                let spanTag = document.createElement('span');
+                let spanText = document.createTextNode('X');
 
-$.getJSON('/diary/projects/names', {id : id},
-function(data) {
-    data.forEach(function(e) {
-        let buttonTag = document.createElement('button');
-        let buttonText = document.createTextNode(e);
-        let spanTag = document.createElement('span');
-        let spanText = document.createTextNode('X');
+                buttonTag.setAttribute('class', 'form-control-name');
+                buttonTag.setAttribute('name','member-name');
+                buttonTag.setAttribute('type', 'button');
+                buttonTag.setAttribute('value', e);
+                buttonTag.append(buttonText);
+                spanTag.setAttribute('class', 'badge badge-secondary');
+                spanTag.setAttribute('id', memberId++);
+                spanTag.append(spanText);
 
-        buttonTag.setAttribute('class', 'form-control-name');
-        buttonTag.setAttribute('name','member-name');
-        buttonTag.setAttribute('type', 'button');
-        buttonTag.setAttribute('value', e);
-        buttonTag.append(buttonText);
-        spanTag.setAttribute('class', 'badge badge-secondary');
-        spanTag.setAttribute('id', memberId++);
-        spanTag.append(spanText);
-
-        buttonTag.append(spanTag);
-        $('#member-names').append(buttonTag);
+                buttonTag.append(spanTag);
+                $('#member-names').append(buttonTag);
+            });
     });
+};
+
+$(document).ready(function() {
+    showOption();
+    showMembers();
 });
 
-$('#add-member').click((e) => {
-    let buttonTag = document.createElement('button');
-    let name = $('#newMember').val();
-    let buttonText = document.createTextNode(name);
-    let spanTag = document.createElement('span');
-    let spanText = document.createTextNode('X');
-
-    buttonTag.setAttribute('class', 'form-control-name');
-    buttonTag.setAttribute('name','member-name');
-    buttonTag.setAttribute('type', 'button');
-    buttonTag.setAttribute('value', name);
-    buttonTag.append(buttonText);
-    spanTag.setAttribute('class', 'badge badge-secondary');
-    spanTag.setAttribute('id', memberId++);
-    spanTag.append(spanText);
-
-    buttonTag.append(spanTag);
-    $('#member-names').append(buttonTag);
-});
+$('#add-member').click((e) => {addMembers(memberId);});
 
 $(document).on('click', '.badge', function() {
-    var id = $(this).attr('id');
-    var upperButton = $('#'+id).closest('button');
+    let id = $(this).attr('id');
+    let upperButton = $('#'+id).closest('button');
     upperButton.remove();
 });
 
-$('#btn-update').click((e) => {
-    var names = [];
+$('#btn-update').click(function() {
+    let names = [];
+    let id = $('#btn-update').val();
+
     $('button[name=member-name]').each(function(){
         names.push($(this).val());
     });
 
-    var projectData = {
+    let projectData = {
         id : id,
         title : $('#title').val(),
         startDate : $('#start-date').val(),

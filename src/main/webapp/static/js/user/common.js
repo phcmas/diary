@@ -6,10 +6,9 @@ function authenticate(name, password, func) {
         url : '/diary/user/authenticate',
         datatype : 'json',
         data : userdata
-    }).done(function(e) {
-        console.log(e);
+    }).done(function() {
         func(name);
-    }).fail(function() {
+    }).fail(function(e) {
         alert('인증 실패!');
     });
 };

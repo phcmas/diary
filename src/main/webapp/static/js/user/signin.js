@@ -1,4 +1,4 @@
-var windowChange = function(name) {
+function windowChange(name) {
     alert(name + "님 환영합니다");
     window.location.href = '/diary/main';
 };
