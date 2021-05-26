@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function makePageNumber() {
     var date = $('.card-header').val();
 
     $.getJSON('/diary/projects/pagenum/' + date,
@@ -12,4 +12,13 @@ $(document).ready(function() {
             $('#page-number').append(aTag);
         });
     });
+};
+
+function makeNumberOfMembers() {
+
+};
+
+$(document).ready(function() {
+    makePageNumber();
+    makeNumberOfMembers();
 });

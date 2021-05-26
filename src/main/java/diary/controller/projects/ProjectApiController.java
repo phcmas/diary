@@ -1,10 +1,8 @@
 package diary.controller.projects;
 
 import diary.dto.projects.Project;
-import diary.dto.projects.ProjectMember;
 import diary.param.ProjectParam;
 import diary.service.ProjectService;
-import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -40,15 +38,15 @@ public class ProjectApiController {
         return projectService.delete(id);
     }
 
+    @GetMapping(path="/{id}/names")
+    public List<String> getMemberNames(@PathVariable(name="id") int id) {
+        return projectService.getMemberNames(id);
+    }
+
     @GetMapping(path="/pagenum/{date}")
     public List<Integer> getPageNumbers(@PathVariable(name="date", required = true)
                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return projectService.getPageNumbers(date, date.plusYears(1));
-    }
-
-    @GetMapping(path="/{id}/names")
-    public List<String> getMemberNames(@PathVariable(name="id") int id) {
-        return projectService.getMemberNames(id);
     }
 
 }
