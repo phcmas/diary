@@ -3,7 +3,6 @@ package diary.service.impl;
 import diary.dao.algorithm.AlgorithmDao;
 import diary.dao.algorithm.FileInfoDao;
 import diary.dto.algorithm.FileInfo;
-import diary.service.AlgorithmService;
 import diary.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +21,6 @@ public class FileServiceImpl implements FileService {
 
     @Autowired
     AlgorithmDao algorithmDao;
-
-    private final String fileRoot = "/home/seungkyun/Web/diary/files/";
 
     @Override
     public FileInfo get(int id) {
@@ -111,4 +108,11 @@ public class FileServiceImpl implements FileService {
         File file = new File(saveFileName);
         file.delete();
     }
+
+    @Override
+    public boolean findFile(String fileName) {
+        File file = new File(fileRoot + fileName);
+        return file.exists();
+    }
+
 }

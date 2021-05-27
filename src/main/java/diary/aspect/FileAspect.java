@@ -8,9 +8,9 @@ import org.springframework.util.StopWatch;
 
 @Component
 @Aspect
-public class LogAspect {
+public class FileAspect {
 
-    @Around("@annotation(LogTime)")
+    @Around("@annotation(File)")
     public Object logTime(ProceedingJoinPoint joinPoint) throws Throwable {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -18,7 +18,6 @@ public class LogAspect {
         Object ret = joinPoint.proceed();
         stopWatch.stop();
 
-        System.out.println(stopWatch.prettyPrint());
         return ret;
     }
 }

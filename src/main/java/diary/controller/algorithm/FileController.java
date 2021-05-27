@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+
+import static diary.service.FileService.*;
 
 @RestController
 @RequestMapping(path="/algorithm")
@@ -44,6 +47,11 @@ public class FileController {
     public int updateFile(@RequestParam(name="id") int id,
                           @RequestParam(name="file") MultipartFile file) {
         return fileService.update(id, file);
+    }
+
+    @GetMapping(path="/file/overlap/{fileName}")
+    public boolean existFile(@PathVariable(name="fileName") String fileName) {
+        return fileService.findFile(fileName);
     }
 
     @GetMapping(path="/file/{id}")
