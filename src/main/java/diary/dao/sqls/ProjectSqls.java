@@ -9,11 +9,11 @@ public class ProjectSqls {
             = "SELECT * FROM project_card WHERE project_id = :projectId";
     public static final String SELECT_PROJECT_CARD_BY_DATE
             = "SELECT * FROM project_card WHERE"
-            + " start_date >= :startDate AND start_date < :endDate ORDER BY start_date DESC LIMIT :start, :limit";
+            + " start_date >= :fromDate AND start_date < :toDate ORDER BY start_date DESC LIMIT :start, :limit";
     public static final String SELECT_RECENT_PROJECTS
             = "SELECT * FROM project ORDER BY modify_date DESC limit :start, :limit";
     public static final String SELECT_PROJECT_COUNT
-            = "SELECT count(*) FROM project WHERE start_date >= :startDate AND start_date < :endDate";
+            = "SELECT count(*) FROM project WHERE start_date >= :fromDate AND start_date < :toDate";
 
     public static final String UPDATE_PROJECT
             = "UPDATE project SET title = :title, start_date = :startDate, "

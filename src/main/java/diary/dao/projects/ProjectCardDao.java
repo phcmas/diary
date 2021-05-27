@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -34,6 +33,7 @@ public class ProjectCardDao {
                     .shortContent(rs.getString("shortContent"))
                     .memberCount(rs.getInt("memberCount"))
                     .startDate(Utility.convert(rs.getDate("startDate")))
+                    .endDate(Utility.convert(rs.getDate("endDate")))
                     .build();
         }
     }
@@ -58,11 +58,11 @@ public class ProjectCardDao {
         }
     }
 
-    public List<ProjectCard> getList(int start, int limit, LocalDate startDate, LocalDate endDate) {
+    public List<ProjectCard> getList(int start, int limit, LocalDate fromDate, LocalDate toDate) {
         Map<String, Object> param = new HashMap<>();
 
-        param.put("startDate", startDate);
-        param.put("endDate", endDate);
+        param.put("fromDate", fromDate);
+        param.put("toDate", toDate);
         param.put("start", start);
         param.put("limit", limit);
         return jdbc.query(SELECT_PROJECT_CARD_BY_DATE, param, rowMapper);

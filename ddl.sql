@@ -53,6 +53,7 @@ create table project_card (
 	short_content varchar(100) not null,
 	member_count int(11) not null,
 	start_date datetime null,
+	end_date datetime null,
 	primary key(id),
 	foreign key(project_id) references project(id)) engine=InnoDB default charset=utf8;
 

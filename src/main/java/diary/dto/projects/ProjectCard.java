@@ -21,11 +21,13 @@ public class ProjectCard {
     private String shortContent;
     private int memberCount;
     private LocalDate startDate;
+    private LocalDate endDate;
 
     public ProjectCardParam toProjectCardParam() {
         return ProjectCardParam.builder()
                 .id(id).projectId(projectId).projectType(projectType.getString())
                 .shortTitle(shortTitle).shortContent(shortContent)
-                .memberCount(memberCount).build();
+                .memberCount(memberCount).startDate(startDate)
+                .endDate(endDate).build();
     }
 }

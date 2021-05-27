@@ -159,12 +159,12 @@ public class ProjectDaoTest {
 
     @Test
     public void DaoTest7_ProjectCards() throws ParseException {
-        LocalDate startDate = LocalDate.now();
-        LocalDate endDate = startDate.plusYears(1);
+        LocalDate fromDate = LocalDate.now();
+        LocalDate toDate = fromDate.plusYears(1);
         //Date startDate = Utility.getDate("2021","1","1");
         //Date endDate = Utility.addTime(startDate, 1, 0, 0);
 
-        List<ProjectCard> projectCards = projectCardDao.getList(0,4, startDate, endDate);
+        List<ProjectCard> projectCards = projectCardDao.getList(0,4, fromDate, toDate);
 
         Assert.assertNotEquals(projectCards.size(), 0);
     }

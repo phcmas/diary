@@ -38,7 +38,8 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectCard makeProjectCard(Project project, int projectId, int memberCount) {
         ProjectCard projectCard = ProjectCard.builder()
                 .projectId(projectId).projectType(project.getProjectType())
-                .memberCount(memberCount).startDate(project.getStartDate()).build();
+                .memberCount(memberCount).startDate(project.getStartDate())
+                .endDate(project.getEndDate()).build();
 
         String shortTitle = Utility.cutString(project.getTitle(), 10);
         String shortContent = Utility.cutString(project.getContent(), 50);
@@ -93,8 +94,8 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Integer> getPageNumbers(LocalDate startDate, LocalDate endDate) {
-        int count = projectDao.getCount(startDate, endDate);
+    public List<Integer> getPageNumbers(LocalDate fromDate, LocalDate toDate) {
+        int count = projectDao.getCount(fromDate, toDate);
         return Utility.getPageList(count, CARD_LIMIT);
     }
 
@@ -116,9 +117,9 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<ProjectCard> getCards(int pageNum, LocalDate startDate, LocalDate endDate) {
+    public List<ProjectCard> getCards(int pageNum, LocalDate fromDate, LocalDate toDate) {
         int start = CARD_LIMIT * (pageNum-1);
-        return projectCardDao.getList(start, CARD_LIMIT, startDate, endDate);
+        return projectCardDao.getList(start, CARD_LIMIT, fromDate, toDate);
     }
 
     @Override

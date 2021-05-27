@@ -10648,7 +10648,8 @@ a.text-dark:hover {
 }
 
 .text-muted {
-	color: #6c757d!important
+	color : #6c757d!important;
+	text-align : right;
 }
 
 .text-black-50 {

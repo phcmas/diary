@@ -60,10 +60,10 @@ public class ProjectDao {
         }
     }
 
-    public int getCount(LocalDate startDate, LocalDate endDate) {
+    public int getCount(LocalDate fromDate, LocalDate toDate) {
         Map<String, Object> params = new HashMap<>();
-        params.put("startDate", startDate);
-        params.put("endDate", endDate);
+        params.put("fromDate", fromDate);
+        params.put("toDate", toDate);
 
         return jdbc.queryForObject(SELECT_PROJECT_COUNT, params, Integer.class);
     }
