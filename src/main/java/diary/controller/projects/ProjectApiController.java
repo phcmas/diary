@@ -3,6 +3,7 @@ package diary.controller.projects;
 import diary.dto.projects.Project;
 import diary.param.ProjectParam;
 import diary.service.ProjectService;
+import diary.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +48,14 @@ public class ProjectApiController {
     public List<Integer> getPageNumbers(@PathVariable(name="date", required = true)
                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return projectService.getPageNumbers(date, date.plusYears(1));
+    }
+
+    @GetMapping(path="/{id}/authority")
+    public boolean getAuthority (@PathVariable(name="id") int id) {
+        String author = projectService.getAuthor(id);
+        String currentUser = Utility.getCurrentUserName();
+
+        return currentUser.equals(author);
     }
 
 }

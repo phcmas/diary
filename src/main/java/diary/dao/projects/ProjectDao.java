@@ -27,7 +27,7 @@ public class ProjectDao {
         @Override
         public Project mapRow(ResultSet rs, int rowNum) throws SQLException {
             return Project.builder()
-                    .id(rs.getInt("id"))
+                    .id(rs.getInt("id")).author(rs.getString("author"))
                     .title((rs.getString("title"))).startDate(Utility.convert(rs.getDate("startDate")))
                     .endDate(Utility.convert(rs.getDate("finishDate")))
                     .projectType(ProjectType.valueOf(rs.getString("projectType")))
@@ -90,6 +90,11 @@ public class ProjectDao {
     public int delete(int id) {
         Map<String, ?> param = Collections.singletonMap("id", id);
         return jdbc.update(DELETE_PROJECT, param);
+    }
+
+    public String getAuthor(int id) {
+        Map<String, ?> param = Collections.singletonMap("id", id);
+        return jdbc.queryForObject(SELECT_AUTHOR, param, String.class);
     }
 
 }

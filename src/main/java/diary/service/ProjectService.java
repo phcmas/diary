@@ -18,4 +18,5 @@ public interface ProjectService {
     public List<ProjectCard> getCards(int pageNum, LocalDate fromDate, LocalDate toDate);
     public List<Project> getRecentProject(int start);
     public ProjectCard makeProjectCard(Project project, int projectId, int memberCount);
+    public String getAuthor(int id);
 }

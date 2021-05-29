@@ -1,26 +1,5 @@
 var isFileUpdated = 0;
 
-function updateFile() {
-    let codeFile = $('#code-file')[0];
-    let formData = new FormData(codeFile);
-    let fileId = $('#btn-cancel').val();
-
-    formData.append("id", fileId);
-
-    $.ajax({
-        type : 'PUT',
-        method : 'PUT',
-        url : '/diary/algorithm/file',
-        data : formData,
-        contentType : false,
-        processData : false,
-    }).done(function(e) {
-        alert("알고리즘이 수정되었습니다");
-        window.location.href = '/diary/algorithm/cards';
-    }).fail(function(error) {
-        alert(JSON.stringify(error));
-    });
-}
 
 function addFileName() {
     let fileName = $('#file-upload').val();
@@ -173,6 +152,28 @@ function changeDifficulty() {
     }
 };
 
+function updateFile() {
+    let codeFile = $('#code-file')[0];
+    let formData = new FormData(codeFile);
+    let fileId = $('#btn-cancel').val();
+
+    formData.append("id", fileId);
+
+    $.ajax({
+        type : 'PUT',
+        method : 'PUT',
+        url : '/diary/algorithm/file',
+        data : formData,
+        contentType : false,
+        processData : false,
+    }).done(function(e) {
+        alert("알고리즘이 수정되었습니다");
+        window.location.href = '/diary/algorithm/cards';
+    }).fail(function(error) {
+        alert(JSON.stringify(error));
+    });
+};
+
 $(document).ready(function() {
     changeSourceTag();
     changeType();
@@ -203,7 +204,12 @@ $('#btn-update').click((e) => {
         contentType : 'application/json; charset=utf-8',
         data : JSON.stringify(algorithmParam)
     }).done(function() {
-        if (isFileUpdated == 1) updateFile();
+        if (isFileUpdated == 1) {
+            updateFile();
+        } else {
+            alert('알고리즘이 수정되었습니다');
+            window.location.href = '/diary/algorithm/cards';
+        }
     }).fail(function(error) {
         alert("수정 실패!!");
     });

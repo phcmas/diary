@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -50,8 +49,14 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public String getAuthor(int id) {
+        return projectDao.getAuthor(id);
+    }
+
+    @Override
     @Transactional
     public int add(Project project, List<String> names) {
+        project.setAuthor(Utility.getCurrentUserName());
         int projectId = projectDao.add(project);
 
         for (String name : names) {

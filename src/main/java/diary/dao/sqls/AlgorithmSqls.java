@@ -12,6 +12,8 @@ public class AlgorithmSqls {
             + "AND solved_date < :endDate ORDER BY solved_date DESC LIMIT :start, :limit";
     public static String SELECT_ALGORITHM_COUNT
             = "SELECT count(*) FROM algorithm WHERE solved_date >= :startDate AND solved_date < :endDate";
+    public static String SELECT_AUTHOR
+            = "SELECT author FROM algorithm WHERE id = :id";
 
     public static String UPDATE_ALGORITHM_CARD
             = "UPDATE algorithm_card SET algorithm_id = :algorithmId, "

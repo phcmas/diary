@@ -32,7 +32,8 @@ public class AlgorithmDao {
         @Override
         public Algorithm mapRow(ResultSet rs, int rowNum) throws SQLException {
             return Algorithm.builder()
-                    .id(rs.getInt("id")).title(rs.getString("title"))
+                    .id(rs.getInt("id")).author(rs.getString("author"))
+                    .title(rs.getString("title"))
                     .solvedDate(Utility.convert(rs.getDate("solvedDate")))
                     .language(Language.valueOf(rs.getString("language")))
                     .type(AlgorithmType.valueOf(rs.getString("type")))
@@ -102,6 +103,12 @@ public class AlgorithmDao {
         Map<String, ?> param = Collections.singletonMap("id", id);
         return jdbc.update(DELETE_ALGORITHM, param);
     }
+
+    public String getAuthor(int id) {
+        Map<String, ?> param = Collections.singletonMap("id", id);
+        return jdbc.queryForObject(SELECT_AUTHOR, param, String.class);
+    }
+
 
 
 

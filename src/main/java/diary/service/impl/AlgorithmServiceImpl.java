@@ -40,6 +40,11 @@ public class AlgorithmServiceImpl implements AlgorithmService {
     }
 
     @Override
+    public String getAuthor(int id) {
+        return algorithmDao.getAuthor(id);
+    }
+
+    @Override
     public Algorithm get(int id) {
         return algorithmDao.get(id);
     }
@@ -58,6 +63,7 @@ public class AlgorithmServiceImpl implements AlgorithmService {
     @Override
     @Transactional
     public int add(Algorithm algorithm) {
+        algorithm.setAuthor(Utility.getCurrentUserName());
         int newId = algorithmDao.add(algorithm);
         AlgorithmCard newCard = makeAlgorithmCard(algorithm, newId);
         algorithmCardDao.add(newCard);

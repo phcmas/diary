@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Algorithm {
     private int id;
+    private String author;
     private String title;
     private LocalDate solvedDate;
     private String source;

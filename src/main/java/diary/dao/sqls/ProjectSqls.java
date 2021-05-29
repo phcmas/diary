@@ -5,6 +5,8 @@ public class ProjectSqls {
             = "SELECT * FROM project WHERE id = :id";
     public static final String SELECT_PROJECT_MEMBER
             = "SELECT * FROM project_member WHERE project_id = :projectId";
+    public static final String SELECT_AUTHOR
+            = "SELECT author FROM project WHERE id = :id";
     public static final String SELECT_PROJECT_CARD_BY_PROJECT_ID
             = "SELECT * FROM project_card WHERE project_id = :projectId";
     public static final String SELECT_PROJECT_CARD_BY_DATE

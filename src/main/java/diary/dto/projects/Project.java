@@ -16,6 +16,7 @@ import java.time.LocalDate;
 public class Project {
     private int id;
     private String title;
+    private String author;
     private LocalDate startDate;
     private LocalDate endDate;
     private ProjectType projectType;

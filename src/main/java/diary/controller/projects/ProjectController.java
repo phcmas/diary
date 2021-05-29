@@ -19,7 +19,7 @@ public class ProjectController {
     @Autowired
     ProjectService projectService;
 
-    @GetMapping(path="/lookup/{id}")
+    @GetMapping(path="/{id}/lookup")
     public String showProject(@PathVariable(name = "id") int id, Model model) {
         Project project = projectService.get(id);
         model.addAttribute("project", project.toProjectParam());
@@ -32,7 +32,7 @@ public class ProjectController {
         return "/projects/registration";
     }
 
-    @GetMapping(path="/modification/{id}")
+    @GetMapping(path="/{id}/modification")
     public String modifyProject(@PathVariable(name="id") int id, Model model) {
         Project project = projectService.get(id);
         model.addAttribute("project", project.toProjectParam());

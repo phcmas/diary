@@ -21,9 +21,8 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //cache period 31556926
         registry.addResourceHandler("/css/**","/user/css/**","/projects/css/**",
-                                    "/projects/modification/css/**","/projects/lookup/css/**",
-                                    "/algorithm/css/**", "/algorithm/lookup/css/**",
-                                    "/algorithm/modification/css/**")
+                                    "/projects/{id}/css/**", "/algorithm/css/**",
+                                    "/algorithm/{id}/css/**")
                 .addResourceLocations("/static/css/").setCachePeriod(0);
         registry.addResourceHandler("/img/**","/projects/img/**", "/algorithm/img/**")
                 .addResourceLocations("/static/img/").setCachePeriod(0);
@@ -31,9 +30,9 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
                 .addResourceLocations("/static/js/").setCachePeriod(0);
         registry.addResourceHandler("/user/js/**")
                 .addResourceLocations("/static/js/user/").setCachePeriod(0);
-        registry.addResourceHandler("/projects/js/**","/projects/lookup/js/**","/projects/modification/js/**")
+        registry.addResourceHandler("/projects/js/**","/projects/{id}/js/**")
                 .addResourceLocations("/static/js/projects/").setCachePeriod(0);
-        registry.addResourceHandler("/algorithm/js/**","/algorithm/lookup/js/**","/algorithm/modification/js/**")
+        registry.addResourceHandler("/algorithm/js/**","/algorithm/{id}/js/**")
                 .addResourceLocations("/static/js/algorithm/").setCachePeriod(0);
     }
 

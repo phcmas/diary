@@ -14,4 +14,5 @@ public interface AlgorithmService {
     public int update(Algorithm algorithm);
     public int delete(int id);
     public AlgorithmCard makeAlgorithmCard(Algorithm algorithm, int algorithmId);
+    public String getAuthor(int id);
 }

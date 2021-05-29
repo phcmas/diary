@@ -17,10 +17,7 @@ $(document).ready(function() {
     });
 });
 
-$('#btn-delete').click(function() {
-    if (!confirm("정말 삭제하시겠습니까?")) return;
-    let id = $('#btn-delete').val();
-
+function deleteProject(id) {
     $.ajax({
         type : 'DELETE',
         url : '/diary/projects/' + id,
@@ -31,5 +28,35 @@ $('#btn-delete').click(function() {
         window.location.href = '/diary/projects/cards';
     }).fail(function(error) {
         alert(JSON.stringify(error));
+    });
+};
+
+$('#btn-update').click(function() {
+    let id = $('#btn-delete').val();
+
+    $.ajax({
+        type : 'GET',
+        url : '/diary/projects/' + id + '/authority',
+    }).done(function(e) {
+        if (e === true) {
+            window.location.href='/diary/projects/' + id + '/modification';
+        } else {
+            alert("수정 권한이 없습니다");
+        }
+    });
+});
+
+$('#btn-delete').click(function() {
+    let id = $('#btn-delete').val();
+
+    $.ajax({
+        type : 'GET',
+        url : '/diary/projects/' + id + '/authority',
+    }).done(function(e) {
+        if (e === true && confirm("정말 삭제하시겠습니까?")) {
+            deleteProject(id);
+        } else if (e === false) {
+            alert("삭제 권한이 없습니다");
+        }
     });
 });

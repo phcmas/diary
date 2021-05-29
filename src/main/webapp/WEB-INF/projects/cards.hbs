@@ -13,13 +13,13 @@
               <button class="card-header" value="{{date}}"></button>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="/diary/projects/lookup/{{projectId}}">{{shortTitle}}</a>
+                  <a href="/diary/projects/{{projectId}}/lookup">{{shortTitle}}</a>
                 </h4>
                 <h6>{{projectType}}</h6>
                 <p class="card-text">{{shortContent}}</p>
               </div>
               <div class="card-footer">
-                <div class="text-muted"> 1명 참여</div>
+                <div class="text-muted">{{memberCount}}명 참여</div>
               </div>
             </div>
           </div>

@@ -25,6 +25,7 @@ create table user_role (
 
 create table project (
 	id int(11) not null auto_increment,
+	author varchar(50) not null,
 	title varchar(150) not null,
 	start_date datetime null,
 	end_date datetime null,
@@ -61,6 +62,7 @@ create index pc_idx on project_card(project_id);
 
 create table algorithm (
 	id int(11) not null auto_increment,
+	author varchar(50) not null,
 	title varchar(150) not null,
 	solved_date datetime null,
 	language varchar(50) not null,

@@ -7,7 +7,7 @@ function authenticate(name, password, func) {
         datatype : 'json',
         data : userdata
     }).done(function() {
-        window.location.href = '/diary/main';
+        func(name);
     }).fail(function() {
         alert('인증 실패!');
     });
