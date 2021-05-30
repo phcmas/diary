@@ -3,8 +3,9 @@ Developer Diary는 다음과 같이 개발되었습니다.
 Backend : Spring MVC 5.2.2 + Spring JDBC + MySql
 Frontend : Bootstrap 4.1 Template + Javascript(Jquery)
 
-Backend는 모든 부분이 새롭게 개발되었고, Bootstrap은 기존의 template을 그대로 이용하였습니다. 
-Template Engine으로는 Handlebar를 사용하고 Javascript로 이벤트 핸들링만 처리하였습니다
+Backend는 모든 부분이 새롭게 개발되었고, 마크업은 기존의 Bootstrap template을 그대로 이용하였습니다. 
+Template Engine으로는 Handlebar를 사용하였습니다. 
+Javascript로 이벤트 핸들링 및 동적으로 HTML이 변화하는 부분을 구현하였습니다.
 사용된 DB의 스키마정보는 ddl.sql 파일을 통해 확인할 수 있습니다.
 
 이 프로젝트는 Tomcat 8.5 버전으로 배포하여 context path를 /diary로 접근하여 확인할 수 있습니다.
