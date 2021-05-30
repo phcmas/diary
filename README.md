@@ -9,8 +9,7 @@ Template Engine으로는 Handlebar를 사용하고 Javascript로 이벤트 핸�
 
 Developer Diary에서는 다음 기능이 이용가능합니다
 
-
-1.Home
+* Home
 - 메인 페이지로 이동합니다
 - Logout은 logout이후 signin 페이지로 리다이렉트하고 GitHub을 누르면 본 프로젝트의 소스코드 저장소로 이동합니다.
 
