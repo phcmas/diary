@@ -17,23 +17,25 @@ import javax.servlet.http.HttpServletRequest;
 @ComponentScan(basePackages = {"diary.controller"})
 public class DispatcherServletConfig implements WebMvcConfigurer {
 
+    private static final int SEC_IN_A_YEAR = 60 * 60 * 24 * 365;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //cache period 31556926
         registry.addResourceHandler("/css/**","/user/css/**","/projects/css/**",
                                     "/projects/{id}/css/**", "/algorithm/css/**",
                                     "/algorithm/{id}/css/**")
-                .addResourceLocations("/static/css/").setCachePeriod(0);
+                .addResourceLocations("/static/css/").setCachePeriod(SEC_IN_A_YEAR);
         registry.addResourceHandler("/img/**","/projects/img/**", "/algorithm/img/**")
-                .addResourceLocations("/static/img/").setCachePeriod(0);
+                .addResourceLocations("/static/img/").setCachePeriod(SEC_IN_A_YEAR);
         registry.addResourceHandler("/js/**")
-                .addResourceLocations("/static/js/").setCachePeriod(0);
+                .addResourceLocations("/static/js/").setCachePeriod(SEC_IN_A_YEAR);
         registry.addResourceHandler("/user/js/**")
-                .addResourceLocations("/static/js/user/").setCachePeriod(0);
+                .addResourceLocations("/static/js/user/").setCachePeriod(SEC_IN_A_YEAR);
         registry.addResourceHandler("/projects/js/**","/projects/{id}/js/**")
-                .addResourceLocations("/static/js/projects/").setCachePeriod(0);
+                .addResourceLocations("/static/js/projects/").setCachePeriod(SEC_IN_A_YEAR);
         registry.addResourceHandler("/algorithm/js/**","/algorithm/{id}/js/**")
-                .addResourceLocations("/static/js/algorithm/").setCachePeriod(0);
+                .addResourceLocations("/static/js/algorithm/").setCachePeriod(SEC_IN_A_YEAR);
     }
 
     @Override
@@ -45,14 +47,6 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/","/user/signin");
     }
-
-    //@Bean
-    //public InternalResourceViewResolver getInternalResourceViewResolver() {
-    //    InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-    //    resolver.setPrefix("/WEB-INF/");
-    //    resolver.setSuffix(".jsp");
-    //    return resolver;
-    //}
 
     @Bean
     public MultipartResolver multipartResolver() {

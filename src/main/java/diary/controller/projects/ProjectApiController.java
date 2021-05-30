@@ -44,12 +44,6 @@ public class ProjectApiController {
         return projectService.getMemberNames(id);
     }
 
-    @GetMapping(path="/pagenum/{date}")
-    public List<Integer> getPageNumbers(@PathVariable(name="date", required = true)
-                                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        return projectService.getPageNumbers(date, date.plusYears(1));
-    }
-
     @GetMapping(path="/{id}/authority")
     public boolean getAuthority (@PathVariable(name="id") int id) {
         String author = projectService.getAuthor(id);
@@ -57,5 +51,12 @@ public class ProjectApiController {
 
         return currentUser.equals(author);
     }
+
+    @GetMapping(path="/pagenum/{date}")
+    public List<Integer> getPageNumbers(@PathVariable(name="date", required = true)
+                                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return projectService.getPageNumbers(date, date.plusYears(1));
+    }
+
 
 }

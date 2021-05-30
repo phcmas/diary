@@ -40,17 +40,18 @@ public class AlgorithmApiController {
         return algorithmService.delete(id);
     }
 
-    @GetMapping(path="/pagenum/{date}")
-    public List<Integer> getPageNumbers(@PathVariable(name="date", required = true)
-                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        return algorithmService.getPageNumbers(date, date.plusMonths(1));
-    }
-
     @GetMapping(path="/{id}/authority")
     public boolean getAuthority (@PathVariable(name="id") int id) {
         String author = algorithmService.getAuthor(id);
         String currentUser = Utility.getCurrentUserName();
         return author.equals(currentUser);
     }
+
+    @GetMapping(path="/pagenum/{date}")
+    public List<Integer> getPageNumbers(@PathVariable(name="date", required = true)
+                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return algorithmService.getPageNumbers(date, date.plusMonths(1));
+    }
+
 
 }

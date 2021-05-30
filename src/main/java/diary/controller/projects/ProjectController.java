@@ -27,17 +27,17 @@ public class ProjectController {
         return "/projects/lookup";
     }
 
-    @GetMapping("/registration")
-    public String addProject() {
-        return "/projects/registration";
-    }
-
     @GetMapping(path="/{id}/modification")
     public String modifyProject(@PathVariable(name="id") int id, Model model) {
         Project project = projectService.get(id);
         model.addAttribute("project", project.toProjectParam());
 
         return "/projects/modification";
+    }
+
+    @GetMapping("/registration")
+    public String addProject() {
+        return "/projects/registration";
     }
 
     @GetMapping("/cards")

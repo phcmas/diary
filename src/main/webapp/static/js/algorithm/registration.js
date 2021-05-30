@@ -58,7 +58,7 @@ function addContent() {
     let str = fileName.split('\\');
     let name = str[str.length-1];
 
-    $.getJSON('/diary/algorithm/file/overlap/' + name,
+    $.getJSON('/diary/algorithm/file/' + name + '/overlap',
         function(e) {
             if (e === false) addAlgorithm();
             else alert("중복된 파일이 존재합니다");

@@ -7,11 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
-
-import static diary.service.FileService.*;
 
 @RestController
 @RequestMapping(path="/algorithm")
@@ -38,20 +35,10 @@ public class FileController {
         return fileService.add(algorithmId, file);
     }
 
-    @DeleteMapping(path="file/{id}")
-    public int deleteFile(@PathVariable(name="id") int id) {
-        return fileService.delete(id);
-    }
-
     @PutMapping(path="/file")
     public int updateFile(@RequestParam(name="id") int id,
                           @RequestParam(name="file") MultipartFile file) {
         return fileService.update(id, file);
-    }
-
-    @GetMapping(path="/file/overlap/{fileName}")
-    public boolean existFile(@PathVariable(name="fileName") String fileName) {
-        return fileService.findFile(fileName);
     }
 
     @GetMapping(path="/file/{id}")
@@ -70,6 +57,16 @@ public class FileController {
         } catch (Exception ex) {
             throw new RuntimeException("File Save Error");
         }
+    }
+
+    @DeleteMapping(path="file/{id}")
+    public int deleteFile(@PathVariable(name="id") int id) {
+        return fileService.delete(id);
+    }
+
+    @GetMapping(path="/file/{fileName}/overlap")
+    public boolean existFile(@PathVariable(name="fileName") String fileName) {
+        return fileService.findFile(fileName);
     }
 
 }

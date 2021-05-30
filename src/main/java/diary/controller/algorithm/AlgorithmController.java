@@ -56,11 +56,6 @@ public class AlgorithmController {
         return "/algorithm/lookup";
     }
 
-    @GetMapping("/registration")
-    public String addAlgorithm() {
-        return "/algorithm/registration";
-    }
-
     @GetMapping("/{id}/modification")
     public String modifyAlgorithm(@PathVariable(name="id") int id, Model model) {
         Algorithm algorithm = algorithmService.get(id);
@@ -69,5 +64,11 @@ public class AlgorithmController {
 
         return "/algorithm/modification";
     }
+
+    @GetMapping("/registration")
+    public String addAlgorithm() {
+        return "/algorithm/registration";
+    }
+
 
 }
