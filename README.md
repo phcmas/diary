@@ -1,7 +1,6 @@
 Developer Diary는 다음과 같이 개발되었습니다.
 
 Backend : Spring MVC 5.2.2 + Spring JDBC + MySql
-
 Frontend : Bootstrap 4.1 Template + Javascript(Jquery)
 
 Backend는 모든 부분이 새롭게 개발되었고, 마크업은 기존의 Bootstrap template을 그대로 이용하였습니다. 
