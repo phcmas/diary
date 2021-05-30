@@ -12,17 +12,4 @@ public class IndexController {
         model.addAttribute("name", Utility.getCurrentUserName());
         return "main";
     }
-
-    @GetMapping("/cs")
-    public String cs() {
-        return "cs";
-    }
-
-
-    /** Test (삭제 예정 ) **/
-    @GetMapping("/welcome")
-    public String welcome() {
-        return "welcome";
-    }
-
 }
