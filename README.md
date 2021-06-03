@@ -11,6 +11,7 @@ Developer Diary는 다음과 같이 개발되었습니다.
   - source table.sql로 테이블 생성
 2. Tomcat 8.5로 배포 (TOMCAT 8.5가 설치된 경로가 $TOMCAT_HOME)
   - target/diary.war를 $TOMCAT_HOME/webapps/ 로 복사
+  - mv ROOT ROOT_backup 으로 ROOT 디렉토리 이름 변경
   - $TOMCAT_HOME/bin 의 startup.sh 실행
   - http://localhost:8080/diary/ 접속
 
