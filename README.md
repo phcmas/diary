@@ -9,7 +9,10 @@ Developer Diary는 다음과 같이 개발되었습니다.
   - source db.sql 로 user 및 database 생성
   - system mysql -useung -p 로 user 변경하고 use diary 로 database 선택
   - source table.sql로 테이블 생성
-2. Tomcat 8.5로 배포 이후 http://localhost:8080/diary/ 접속
+2. Tomcat 8.5로 배포 (TOMCAT 8.5가 설치된 경로가 $TOMCAT_HOME)
+  - target/diary.war를 $TOMCAT_HOME/webapps/ 로 복사
+  - $TOMCAT_HOME/bin 의 startup.sh 실행
+  - http://localhost:8080/diary/ 접속
 
 < 구현 기능 >
 1. Login
