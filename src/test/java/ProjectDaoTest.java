@@ -88,7 +88,7 @@ public class ProjectDaoTest {
     public void DaoTest2_UserRole() {
         int userId = getUserId();
         // add userRole
-        UserRole userRole = new UserRole(userId, UserAuthority.USER);
+        UserRole userRole = UserRole.builder().userId(userId).name("test").roleName(UserAuthority.USER).build();
         int newId = userRoleDao.add(userRole);
         Assert.assertTrue(newId >= 0);
 
@@ -100,7 +100,7 @@ public class ProjectDaoTest {
     @Test
     public void DaoTest3_Project() {
         // add newProject
-        Project newProject = Project.builder().title("test").startDate(LocalDate.now())
+        Project newProject = Project.builder().author("test").title("test").startDate(LocalDate.now())
                 .endDate(LocalDate.now()).projectType(ProjectType.ERROR_RESOLUTION)
                 .content("test").testScenario("test").createDate(LocalDate.now())
                 .modifyDate(LocalDate.now()).build();

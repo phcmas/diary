@@ -45,7 +45,7 @@ public class AlgorithmDaoTest {
 
     @Test
     public void DaoTest0_AlgorithmTest() {
-        Algorithm newAlgorithm = Algorithm.builder().id(-1)
+        Algorithm newAlgorithm = Algorithm.builder().id(-1).author("test")
                 .title("test").solvedDate(LocalDate.now())
                 .language(Language.JAVA).type(AlgorithmType.DP)
                 .source("LeetCode").difficulty(Difficulty.MEDIUM)
