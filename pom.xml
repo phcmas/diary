@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>kr.or.connect</groupId>
-  <artifactId>reservation</artifactId>
+  <artifactId>diary</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -239,7 +239,7 @@
 
 
   <build>
-    <finalName>reservation</finalName>
+    <finalName>diary</finalName>
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

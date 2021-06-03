@@ -1,0 +1,45 @@
+{{>layout/header}}
+
+  {{>layout/algorithm_side}}
+
+      <div class="col-lg-9">
+        <img src="img/code3.jpg" class="img-fluid rounded">
+
+        <div class="row">
+
+          {{#algorithmCards}}
+          <div class="col-lg-5 col-md-7 mb-5">
+            <div class="card h-100">
+              <button class="card-header" value="{{date}}"></button>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="/diary/algorithm/{{algorithmId}}/lookup">{{shortTitle}}</a>
+                </h4>
+                <h6>{{type}}</h6>
+                <p class="card-text">{{shortExplanation}}</p>
+              </div>
+              <div class="card-footer">
+                <div class="text-muted">{{difficulty}}</div>
+              </div>
+            </div>
+          </div>
+          {{/algorithmCards}}
+
+        </div>
+        <!-- /.row -->
+        <div class="footer-button">
+          <a href="/diary/algorithm/registration" role="button" class="btn btn-secondary">코드 업로드</a>
+          <div class="list-inline-item" id="page-number"></div>
+        </div>
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="js/cards.js?ver=1"></script>
+
+{{>layout/footer}}

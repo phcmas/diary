@@ -115,7 +115,6 @@ public class ProjectDaoTest {
     @Test
     public void DaoTest4_ProjectMember() {
         int projectId = getProjectId();
-        int userId = getUserId();
 
         // add newProjectMember
         ProjectMember newProjectMember = ProjectMember.builder().name("test")
