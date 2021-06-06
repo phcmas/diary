@@ -1,19 +1,10 @@
 < 기술 스택 >
-
 - Backend : Spring MVC 5.2.2 + Spring JDBC + MySQL
 - Frontend : Bootstrap 4.1 Template + Handlebar + Javascript(Jquery)
 
-< 프로젝트 수행 방법 >
-1. Database 생성
-  - root 권한으로 MySQL 접속 (sudo mysql -uroot)
-  - source db.sql 로 user 및 database 생성
-  - system mysql -useung -p 로 user 변경하고 use diary 로 database 선택
-  - source table.sql로 테이블 생성
-2. Tomcat 8.5로 배포 (TOMCAT 8.5가 설치된 경로가 $TOMCAT_HOME)
-  - target/diary.war를 $TOMCAT_HOME/webapps/ 로 복사
-  - mv ROOT ROOT_backup 으로 ROOT 디렉토리 이름 변경
-  - $TOMCAT_HOME/bin 의 startup.sh 실행
-  - http://localhost:8080/diary/ 접속
+< 프로젝트 확인 방법 >
+- AWS(EC2)를 이용하여 간단히 배포하였습니다.
+- http://13.209.0.140:8080/diary 를 방문해주세요.
 
 < 구현 기능 >
 1. Login
