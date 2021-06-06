@@ -4,7 +4,7 @@ import diary.dto.algorithm.FileInfo;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface FileService {
-    public static String fileRoot = "/home/seungkyun/Web/diary/files/";
+    public static String fileRoot = "/home/ubuntu/diary/files/";
     public FileInfo get(int id);
     public FileInfo getByAlgorithmId(int algorithmId);
     public int add(int algorithmId, MultipartFile file);

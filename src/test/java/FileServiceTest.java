@@ -52,7 +52,7 @@ public class FileServiceTest {
 
             @Override
             public InputStream getInputStream() throws IOException {
-                File file = new File("/home/seungkyun/Web/diary/src/test/test.jpg");
+                File file = new File("/home/ubuntu/diary/src/test/test.jpg");
                 InputStream is = new FileInputStream(file);
                 return is;
             }
@@ -65,3 +65,4 @@ public class FileServiceTest {
         fileService.storeFile(file);
     }
 }
+
