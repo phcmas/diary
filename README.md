@@ -1,4 +1,4 @@
-Developer Diary는 다음과 같이 개발되었습니다.
+< 기술 스택 >
 
 - Backend : Spring MVC 5.2.2 + Spring JDBC + MySQL
 - Frontend : Bootstrap 4.1 Template + Handlebar + Javascript(Jquery)
