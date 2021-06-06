@@ -12,7 +12,6 @@ import diary.dto.projects.ProjectMember;
 import diary.dto.enums.ProjectType;
 import diary.dto.user.User;
 import diary.dto.user.UserRole;
-import diary.utility.Utility;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -27,9 +26,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
