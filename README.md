@@ -22,8 +22,8 @@
 - 일반 회원은 USER로서 ROLE을 가지고, 운영자는 USER와 ADMIN의 2가지 ROLE을 가집니다.
 
 2. Home
-- 메인 페이지로 이동합니다
-- Logout은 logout이후 signin 페이지로 리다이렉트하고 GitHub을 누르면 본 프로젝트의 소스코드 저장소로 이동합니다.
+- 메인 페이지입니다.
+- Logout은 logout이후 signin 페이지로 리다이렉트합니다.
 
 3. Development History
 - 개발자들이 자신의 개발 내역을 조회, 삭제, 수정할 수 있습니다
