@@ -43,17 +43,29 @@ public class FileServiceImpl implements FileService {
     @Transactional
     public int delete(int id) {
         FileInfo fileInfo = fileInfoDao.get(id);
-        deleteFile(fileInfo.getSaveFileName());
-        return deleteFileInfo(id);
+        if (fileInfo != null) {
+            deleteFile(fileInfo.getSaveFileName());
+            return deleteFileInfo(id);
+        }
+
+        return -1;
     }
 
     @Override
     @Transactional
-    public int update(int id, MultipartFile file) {
+    public int update(int id, int algorithmId, MultipartFile file) {
         FileInfo fileInfo = fileInfoDao.get(id);
-        deleteFile(fileInfo.getSaveFileName());
+        int ret = -1;
+
+        if (fileInfo != null) {
+            deleteFile(fileInfo.getSaveFileName());
+            ret = updateFileInfo(id, algorithmId, file);
+        } else {
+            ret = addFileInfo(algorithmId, file);
+        }
+
         storeFile(file);
-        return updateFileInfo(id, fileInfo.getAlgorithmId(), file);
+        return ret;
     }
 
     @Override

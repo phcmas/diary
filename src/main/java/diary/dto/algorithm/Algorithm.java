@@ -28,8 +28,8 @@ public class Algorithm {
     private int fileId;
 
     public AlgorithmParam toAlgorithmParam(FileInfo fileInfo) {
-        int fileId = fileInfo.getId();
-        String fileName = fileInfo.getFileName();
+        int fileId = fileInfo == null ? -1 : fileInfo.getId();
+        String fileName = fileInfo == null ? "No file" : fileInfo.getFileName();
 
         return AlgorithmParam.builder()
                 .id(id).fileId(fileId).fileName(fileName).title(title)
