@@ -31,7 +31,7 @@ public class AlgorithmController {
     FileService fileService;
 
     @GetMapping("/cards")
-    public String showCards(@RequestParam(name = "date", required = false, defaultValue = "2021-05-01")
+    public String showCards(@RequestParam(name = "date", required = false, defaultValue = "2021-06-01")
                                 @DateTimeFormat(iso= DateTimeFormat.ISO.DATE) LocalDate date,
                             @RequestParam(name = "start", required = true, defaultValue = "1") int pageNum,
                             Model model) throws ParseException {

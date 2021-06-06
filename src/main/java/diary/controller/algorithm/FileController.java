@@ -37,13 +37,15 @@ public class FileController {
 
     @PutMapping(path="/file")
     public int updateFile(@RequestParam(name="id") int id,
+                          @RequestParam(name="algorithmId") int algorithmId,
                           @RequestParam(name="file") MultipartFile file) {
-        return fileService.update(id, file);
+        return fileService.update(id, algorithmId, file);
     }
 
     @GetMapping(path="/file/{id}")
     public void downloadFile(HttpServletResponse response, @PathVariable(name="id", required = true) int id) {
         FileInfo fileInfo = fileService.get(id);
+        if (fileInfo == null) return;
         setResponseHeader(response, fileInfo);
 
         try (FileInputStream fis = new FileInputStream(fileInfo.getSaveFileName());

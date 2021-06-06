@@ -155,9 +155,11 @@ function changeDifficulty() {
 function updateFile() {
     let codeFile = $('#code-file')[0];
     let formData = new FormData(codeFile);
+    let algorithmId = $('#btn-update').val();
     let fileId = $('#btn-cancel').val();
 
     formData.append("id", fileId);
+    formData.append("algorithmId", algorithmId);
 
     $.ajax({
         type : 'PUT',
