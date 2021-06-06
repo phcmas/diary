@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="10" failures="0" name="ProjectDaoTest" time="0.125" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="ProjectDaoTest" time="0.129" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.11+9-Ubuntu-0ubuntu2.20.04"/>
@@ -62,13 +62,13 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase classname="ProjectDaoTest" name="DaoTest0_DBConnectionTest" time="0.001"/>
-  <testcase classname="ProjectDaoTest" name="DaoTest1_User" time="0.016"/>
+  <testcase classname="ProjectDaoTest" name="DaoTest1_User" time="0.015"/>
   <testcase classname="ProjectDaoTest" name="DaoTest2_UserRole" time="0.015"/>
   <testcase classname="ProjectDaoTest" name="DaoTest3_Project" time="0.014"/>
-  <testcase classname="ProjectDaoTest" name="DaoTest4_ProjectMember" time="0.017"/>
-  <testcase classname="ProjectDaoTest" name="DaoTest5_ProjectCard" time="0.015"/>
-  <testcase classname="ProjectDaoTest" name="DaoTest6_ProjectUpdate" time="0.007"/>
-  <testcase classname="ProjectDaoTest" name="DaoTest7_ProjectCards" time="0.004"/>
-  <testcase classname="ProjectDaoTest" name="DaoTest8_ProjectMemberBatchInsert" time="0.02"/>
-  <testcase classname="ProjectDaoTest" name="DaoTest9_ProjectDelete" time="0.016"/>
+  <testcase classname="ProjectDaoTest" name="DaoTest4_ProjectMember" time="0.018"/>
+  <testcase classname="ProjectDaoTest" name="DaoTest5_ProjectCard" time="0.016"/>
+  <testcase classname="ProjectDaoTest" name="DaoTest6_ProjectUpdate" time="0.009"/>
+  <testcase classname="ProjectDaoTest" name="DaoTest7_ProjectCards" time="0.002"/>
+  <testcase classname="ProjectDaoTest" name="DaoTest8_ProjectMemberBatchInsert" time="0.022"/>
+  <testcase classname="ProjectDaoTest" name="DaoTest9_ProjectDelete" time="0.017"/>
 </testsuite>

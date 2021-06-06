@@ -1,0 +1,171 @@
+< Main Page >
+
+1. container 
+- Developer Diary에 대한 전반적인 설명
+
+2. side bar
+- Logout
+- Github 로 redirect
+
+
+< Development History >
+
+1. container
+- 최신 날짜 순서대로 카드로 표시
+- 날짜별로 필터링하는 기능 구현
+
+2. side bar
+- 기능개발, 성능개선, 오류해결 탭별로 조회 (1-2)
+
+3. page
+- 수정 및 삭제 기능 (로그인 사용자 확인)
+
+
+
+project 생성시
+
+
+
+project_card
+
+id
+project_id
+project_type
+short_title
+short_content
+member_count
+
+
+
+카드 css 설정
+enum 대문자로
+project card 및 project member dto 및 dao 바꾸리
+
+register (project 생성) 
+-> project member 생성 (project param에서 member는 list로 따로 관리, 이후 구현 지금은 1-1)
+-> project card 생성 (title은 10자, content는 30자 로 줄임, project-type은 한글로)
+
+projectcard는 따로 param으로 가공하지 않고 프론트로 보냄.
+
+조회시에는 그대로 4개씩 끊어서 (request param start) project card 보내줌
+
+sidebar는 날짜 표시 2019-08 부터 2020-06 (request param date)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+< Algorithm >
+
+1. container
+- 최신 날짜 순서대로 카드로 표시
+
+2. side bar
+- 월별로 조회기능
+
+2. page
+- 파일을 읽어서 페이지에 표시
+
+
+
+
+/card?날짜
+알고리즘 카드 화면
+필터링
+페이지 넘버
+
+
+/registration
+등록시 
+algorithm card
+
+삭제기능
+
+
+
+/modification
+update
+
+
+
+
+
+
+
+
+
+< DB >
+Algorithm
+
+id
+title
+solved_date
+language
+type
+source
+difficulty
+explanation
+create_date
+modify_date
+file_id
+
+
+FileInfo
+id
+file_name
+content_type
+create_date
+modify_date
+
+Algorithm Card
+id
+algorithm_id
+short_title
+short_explanation
+type
+difficulty
+solved_date
+
+
+
+
+
+3. 알고리즘 FileInfo 관련 CRUD 작업 마무리 -> 확인 필요
+4. 유저권한에 따른 기능 제한 -> 오늘 마무리
+
+
+
+
+
+5월 말부터 이력정리 시작 -> 6월 초에 이력서 내기 시작
+
+
+
+
+
+
+
+
+
+
