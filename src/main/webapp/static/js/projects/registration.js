@@ -14,6 +14,8 @@ $('#btn-save').click(function() {
         names.push($(this).val());
     });
 
+    if (hasEmptyInfo()) return;
+
     let projectParam = {
         id : -1,
         title : $('#title').val(),

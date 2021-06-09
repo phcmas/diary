@@ -1,6 +1,5 @@
 var isFileUpdated = 0;
 
-
 function addFileName() {
     let fileName = $('#file-upload').val();
     let str = fileName.split('\\');
@@ -56,6 +55,8 @@ function changeSourceTag() {
         default:
             console.log("Error");
     }
+
+    $('#prev-source').val('0');
 };
 
 function changeType() {
@@ -102,6 +103,8 @@ function changeType() {
         default:
             console.log("Error");
     }
+
+    $('#prev-type').val('0');
 };
 
 function changeLanguage() {
@@ -128,6 +131,8 @@ function changeLanguage() {
         default:
             console.log("Error");
     }
+
+    $('#prev-language').val('0');
 };
 
 function changeDifficulty() {
@@ -150,6 +155,8 @@ function changeDifficulty() {
         default:
             console.log("Error");
     }
+
+    $('#prev-difficulty').val('0');
 };
 
 function updateFile() {
@@ -186,6 +193,8 @@ $(document).ready(function() {
 $('#file-upload').on("change", addFileName);
 
 $('#btn-update').click((e) => {
+    if (hasEmptyInfo()) return;
+
     let algorithmId = $('#btn-update').val();
     let algorithmParam = {
         id : algorithmId,

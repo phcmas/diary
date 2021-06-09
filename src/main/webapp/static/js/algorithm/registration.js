@@ -47,6 +47,8 @@ function addAlgorithm() {
 function addContent() {
     // 파일 이름 중복에 대해 더 나은 방법을 고민해보아야함.
     // 임시로 이렇게 구현함
+    if (hasEmptyInfo()) return;
+
     if (isFileUploaded === false) {
         addAlgorithm();
         alert("알고리즘이 등록되었습니다.");
