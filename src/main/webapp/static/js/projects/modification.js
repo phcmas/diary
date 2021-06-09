@@ -32,6 +32,8 @@ function showOption() {
         default:
             console.log("Error");
     }
+
+    $('#previous-type').val('0')
 }
 
 function showMembers() {
@@ -73,14 +75,16 @@ $(document).on('click', '.badge', function() {
 });
 
 $('#btn-update').click(function() {
-    let names = [];
     let id = $('#btn-update').val();
+    let names = [];
 
     $('button[name=member-name]').each(function(){
         names.push($(this).val());
     });
 
-    let projectData = {
+    if (hasEmptyInfo()) return;
+
+    let projectParam = {
         id : id,
         title : $('#title').val(),
         startDate : $('#start-date').val(),
@@ -97,7 +101,7 @@ $('#btn-update').click(function() {
         url : '/diary/projects/' + id,
         datatype : 'json',
         contentType : 'application/json; charset=utf-8',
-        data : JSON.stringify(projectData)
+        data : JSON.stringify(projectParam)
     }).done(function() {
         alert("글이 수정되었습니다");
         window.location.href = '/diary/projects/cards';
