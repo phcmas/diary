@@ -9,6 +9,22 @@ function authenticate(name, password, func) {
     }).done(function() {
         func(name);
     }).fail(function() {
-        alert('인증 실패!');
+        alert("잘못된 정보를 입력했습니다");
     });
+};
+
+
+function hasEmptyInfo() {
+    let name = $('#username').val();
+    let password = $('#password').val();
+
+    if (name === "") {
+        alert("이름을 입력해주세요");
+        return true;
+    } else if (password === "") {
+        alert("패스워드를 입력해주세요");
+        return true;
+    }
+
+    return false;
 };

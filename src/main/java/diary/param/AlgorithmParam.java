@@ -1,6 +1,5 @@
 package diary.param;
 
-
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import diary.dto.algorithm.Algorithm;
 import diary.dto.enums.AlgorithmType;

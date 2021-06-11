@@ -57,38 +57,10 @@ public class Utility {
         file.delete();
     }
 
-    //public static LocalDateTime convert(Date date) {
-    //    return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-    //}
-
-    //public static Date convert(LocalDateTime localDateTime) {
-    //    return java.util.Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-    //}
-
-    //public static LocalDate convert(String dateString) throws ParseException {
-    //    Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
-    //    return convert(date);
-    //}
-
-    //public static String convert(LocalDateTime localDateTime) {
-    //    Date date = java.util.Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-    //    SimpleDateFormat simpleDateFormat= new SimpleDateFormat("yyyy-MM-dd");
-    //    return simpleDateFormat.format(date);
-    //}
-
-    //public static Date getDate(String year, String month, String day) throws ParseException {
-    //    String dateString = year + "-" + month + "-" + day;
-    //    return new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
-    //}
-
-    //public static Date addTime(Date date, int year, int month, int day) {
-    //    Calendar calendar = Calendar.getInstance();
-    //    calendar.setTime(date);
-    //    calendar.add(Calendar.YEAR, year);
-    //    calendar.add(Calendar.MONTH, month);
-    //    calendar.add(Calendar.DATE, day);
-    //    return calendar.getTime();
-    //}
+    public static String getDateStr(LocalDate date) {
+        String[] strs = date.toString().split("-");
+        return strs[1]+ "/" + strs[2];
+    }
 
     public static String getCurrentUserName() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

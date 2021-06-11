@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,6 +16,6 @@ public class ProjectCardParam {
     private String shortTitle;
     private String shortContent;
     private int memberCount;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String endDate;
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import diary.dto.enums.AlgorithmType;
 import diary.dto.enums.Difficulty;
 import diary.param.AlgorithmCardParam;
+import diary.utility.Utility;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,6 +34,6 @@ public class AlgorithmCard {
                 .shortExplanation(shortExplanation)
                 .type(type.getString())
                 .difficulty(difficulty.getString())
-                .solvedDate(solvedDate).build();
+                .solvedDate(Utility.getDateStr(solvedDate)).build();
     }
 }
