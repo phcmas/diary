@@ -18,10 +18,18 @@ function addMembers(memberId) {
     $('#member-names').append(buttonTag);
 };
 
+function stringToDate(str) {
+    let sYear = str.substring(0,4);
+    let sMonth = str.substring(5,7);
+    let sDay = str.substring(8,10);
+    return new Date(sYear, Number(sMonth)-1, sDay);
+};
+
 function hasEmptyInfo() {
+    let now = new Date();
+    let startDate = stringToDate($('#start-date').val());
+    let endDate = stringToDate($('#end-date').val());
     let title = $('#title').val();
-    let startDate = $('#start-date').val();
-    let endDate = $('#end-date').val();
     let projectType = $('#project-type').val();
     let situation = $('#situation').val();
     let content = $('#content').val();
@@ -32,10 +40,16 @@ function hasEmptyInfo() {
         alert("제목을 입력해주세요");
         return true;
     } else if (startDate === "") {
-        alert("시작 날짜를 입력해주세요") ;
+        alert("시작일을 입력해주세요") ;
         return true;
     } else if (endDate === "") {
-        alert("완료 날짜를 입력해주세요");
+        alert("완료일을 입력해주세요");
+        return true;
+    } else if (startDate.getTime() > now.getTime()) {
+        alert("시작일을 현재 시간 이전으로 해주세요 ");
+        return true;
+    } else if (startDate.getTime() > endDate.getTime()) {
+        alert("완료일을 시작일 이후로 해주세요");
         return true;
     } else if (projectType === "0") {
         alert("종류를 입력해주세요");

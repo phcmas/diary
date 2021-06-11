@@ -39,10 +39,14 @@ public class ProjectParam {
                 .projectType(ProjectType.valueOf(projectType))
                 .situation(situation).content(content)
                 .testScenario(testScenario)
-                .createDate(LocalDate.now())
                 .modifyDate(LocalDate.now()).build();
 
-        if (id != -1) newProject.setId(id);
+        if (id != -1) {
+            newProject.setId(id);
+        } else {
+            newProject.setCreateDate(LocalDate.now());
+        }
+
         return newProject;
     }
 

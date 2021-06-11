@@ -4,7 +4,8 @@ public enum Language {
     JAVA(0),
     C(1),
     CPP(2),
-    JAVA_SCRIPT(3);
+    JAVA_SCRIPT(3),
+    PYTHON(4);
 
     private final int language;
 
@@ -16,6 +17,7 @@ public enum Language {
             case 1: return "C";
             case 2: return "C++";
             case 3: return "JavaScript";
+            case 4: return "Python";
             default: return "ERROR";
         }
     }

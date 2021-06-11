@@ -2,11 +2,13 @@ package diary.dto.projects;
 
 import diary.dto.enums.ProjectType;
 import diary.param.ProjectCardParam;
+import diary.utility.Utility;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.rmi.CORBA.Util;
 import java.time.LocalDate;
 
 @Data
@@ -27,7 +29,7 @@ public class ProjectCard {
         return ProjectCardParam.builder()
                 .id(id).projectId(projectId).projectType(projectType.getString())
                 .shortTitle(shortTitle).shortContent(shortContent)
-                .memberCount(memberCount).startDate(startDate)
-                .endDate(endDate).build();
+                .memberCount(memberCount).startDate(Utility.getDateStr(startDate))
+                .endDate(Utility.getDateStr(endDate)).build();
     }
 }

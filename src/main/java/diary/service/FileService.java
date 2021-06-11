@@ -4,7 +4,8 @@ import diary.dto.algorithm.FileInfo;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface FileService {
-    public static String fileRoot = "/home/seungkyun/Web/diary/files/";
+    //diary_evn 파일로 fileRoot 환경 변수를 설정해야함
+    public static String fileRoot = System.getenv("fileRoot");
     public FileInfo get(int id);
     public FileInfo getByAlgorithmId(int algorithmId);
     public int add(int algorithmId, MultipartFile file);

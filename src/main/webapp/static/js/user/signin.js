@@ -4,8 +4,9 @@ function windowChange(name) {
 };
 
 function goToMain() {
-    var name = $('#username').val();
-    var password = $('#password').val();
+    if (hasEmptyInfo()) return;
+    let name = $('#username').val();
+    let password = $('#password').val();
     authenticate(name, password, windowChange);
 };
 

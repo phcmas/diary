@@ -9,7 +9,7 @@ public class AlgorithmSqls {
             = "SELECT * FROM algorithm ORDER BY modify_date DESC limit :start, :limit";
     public static String SELECT_ALGORITHM_CARD_BY_DATE
             = "SELECT * FROM algorithm_card WHERE solved_date >= :startDate "
-            + "AND solved_date < :endDate ORDER BY solved_date DESC LIMIT :start, :limit";
+            + "AND solved_date < :endDate ORDER BY id DESC LIMIT :start, :limit";
     public static String SELECT_ALGORITHM_COUNT
             = "SELECT count(*) FROM algorithm WHERE solved_date >= :startDate AND solved_date < :endDate";
     public static String SELECT_AUTHOR

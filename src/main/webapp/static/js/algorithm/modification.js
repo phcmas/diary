@@ -128,6 +128,10 @@ function changeLanguage() {
             optionTag = makeOptionTag('java-script', 'JAVA_SCRIPT', 'JavaScript');
             $('#java').after(optionTag);
             break;
+        case "Python":
+            optionTag = makeOptionTag('python', 'PYTHON', 'Python');
+            $('#java-script').after(optionTag);
+            break;
         default:
             console.log("Error");
     }

@@ -1,5 +1,7 @@
 $('#signup').click((e) => {
-    var userdata = {
+    if (hasEmptyInfo()) return;
+
+    let userdata = {
         name : $('#username').val(),
         password : $('#password').val()
     };
