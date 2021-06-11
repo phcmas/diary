@@ -7,17 +7,20 @@ function stringToDate(str) {
 
 function hasEmptyInfo() {
     let now = new Date();
-    let solvedDate = stringToDate($('#solved-date').val());
+    let solvedDateStr = $('#solved-date').val();
     let title = $('#title').val();
     let source = $('#source').val();
     let type = $('#type').val();
     let language = $('#language').val();
     let difficulty = $('#difficulty').val();
+    let solvedDate;
+
+    if (solvedDateStr !== "") solvedDate = stringToDate(solvedDateStr);
 
     if (title === "") {
         alert("제목을 입력하세요");
         return true;
-    } else if (solvedDate === "") {
+    } else if (solvedDate === undefined) {
         alert("푼 날짜를 입력하세요");
         return true;
     } else if (solvedDate.getTime() > now.getTime()) {

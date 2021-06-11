@@ -27,22 +27,27 @@ function stringToDate(str) {
 
 function hasEmptyInfo() {
     let now = new Date();
-    let startDate = stringToDate($('#start-date').val());
-    let endDate = stringToDate($('#end-date').val());
+    let startDateStr = $('#start-date').val();
+    let endDateStr = $('#end-date').val();
     let title = $('#title').val();
     let projectType = $('#project-type').val();
     let situation = $('#situation').val();
     let content = $('#content').val();
     let testScenario = $('#test-scenario').val();
     let names = $('button[name=member-name]').val();
+    let startDate;
+    let endDate;
+
+    if (startDateStr !== "") startDate = stringToDate(startDateStr);
+    if (endDateStr !== "") endDate = stringToDate(endDateStr);
 
     if (title === "") {
         alert("제목을 입력해주세요");
         return true;
-    } else if (startDate === "") {
+    } else if (startDate === undefined) {
         alert("시작일을 입력해주세요") ;
         return true;
-    } else if (endDate === "") {
+    } else if (endDate === undefined){
         alert("완료일을 입력해주세요");
         return true;
     } else if (startDate.getTime() > now.getTime()) {
