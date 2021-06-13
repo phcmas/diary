@@ -2,7 +2,7 @@
 - Backend : Spring MVC 5.2.2 + Spring JDBC + MySQL
 - Frontend : Bootstrap 4.1 Template + Handlebar + Javascript(Jquery)
 
-< 프로젝트 확인 방법 >
+< 배포 >
 - AWS(EC2)를 이용하여 간단히 배포하였습니다.
 - http://13.209.0.140:8080/diary 를 방문해주세요.
 
