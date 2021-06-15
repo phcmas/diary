@@ -3,7 +3,7 @@
 - Frontend : Bootstrap 4.1 Template + Handlebar + Javascript(Jquery)
 
 < 배포 >
-- AWS(EC2)를 이용하여 간단히 배포하였습니다.
+- AWS(EC2)를 이용하여 간단히 배포하였습니다. 모바일은 이용불가능하고 PC에서만 확인해주세요.
 - http://13.209.0.140:8080/diary 를 방문해주세요.
 
 < 기능 >
